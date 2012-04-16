@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Activities/SMSGroupActivity.cs">
+    <Files>
+      <File FileName="Resources/layout/Main.axml" Line="11" Column="28" />
+      <File FileName="Activities/SMSGroupActivity.cs" Line="44" Column="4" />
+      <File FileName="Activities/MainActivity.cs" Line="31" Column="25" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
