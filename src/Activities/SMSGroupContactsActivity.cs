@@ -16,8 +16,8 @@ using Prattle.Android.Core;
 
 namespace Prattle
 {
-	[Activity (Label = "SMSGroupActivity")]
-	public class SMSGroupActivity : ListActivity
+	[Activity (Label = "Group Contacts")]
+	public class SMSGroupContactsActivity : ListActivity
 	{
 		ProgressDialog _progressDialog;
 		ContactRepository _contactRepo;
@@ -27,9 +27,7 @@ namespace Prattle
 			base.OnCreate (bundle);
 			_contactRepo = new ContactRepository(this);
 
-			// Create your application here
-			var name = this.Intent.GetStringExtra("name");
-			Title = name;
+			Title = this.Intent.GetStringExtra("name");
 			
 			_progressDialog = new ProgressDialog(this);
 			_progressDialog.SetMessage("Loading Contacts.  Please wait...");

@@ -16,11 +16,7 @@ namespace Prattle
 		{
 			base.OnCreate (bundle);
 
-			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
-
-			// Get our button from the layout resource,
-			// and attach an event to it
 		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -35,12 +31,12 @@ namespace Prattle
 				case Resource.Id.menuCreateGroup:
 					var groupName = new EditText(this);
 					new AlertDialog.Builder(this)
-						.SetTitle ("Name SMS Group")
-						.SetMessage ("Enter the name of your new SMS group")
+						.SetTitle ("New SMS Group")
+						.SetMessage ("Please enter a name for the SMS group:")
 						.SetView (groupName)
 						.SetPositiveButton ("Ok", (o, e) => {
 								var intent = new Intent();
-								intent.SetClass (this, typeof(SMSGroupActivity));
+								intent.SetClass (this, typeof(SMSGroupContactsActivity));
 								intent.PutExtra("name", groupName.Text);
 								StartActivity(intent);
 							})
