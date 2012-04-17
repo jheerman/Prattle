@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using R = Android.Resource;
 
 using Prattle.Android.Core;
 
@@ -39,11 +40,33 @@ namespace Prattle
 					_contactRepo.GetAllMobile())
 				.ContinueWith(task =>
 					RunOnUiThread(() => DisplayContacts(task.Result)));
+			
+			ActionBar.SetDisplayHomeAsUpEnabled (true);
+		}
+		
+		public override bool OnCreateOptionsMenu (IMenu menu)
+		{
+			MenuInflater.Inflate (Resource.Menu.group_edit_bar, menu);
+			return true;
+		}
+		
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			switch (item.ItemId) {
+				case R.Id.Home:
+					var intent = new Intent(this, typeof(MainActivity));
+					intent.AddFlags (ActivityFlags.ClearTop);
+					StartActivity (intent);
+					break;
+				default:
+					break;
+			}
+			return true;
 		}
 		
 		private void DisplayContacts(List<Contact> contacts)
 		{
-			ListAdapter = new ArrayAdapter<string> (this, Resource.Layout.sms_item, contacts.Select (c => c.Name).ToArray());
+			ListAdapter = new ContactListAdapter(this, contacts);
 			ListView.TextFilterEnabled = true;
 			_progressDialog.Dismiss ();
 		}

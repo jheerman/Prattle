@@ -48,7 +48,8 @@ namespace Prattle.Android.Core
 				contacts.Add ( new Contact 
 								{
 									Id = contact.Id,
-									Name = contact.DisplayName
+									Name = contact.DisplayName,
+									Phone = contact.Phones.FirstOrDefault (p => p.Type == PhoneType.Mobile).Number
 								});
 			
 			return contacts;

@@ -51,6 +51,7 @@
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\SMSGroupActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
+    <Compile Include="Views\ContactListAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -64,11 +65,23 @@
     <AndroidResource Include="Resources\layout\list_item.xml" />
     <AndroidResource Include="Resources\values\Styles.xml" />
     <AndroidResource Include="Resources\drawable\splash.png" />
-    <AndroidResource Include="Resources\layout\sms_item.xml" />
+    <AndroidResource Include="Resources\layout\contact_item.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_new_sms_group.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_action_new_sms_group.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_new_sms_group.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_new_sms_group.png" />
+    <AndroidResource Include="Resources\menu\main_action_bar.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_new_message.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_action_new_message.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_new_message.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_new_message.png" />
+    <AndroidResource Include="Resources\menu\group_edit_bar.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Activities\" />
+    <Folder Include="Views\" />
+    <Folder Include="Resources\menu\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Prattle.Android.Core\Prattle.Android.Core.csproj">

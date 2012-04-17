@@ -27,10 +27,16 @@ namespace Prattle
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			public const int ic_action_new_message = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int splash = 2130837505;
+			public const int ic_action_new_sms_group = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int Icon = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int splash = 2130837507;
 			
 			private Drawable()
 			{
@@ -40,8 +46,26 @@ namespace Prattle
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060000
-			public const int createGroup = 2131099648;
+			// aapt resource value: 0x7f070000
+			public const int contactName = 2131165184;
+			
+			// aapt resource value: 0x7f070003
+			public const int menuCancelEdit = 2131165187;
+			
+			// aapt resource value: 0x7f070006
+			public const int menuCreateGroup = 2131165190;
+			
+			// aapt resource value: 0x7f070005
+			public const int menuCreateMessage = 2131165189;
+			
+			// aapt resource value: 0x7f070004
+			public const int menuSaveGroup = 2131165188;
+			
+			// aapt resource value: 0x7f070001
+			public const int mobileNumber = 2131165185;
+			
+			// aapt resource value: 0x7f070002
+			public const int selected = 2131165186;
 			
 			private Id()
 			{
@@ -52,15 +76,29 @@ namespace Prattle
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int list_item = 2130903040;
+			public const int contact_item = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Main = 2130903041;
+			public const int list_item = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int sms_item = 2130903042;
+			public const int Main = 2130903042;
 			
 			private Layout()
+			{
+			}
+		}
+		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f060000
+			public const int group_edit_bar = 2131099648;
+			
+			// aapt resource value: 0x7f060001
+			public const int main_action_bar = 2131099649;
+			
+			private Menu()
 			{
 			}
 		}

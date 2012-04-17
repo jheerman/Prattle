@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/menuCreateMessage"
+		android:icon="@drawable/ic_action_new_message"
+		android:title="New Message"
+		android:showAsAction="ifRoom|withText"/>
+	
+	<item android:id="@+id/menuCreateGroup"
+		android:icon="@drawable/ic_action_new_sms_group"
+		android:title="Create Group"
+		android:showAsAction="ifRoom|withText"/>
+</menu>

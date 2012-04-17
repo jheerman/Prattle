@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/menuCancelEdit"
+		android:title="Cancel"
+		android:showAsAction="ifRoom|withText"/>
+	
+	<item android:id="@+id/menuSaveGroup"
+		android:title="Save"
+		android:showAsAction="ifRoom|withText"/>
+</menu>
