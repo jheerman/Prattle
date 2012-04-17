@@ -1,12 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Activities/SMSGroupActivity.cs">
-    <Files>
-      <File FileName="Resources/layout/Main.axml" Line="11" Column="28" />
-      <File FileName="Activities/SMSGroupActivity.cs" Line="7" Column="23" />
-      <File FileName="Activities/MainActivity.cs" Line="20" Column="19" />
-      <File FileName="Prattle.Domain/Contact.cs" Line="8" Column="6" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Prattle" expanded="True">
+            <Node name="Activities" expanded="True">
+              <Node name="SMSGroupActivity.cs" selected="True" />
+            </Node>
+            <Node name="Resources" expanded="True">
+              <Node name="layout" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

@@ -43,7 +43,7 @@ namespace Prattle
 		
 		private void DisplayContacts(List<Contact> contacts)
 		{
-			ListAdapter = new ArrayAdapter<string> (this, Resource.Layout.list_item, contacts.Select (c => c.Name).ToArray());
+			ListAdapter = new ArrayAdapter<string> (this, Resource.Layout.sms_item, contacts.Select (c => c.Name).ToArray());
 			ListView.TextFilterEnabled = true;
 			_progressDialog.Dismiss ();
 		}

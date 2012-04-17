@@ -57,6 +57,9 @@ namespace Prattle
 			// aapt resource value: 0x7f030001
 			public const int Main = 2130903041;
 			
+			// aapt resource value: 0x7f030002
+			public const int sms_item = 2130903042;
+			
 			private Layout()
 			{
 			}
