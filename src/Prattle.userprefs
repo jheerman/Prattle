@@ -3,8 +3,9 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Activities/SMSGroupActivity.cs">
     <Files>
       <File FileName="Resources/layout/Main.axml" Line="11" Column="28" />
-      <File FileName="Activities/SMSGroupActivity.cs" Line="44" Column="4" />
-      <File FileName="Activities/MainActivity.cs" Line="31" Column="25" />
+      <File FileName="Activities/SMSGroupActivity.cs" Line="7" Column="23" />
+      <File FileName="Activities/MainActivity.cs" Line="20" Column="19" />
+      <File FileName="Prattle.Domain/Contact.cs" Line="8" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -9,7 +9,7 @@ using Android.OS;
 
 namespace Prattle
 {
-	[Activity (Label = "Prattle", MainLauncher = true)]
+	[Activity (Label = "Prattle")]
 	public class MainActivity : Activity
 	{
 		protected override void OnCreate (Bundle bundle)
@@ -29,7 +29,7 @@ namespace Prattle
 					.SetTitle ("Name SMS Group")
 					.SetMessage ("Enter the name of your new SMS group")
 					.SetView (groupName)
-					.SetPositiveButton ("Ok", (o, e) => { 
+					.SetPositiveButton ("Ok", (o, e) => {
 							var intent = new Intent();
 							intent.SetClass (this, typeof(SMSGroupActivity));
 							intent.PutExtra("name", groupName.Text);
@@ -42,5 +42,3 @@ namespace Prattle
 		}
 	}
 }
-
-
