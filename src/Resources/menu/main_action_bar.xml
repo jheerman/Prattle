@@ -4,11 +4,6 @@
 		android:title="New Message"
 		android:showAsAction="ifRoom|withText"/>
 	
-	<item android:id="@+id/menuEditGroup"
-		android:icon="@drawable/ic_action_edit_sms_group"
-		android:title="Edit Group"
-		android:showAsAction="ifRoom|withText"/>
-	
 	<item android:id="@+id/menuCreateGroup"
 		android:icon="@drawable/ic_action_new_sms_group"
 		android:title="Add Group"

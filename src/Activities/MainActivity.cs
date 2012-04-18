@@ -10,13 +10,31 @@ using Android.OS;
 namespace Prattle
 {
 	[Activity (Label = "Prattle")]
-	public class MainActivity : Activity
+	public class MainActivity : TabActivity
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.Main);
+			
+			TabHost.TabSpec spec;
+			
+			var intent = new Intent (this, typeof (SMSHistoryActivity));
+			intent.AddFlags (ActivityFlags.NewTask);
+			spec = TabHost.NewTabSpec ("history");
+			spec.SetIndicator ("History", Resources.GetDrawable (Resource.Drawable.ic_tab_sms_history));
+			spec.SetContent (intent);
+			TabHost.AddTab (spec);
+
+			intent = new Intent (this, typeof (SMSGroupActivity));
+			intent.AddFlags (ActivityFlags.NewTask);
+			spec = TabHost.NewTabSpec ("groups");
+			spec.SetIndicator ("Groups", Resources.GetDrawable (Resource.Drawable.ic_tab_sms_group));
+			spec.SetContent (intent);
+			TabHost.AddTab (spec);
+			
+			TabHost.CurrentTab = 0;
 		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)

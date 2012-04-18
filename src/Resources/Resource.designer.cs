@@ -36,10 +36,28 @@ namespace Prattle
 			public const int ic_action_new_sms_group = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int Icon = 2130837507;
+			public const int ic_tab_sms_group = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int splash = 2130837508;
+			public const int ic_tab_sms_group_selected = 2130837508;
+			
+			// aapt resource value: 0x7f020005
+			public const int ic_tab_sms_group_unselected = 2130837509;
+			
+			// aapt resource value: 0x7f020006
+			public const int ic_tab_sms_history = 2130837510;
+			
+			// aapt resource value: 0x7f020007
+			public const int ic_tab_sms_history_selected = 2130837511;
+			
+			// aapt resource value: 0x7f020008
+			public const int ic_tab_sms_history_unselected = 2130837512;
+			
+			// aapt resource value: 0x7f020009
+			public const int Icon = 2130837513;
+			
+			// aapt resource value: 0x7f02000a
+			public const int splash = 2130837514;
 			
 			private Drawable()
 			{
@@ -55,14 +73,11 @@ namespace Prattle
 			// aapt resource value: 0x7f070003
 			public const int menuCancelEdit = 2131165187;
 			
-			// aapt resource value: 0x7f070007
-			public const int menuCreateGroup = 2131165191;
+			// aapt resource value: 0x7f070006
+			public const int menuCreateGroup = 2131165190;
 			
 			// aapt resource value: 0x7f070005
 			public const int menuCreateMessage = 2131165189;
-			
-			// aapt resource value: 0x7f070006
-			public const int menuEditGroup = 2131165190;
 			
 			// aapt resource value: 0x7f070004
 			public const int menuSaveGroup = 2131165188;
