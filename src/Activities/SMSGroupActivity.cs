@@ -15,22 +15,20 @@ using Prattle.Android.Core;
 namespace Prattle
 {
 	[Activity (Label = "SMSGroupActivity")]
-	public class SMSGroupActivity : Activity
+	public class SMSGroupActivity : ListActivity
 	{
-		Repository<SMSGroup> _smsGroupRepo = new Repository<SMSGroup>();
+		Repository<SMSGroup> _smsGroupRepo;
 		
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 			
-			SetContentView (Resource.Layout.SMSGroup);
-			
-			var container = FindViewById<LinearLayout>(Resource.Id.smsContainer);
-			
+			_smsGroupRepo = new Repository<SMSGroup>();
 			var smsGroups = _smsGroupRepo.GetAll ();
-			if (smsGroups == null || smsGroups.ToList ().Count == 0)
-				container.AddView (new TextView (this) { Text = "No SMS Groups Found" });
+			
+			var strGroups = smsGroups.Select (s => s.Name + " (" + s.MemberCount + " Members)").ToArray ();
+			ListAdapter = new ArrayAdapter<string> (this, Resource.Layout.list_item, strGroups);
+			ListView.TextFilterEnabled = true;
 		}
 	}
 }
-

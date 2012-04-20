@@ -1,36 +1,37 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Views/ContactListAdapter.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Activities/SMSGroupContactsActivity.cs">
     <Files>
-      <File FileName="Activities/SMSGroupContactsActivity.cs" Line="69" Column="4" />
-      <File FileName="Resources/layout/SMSGroup.axml" Line="1" Column="1" />
-      <File FileName="Resources/layout/Main.axml" Line="1" Column="1" />
-      <File FileName="Resources/layout/SMSHistory.axml" Line="1" Column="1" />
-      <File FileName="Views/ContactListAdapter.cs" Line="43" Column="52" />
+      <File FileName="Activities/SMSGroupContactsActivity.cs" Line="104" Column="34" />
+      <File FileName="Views/ContactListAdapter.cs" Line="51" Column="63" />
+      <File FileName="Activities/MainActivity.cs" Line="55" Column="31" />
+      <File FileName="Activities/SplashActivity.cs" Line="24" Column="49" />
+      <File FileName="Prattle.Domain/IContact.cs" Line="10" Column="3" />
+      <File FileName="Prattle.Android.Core/Contact.cs" Line="14" Column="38" />
+      <File FileName="Prattle.Domain/IContactRepository.cs" Line="6" Column="58" />
+      <File FileName="Prattle.Android.Core/ContactRepository.cs" Line="11" Column="83" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Prattle" expanded="True">
-            <Node name="Activities" expanded="True" />
+            <Node name="Activities" expanded="True">
+              <Node name="SMSGroupContactsActivity.cs" selected="True" />
+            </Node>
             <Node name="Resources" expanded="True">
               <Option id="ShowVersionControlOverlays" value="True" />
               <Option id="ShowAllFiles" value="True" />
-              <Node name="layout" expanded="True" />
             </Node>
-            <Node name="Views" expanded="True">
-              <Node name="ContactListAdapter.cs" selected="True" />
-            </Node>
+            <Node name="Views" expanded="True" />
           </Node>
           <Node name="Prattle.Android.Core" expanded="True" />
+          <Node name="Prattle.Domain" expanded="True" />
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/jheerman/Projects/Prattle/src/Views/ContactListAdapter.cs" line="56" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.Prattle AndroidDeviceId-Debug="3530601EEE7200EC" />

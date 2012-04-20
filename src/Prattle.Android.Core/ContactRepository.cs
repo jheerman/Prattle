@@ -8,7 +8,7 @@ using Xamarin.Contacts;
 
 namespace Prattle.Android.Core
 {
-	public class ContactRepository : IContactRepository<Contact>
+	public class ContactRepository : Repository<Contact>, IContactRepository<Contact>
 	{
 		AddressBook _book;
 		public ContactRepository (Context context)

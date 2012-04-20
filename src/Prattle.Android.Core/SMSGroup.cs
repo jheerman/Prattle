@@ -8,5 +8,6 @@ namespace Prattle.Android.Core
 	{
 		public SMSGroup ()
 		{ }
+		public int MemberCount { get; set; }
 	}
 }

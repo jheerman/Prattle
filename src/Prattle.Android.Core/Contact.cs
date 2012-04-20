@@ -11,5 +11,6 @@ namespace Prattle.Android.Core
 		public string MobilePhone { get; set; }
 		public string AddressBookId { get; set; }
 		public bool Selected { get; set; }
+		public int SMSGroupId { get; set; }
 	}
 }

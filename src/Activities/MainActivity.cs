@@ -34,7 +34,9 @@ namespace Prattle
 			spec.SetContent (intent);
 			TabHost.AddTab (spec);
 			
-			TabHost.CurrentTab = 0;
+			//if default tab is passed into MainActivity, then set
+			var defaultTab = Intent.GetIntExtra ("defaultTab", 0);
+			TabHost.CurrentTab = defaultTab;
 		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -54,7 +56,7 @@ namespace Prattle
 						.SetView (groupName)
 						.SetPositiveButton ("Ok", (o, e) => {
 								var intent = new Intent();
-								intent.SetClass (this, typeof(SMSGroupContactsActivity));
+								intent.SetClass(this, typeof(SMSGroupContactsActivity));
 								intent.PutExtra("name", groupName.Text);
 								StartActivity(intent);
 							})

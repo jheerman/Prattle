@@ -7,5 +7,6 @@ namespace Prattle.Domain
 	{
 		int Id { get; set; }
 		string Name { get; set; }
+		int MemberCount { get; set; }
 	}
 }
