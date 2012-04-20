@@ -63,7 +63,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
-    <AndroidResource Include="Resources\drawable\Icon.png" />
     <AndroidResource Include="Resources\layout\list_item.xml" />
     <AndroidResource Include="Resources\values\Styles.xml" />
     <AndroidResource Include="Resources\drawable\splash.png" />
@@ -106,6 +105,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi-v5\ic_tab_sms_history_unselected.png" />
     <AndroidResource Include="Resources\layout\SMSGroup.axml" />
     <AndroidResource Include="Resources\layout\SMSHistory.axml" />
+    <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
