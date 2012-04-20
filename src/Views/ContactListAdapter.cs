@@ -22,7 +22,7 @@ namespace Prattle
 
 		public override Java.Lang.Object GetItem (int position)
 		{
-			return null;
+			return position;
 		}
 
 		public Contact GetContact (int position)
@@ -32,7 +32,7 @@ namespace Prattle
 
 		public override long GetItemId (int position)
 		{
-			return 0;
+			return position;
 		}
 
 		public override int Count 
@@ -43,15 +43,14 @@ namespace Prattle
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
 			var contact = _contacts[position];
-
+			
 			var view = convertView ??
 				_context.LayoutInflater.Inflate(Resource.Layout.contact_item, null);
-
-			view.FindViewById<TextView>(Resource.Id.contactName).Text = contact.Name;
-			view.FindViewById<TextView>(Resource.Id.mobileNumber).Text = contact.Phone;
-
+			
+			view.FindViewById<CheckedTextView>(Resource.Id.contactName).Text = contact.Name;
+			view.FindViewById<CheckedTextView>(Resource.Id.contactName).Checked = contact.Selected;
+			view.FindViewById<TextView>(Resource.Id.mobileNumber).Text = contact.MobilePhone;
 			return view;
 		}
 	}
 }
-

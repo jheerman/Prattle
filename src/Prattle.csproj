@@ -104,6 +104,8 @@
     <AndroidResource Include="Resources\drawable-xhdpi-v5\ic_tab_sms_group_unselected.png" />
     <AndroidResource Include="Resources\drawable-xhdpi-v5\ic_tab_sms_history_selected.png" />
     <AndroidResource Include="Resources\drawable-xhdpi-v5\ic_tab_sms_history_unselected.png" />
+    <AndroidResource Include="Resources\layout\SMSGroup.axml" />
+    <AndroidResource Include="Resources\layout\SMSHistory.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

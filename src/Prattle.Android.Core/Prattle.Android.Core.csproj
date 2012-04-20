@@ -61,5 +61,9 @@
     <Compile Include="..\Prattle.Domain\IContactRepository.cs">
       <Link>IContactRepository.cs</Link>
     </Compile>
+    <Compile Include="..\Prattle.Domain\ISMSGroup.cs">
+      <Link>ISMSGroup.cs</Link>
+    </Compile>
+    <Compile Include="SMSGroup.cs" />
   </ItemGroup>
 </Project>

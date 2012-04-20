@@ -3,11 +3,11 @@
 	android:orientation="vertical"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-	
-	<TextView 
+	<CheckedTextView 
 		android:id="@+id/contactName"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
+		android:checkMark="?android:attr/textCheckMark"
 		android:textStyle="bold"
 		android:padding="5dp"
 		android:textSize="20sp"/>
@@ -19,11 +19,4 @@
 		android:layout_height="fill_parent"
 		android:padding="5dp"
 		android:textSize="16sp"/>
-	
-	<CheckBox
-		android:id="@+id/selected"
-		android:layout_centerHorizontal="true"
-		android:layout_alignParentRight="true"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"/>
 </RelativeLayout>

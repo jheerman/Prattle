@@ -3,35 +3,46 @@ using System.Linq;
 using System.Collections.Generic;
 
 using Android.Content;
-
 using Prattle.Domain;
-
 using Xamarin.Contacts;
 
 namespace Prattle.Android.Core
 {
 	public class ContactRepository : IContactRepository<Contact>
 	{
-		Context _context;
+		AddressBook _book;
 		public ContactRepository (Context context)
-		{ 
-			_context = context;
+		{
+			_book = new AddressBook(context);
 		}
 		
-		public Contact Get(string id)
+		public Contact Get (int id)
 		{
 			return null;
+		}
+		
+		public Contact GetByAddressBookId (string addressBookId)
+		{
+			_book.PreferContactAggregation = true;
+			
+			var contact = _book.FirstOrDefault (c => c.Id == addressBookId);
+			if (contact == null) return null;
+			
+			return new Contact {
+				AddressBookId = contact.Id,
+				Name = contact.DisplayName,
+				MobilePhone = contact.Phones.FirstOrDefault(pt => pt.Type == PhoneType.Mobile).Number
+			};
 		}
 		
 		public List<Contact> GetAll()
 		{
 			var contacts = new List<Contact>();
-			var book = new AddressBook(_context);
-			book.PreferContactAggregation = true;
-			foreach (var contact in book)
+			_book.PreferContactAggregation = true;
+			foreach (var contact in _book)
 				contacts.Add ( new Contact 
 								{
-									Id = contact.Id,
+									AddressBookId = contact.Id,
 									Name = contact.DisplayName
 								});
 			
@@ -41,15 +52,14 @@ namespace Prattle.Android.Core
 		public List<Contact> GetAllMobile()
 		{
 			var contacts = new List<Contact>();
-			var book = new AddressBook(_context);
-			book.PreferContactAggregation = true;
+			_book.PreferContactAggregation = true;
 			
-			foreach (var contact in book.Where (c => c.Phones.Any(p => p.Type == PhoneType.Mobile)))
+			foreach (var contact in _book.Where (c => c.Phones.Any(p => p.Type == PhoneType.Mobile)))
 				contacts.Add ( new Contact 
 								{
-									Id = contact.Id,
+									AddressBookId = contact.Id,
 									Name = contact.DisplayName,
-									Phone = contact.Phones.FirstOrDefault (p => p.Type == PhoneType.Mobile).Number
+									MobilePhone = contact.Phones.FirstOrDefault (p => p.Type == PhoneType.Mobile).Number
 								});
 			
 			return contacts;

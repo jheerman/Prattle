@@ -86,7 +86,7 @@ namespace Prattle
 			public const int mobileNumber = 2131165185;
 			
 			// aapt resource value: 0x7f070002
-			public const int selected = 2131165186;
+			public const int smsContainer = 2131165186;
 			
 			private Id()
 			{
@@ -104,6 +104,12 @@ namespace Prattle
 			
 			// aapt resource value: 0x7f030002
 			public const int Main = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int SMSGroup = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int SMSHistory = 2130903044;
 			
 			private Layout()
 			{

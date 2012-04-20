@@ -57,6 +57,8 @@ namespace Prattle
 					StartActivity (intent);
 					break;
 				default:
+					var count = ListView.CheckedItemCount;
+					Toast.MakeText (this, string.Format ("selected count: {0}", count), ToastLength.Short).Show ();
 					break;
 			}
 			return true;
@@ -66,6 +68,11 @@ namespace Prattle
 		{
 			ListAdapter = new ContactListAdapter(this, contacts);
 			ListView.TextFilterEnabled = true;
+			ListView.ChoiceMode = ChoiceMode.Multiple;
+			
+			ListView.ItemClick += delegate(object sender, ItemEventArgs e) {
+				contacts[e.Position].Selected = ListView.IsItemChecked (e.Position);
+			};
 			_progressDialog.Dismiss ();
 		}
 	}

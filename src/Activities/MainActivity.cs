@@ -26,7 +26,7 @@ namespace Prattle
 			spec.SetIndicator ("History", Resources.GetDrawable (Resource.Drawable.ic_tab_sms_history));
 			spec.SetContent (intent);
 			TabHost.AddTab (spec);
-
+			
 			intent = new Intent (this, typeof (SMSGroupActivity));
 			intent.AddFlags (ActivityFlags.NewTask);
 			spec = TabHost.NewTabSpec ("groups");

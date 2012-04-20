@@ -8,7 +8,8 @@ namespace Prattle.Android.Core
 	{
 		public Contact ()
 		{ }
-		public new string Id { get; set; }
-		public string Phone { get; set; }
+		public string MobilePhone { get; set; }
+		public string AddressBookId { get; set; }
+		public bool Selected { get; set; }
 	}
 }
