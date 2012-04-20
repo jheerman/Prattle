@@ -1,31 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Activities/SMSGroupContactsActivity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Activities/SplashActivity.cs">
     <Files>
-      <File FileName="Activities/SMSGroupContactsActivity.cs" Line="104" Column="34" />
+      <File FileName="Activities/SMSGroupContactsActivity.cs" Line="126" Column="31" />
       <File FileName="Views/ContactListAdapter.cs" Line="51" Column="63" />
-      <File FileName="Activities/MainActivity.cs" Line="55" Column="31" />
-      <File FileName="Activities/SplashActivity.cs" Line="24" Column="49" />
-      <File FileName="Prattle.Domain/IContact.cs" Line="10" Column="3" />
-      <File FileName="Prattle.Android.Core/Contact.cs" Line="14" Column="38" />
-      <File FileName="Prattle.Domain/IContactRepository.cs" Line="6" Column="58" />
-      <File FileName="Prattle.Android.Core/ContactRepository.cs" Line="11" Column="83" />
+      <File FileName="Activities/SMSGroupActivity.cs" Line="12" Column="1" />
+      <File FileName="Activities/MainActivity.cs" Line="63" Column="51" />
+      <File FileName="Activities/SplashActivity.cs" Line="10" Column="21" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
+        <State expanded="True" selected="True">
           <Node name="Prattle" expanded="True">
-            <Node name="Activities" expanded="True">
-              <Node name="SMSGroupContactsActivity.cs" selected="True" />
-            </Node>
-            <Node name="Resources" expanded="True">
+            <Node name="Resources">
               <Option id="ShowVersionControlOverlays" value="True" />
               <Option id="ShowAllFiles" value="True" />
             </Node>
-            <Node name="Views" expanded="True" />
           </Node>
-          <Node name="Prattle.Android.Core" expanded="True" />
-          <Node name="Prattle.Domain" expanded="True" />
         </State>
       </Pad>
     </Pads>
