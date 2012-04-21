@@ -56,7 +56,7 @@ namespace Prattle
 						.SetView (groupName)
 						.SetPositiveButton ("Ok", (o, e) => {
 								var intent = new Intent();
-								intent.SetClass(this, typeof(SMSGroupContactsActivity));
+								intent.SetClass(this, typeof(NewSMSGroupActivity));
 								intent.PutExtra("name", groupName.Text);
 								StartActivity(intent);
 							})

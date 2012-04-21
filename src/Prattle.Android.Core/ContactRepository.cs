@@ -64,5 +64,12 @@ namespace Prattle.Android.Core
 			
 			return contacts;
 		}
+		
+		public List<Contact> GetSMSGroupMembers (int groupId)
+		{
+			return (from contact in cn.Table<Contact>()
+			        where contact.SMSGroupId == groupId
+			        select contact).ToList ();
+		}
 	}
 }

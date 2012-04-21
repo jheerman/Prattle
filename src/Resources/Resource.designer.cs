@@ -36,28 +36,40 @@ namespace Prattle
 			public const int ic_action_new_sms_group = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int ic_tab_sms_group = 2130837507;
+			public const int ic_menu_delete_sms_group = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int ic_tab_sms_group_selected = 2130837508;
+			public const int ic_menu_edit_sms_group = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int ic_tab_sms_group_unselected = 2130837509;
+			public const int ic_menu_send_sms_message = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int ic_tab_sms_history = 2130837510;
+			public const int ic_menu_sms_context_header = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int ic_tab_sms_history_selected = 2130837511;
+			public const int ic_tab_sms_group = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int ic_tab_sms_history_unselected = 2130837512;
+			public const int ic_tab_sms_group_selected = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int Icon = 2130837513;
+			public const int ic_tab_sms_group_unselected = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int splash = 2130837514;
+			public const int ic_tab_sms_history = 2130837514;
+			
+			// aapt resource value: 0x7f02000b
+			public const int ic_tab_sms_history_selected = 2130837515;
+			
+			// aapt resource value: 0x7f02000c
+			public const int ic_tab_sms_history_unselected = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public const int Icon = 2130837517;
+			
+			// aapt resource value: 0x7f02000e
+			public const int splash = 2130837518;
 			
 			private Drawable()
 			{
@@ -69,6 +81,12 @@ namespace Prattle
 			
 			// aapt resource value: 0x7f070000
 			public const int contactName = 2131165184;
+			
+			// aapt resource value: 0x7f070009
+			public const int deleteSMS = 2131165193;
+			
+			// aapt resource value: 0x7f070008
+			public const int editSMS = 2131165192;
 			
 			// aapt resource value: 0x7f070003
 			public const int menuCancelEdit = 2131165187;
@@ -85,6 +103,9 @@ namespace Prattle
 			// aapt resource value: 0x7f070001
 			public const int mobileNumber = 2131165185;
 			
+			// aapt resource value: 0x7f070007
+			public const int sendSMS = 2131165191;
+			
 			// aapt resource value: 0x7f070002
 			public const int smsContainer = 2131165186;
 			
@@ -100,16 +121,19 @@ namespace Prattle
 			public const int contact_item = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int list_item = 2130903041;
+			public const int EditSMSGroup = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int Main = 2130903042;
+			public const int list_item = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int SMSGroup = 2130903043;
+			public const int Main = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int SMSHistory = 2130903044;
+			public const int SMSGroup = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int SMSHistory = 2130903045;
 			
 			private Layout()
 			{
@@ -124,6 +148,9 @@ namespace Prattle
 			
 			// aapt resource value: 0x7f060001
 			public const int main_action_bar = 2131099649;
+			
+			// aapt resource value: 0x7f060002
+			public const int sms_context_menu = 2131099650;
 			
 			private Menu()
 			{

@@ -18,7 +18,7 @@ namespace Prattle
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-
+			
 			// Create your application here
 			Intent intent = new Intent();
 			intent.SetClass (this, typeof(MainActivity));
@@ -26,4 +26,3 @@ namespace Prattle
 		}
 	}
 }
-

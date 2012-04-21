@@ -51,9 +51,10 @@
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Views\ContactListAdapter.cs" />
-    <Compile Include="Activities\SMSGroupContactsActivity.cs" />
     <Compile Include="Activities\SMSGroupActivity.cs" />
     <Compile Include="Activities\SMSHistoryActivity.cs" />
+    <Compile Include="Activities\NewSMSGroupActivity.cs" />
+    <Compile Include="Activities\EditSMSGroupActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -106,6 +107,36 @@
     <AndroidResource Include="Resources\layout\SMSGroup.axml" />
     <AndroidResource Include="Resources\layout\SMSHistory.axml" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
+    <AndroidResource Include="Resources\menu\sms_context_menu.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_delete_sms_group.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_edit_sms_group.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_send_sms_message.png" />
+    <AndroidResource Include="Resources\drawable-hdpi-v5\ic_tab_sms_group_selected.png" />
+    <AndroidResource Include="Resources\drawable-hdpi-v5\ic_tab_sms_group_unselected.png" />
+    <AndroidResource Include="Resources\drawable-hdpi-v5\ic_tab_sms_history_selected.png" />
+    <AndroidResource Include="Resources\drawable-hdpi-v5\ic_tab_sms_history_unselected.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_menu_delete_sms_group.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_menu_edit_sms_group.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_menu_send_sms_message.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_delete_sms_group.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_edit_sms_group.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_send_sms_message.png" />
+    <AndroidResource Include="Resources\drawable-mdpi-v5\ic_tab_sms_group_selected.png" />
+    <AndroidResource Include="Resources\drawable-mdpi-v5\ic_tab_sms_group_unselected.png" />
+    <AndroidResource Include="Resources\drawable-mdpi-v5\ic_tab_sms_history_selected.png" />
+    <AndroidResource Include="Resources\drawable-mdpi-v5\ic_tab_sms_history_unselected.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_delete_sms_group.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_edit_sms_group.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_send_sms_message.png" />
+    <AndroidResource Include="Resources\drawable-ldpi-v5\ic_tab_sms_group_selected.png" />
+    <AndroidResource Include="Resources\drawable-ldpi-v5\ic_tab_sms_group_unselected.png" />
+    <AndroidResource Include="Resources\drawable-ldpi-v5\ic_tab_sms_history_selected.png" />
+    <AndroidResource Include="Resources\drawable-ldpi-v5\ic_tab_sms_history_unselected.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_sms_context_header.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_menu_sms_context_header.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_sms_context_header.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_sms_context_header.png" />
+    <AndroidResource Include="Resources\layout\EditSMSGroup.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
