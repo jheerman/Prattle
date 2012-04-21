@@ -117,7 +117,7 @@ namespace Prattle
 				contact.CreatedDate = DateTime.Now;
 				contact.UUID = Guid.NewGuid ().ToString ();
 				contact.SMSGroupId = smsGroup.Id;
-				_contactRepo.Save(contact);
+				contact.Id = _contactRepo.Save(contact);
 			}
 		}
 		
