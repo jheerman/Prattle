@@ -17,5 +17,7 @@ Basic Features
 Screenshot
 =======================
 [Prattle Splash Screen](https://github.com/jheerman/Prattle/raw/master/docs/screenshots/device_splash.png)
+
 [Prattle Group List](https://github.com/jheerman/Prattle/raw/master/docs/screenshots/device_groups.png)
+
 John (info@jheerman.com)
