@@ -47,7 +47,7 @@ namespace Prattle
 			_position = ((AdapterView.AdapterContextMenuInfo) menuInfo).Position;
 			
 			MenuInflater.Inflate (Resource.Menu.sms_context_menu, menu);
-			menu.SetHeaderTitle ("SMS Options");
+			menu.SetHeaderTitle ("SMS Group Options");
 			menu.SetHeaderIcon (Resource.Drawable.ic_menu_sms_context_header);
 		}
 		
@@ -57,6 +57,7 @@ namespace Prattle
 			{
 				case Resource.Id.editSMS:
 					var editSMSIntent = new Intent();
+					editSMSIntent.PutExtra ("groupId", _smsGroups[_position].Id);
 					editSMSIntent.SetClass (this, typeof(EditSMSGroupActivity));
 					StartActivity (editSMSIntent);
 					break;
@@ -95,7 +96,7 @@ namespace Prattle
 		{
 			//Delete all group memebers
 			_contactRepo = new ContactRepository(this);
-			var contacts = _contactRepo.GetSMSGroupMembers(smsGroup.Id);
+			var contacts = _contactRepo.GetMembersForSMSGroup(smsGroup.Id);
 			contacts.ForEach (c => _contactRepo.Delete (c));
 			
 			_smsGroupRepo.Delete (smsGroup);

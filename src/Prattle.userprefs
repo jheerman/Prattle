@@ -1,28 +1,37 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Activities/SplashActivity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Prattle.Android.Core/ContactRepository.cs">
     <Files>
-      <File FileName="Activities/SMSGroupContactsActivity.cs" Line="126" Column="31" />
-      <File FileName="Views/ContactListAdapter.cs" Line="51" Column="63" />
-      <File FileName="Activities/SMSGroupActivity.cs" Line="12" Column="1" />
-      <File FileName="Activities/MainActivity.cs" Line="63" Column="51" />
-      <File FileName="Activities/SplashActivity.cs" Line="10" Column="21" />
+      <File FileName="Activities/NewSMSGroupActivity.cs" Line="122" Column="1" />
+      <File FileName="Activities/SMSGroupActivity.cs" Line="32" Column="31" />
+      <File FileName="Activities/MainActivity.cs" Line="64" Column="16" />
+      <File FileName="Activities/EditSMSGroupActivity.cs" Line="28" Column="47" />
+      <File FileName="Prattle.Android.Core/ContactRepository.cs" Line="68" Column="45" />
+      <File FileName="Prattle.Android.Core/Repository.cs" Line="24" Column="14" />
+      <File FileName="Prattle.Android.Core/SMSGroup.cs" Line="13" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True">
+        <State expanded="True">
           <Node name="Prattle" expanded="True">
-            <Node name="Resources">
+            <Node name="Activities" expanded="True" />
+            <Node name="Resources" expanded="True">
               <Option id="ShowVersionControlOverlays" value="True" />
               <Option id="ShowAllFiles" value="True" />
+              <Node name="menu" expanded="True" />
             </Node>
+          </Node>
+          <Node name="Prattle.Android.Core" expanded="True">
+            <Node name="ContactRepository.cs" selected="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/jheerman/Projects/Prattle/src/Activities/NewSMSGroupActivity.cs" line="109" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.Prattle AndroidDeviceId-Debug="3530601EEE7200EC" />

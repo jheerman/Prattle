@@ -9,6 +9,6 @@ namespace Prattle.Domain
 		T GetByAddressBookId (string addressId);
 		List<T> GetAll();
 		List<T> GetAllMobile();
-		List<T> GetSMSGroupMembers(int groupId);
+		List<T> GetMembersForSMSGroup(int groupId);
 	}
 }
