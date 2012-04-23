@@ -16,11 +16,6 @@ namespace Prattle.Android.Core
 			_book = new AddressBook(context);
 		}
 		
-		public new Contact Get (int id)
-		{
-			return null;
-		}
-		
 		public Contact GetByAddressBookId (string addressBookId)
 		{
 			_book.PreferContactAggregation = true;

@@ -37,6 +37,7 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="IContactRepository.cs" />
     <Compile Include="ISMSGroup.cs" />
+    <Compile Include="ISMSGroupRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

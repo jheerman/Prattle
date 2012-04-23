@@ -80,6 +80,7 @@ namespace Prattle
 								.ContinueWith(task =>
 									RunOnUiThread(() => {
 										UpdateSMSList();
+										_progressDialog.Dismiss ();
 									}));
 						})
 						.SetNegativeButton ("Cancel", (o, e) => { })
@@ -108,7 +109,6 @@ namespace Prattle
 			var strGroups = _smsGroups.Select (s => s.Name + " (" + s.MemberCount + " Members)").ToArray ();
 			ListAdapter = new ArrayAdapter<string> (this, Resource.Layout.list_item, strGroups);
 			((BaseAdapter)ListAdapter).NotifyDataSetChanged ();
-			_progressDialog.Dismiss ();
 		}
 	}
 }

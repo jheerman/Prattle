@@ -16,8 +16,8 @@ using System.Threading.Tasks;
 
 namespace Prattle
 {
-	[Activity (Label = "Edit SMS Group")]
-	public class EditSMSGroupActivity : ListActivity
+	[Activity (Label = "Edit SMS Group", NoHistory=true)]
+	public class EditSMSGroupActivity : PrattleListActivity
 	{
 		private ContactRepository _contactRepo;
 		private ProgressDialog _progressDialog;
@@ -25,9 +25,9 @@ namespace Prattle
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			_contactRepo = new ContactRepository(this);
 			
 			var groupId = Intent.GetIntExtra ("groupId", -1);
+			base._groupId = groupId;
 			
 			_progressDialog = new ProgressDialog(this);
 			_progressDialog.SetMessage("Loading Contacts.  Please wait...");
@@ -37,51 +37,21 @@ namespace Prattle
 				.StartNew(() =>
 					GetContacts(groupId))
 				.ContinueWith(task =>
-					RunOnUiThread(() => DisplayContacts(task.Result)));
-			
-			ActionBar.SetDisplayHomeAsUpEnabled (true);
+					RunOnUiThread(() => {
+						DisplayContacts(task.Result);
+						_progressDialog.Dismiss ();
+					}));
 		}
 		
 		private List<Contact> GetContacts(int groupId)
 		{
+			_contactRepo = new ContactRepository(this);
 			var selectedContacts = _contactRepo.GetMembersForSMSGroup(groupId);
 			var contacts = _contactRepo.GetAllMobile ();
-			var selected = contacts.Where (contact => selectedContacts.Contains (contact));
-			foreach (var contact in selected)
-				contact.Selected = true;
+			foreach (var selectedContact in selectedContacts)
+				contacts.First(c => c.AddressBookId == selectedContact.AddressBookId).Selected = true;
 			
 			return contacts;
-		}
-		
-		private void DisplayContacts(List<Contact> contacts)
-		{
-			ListAdapter = new ContactListAdapter(this, contacts);
-			ListView.TextFilterEnabled = true;
-			ListView.ChoiceMode = ChoiceMode.Multiple;
-			ListView.ItemClick += delegate(object sender, ItemEventArgs e) {
-				contacts[e.Position].Selected = ListView.IsItemChecked (e.Position);
-			};
-			_progressDialog.Dismiss ();
-		}
-		
-		public override bool OnCreateOptionsMenu (IMenu menu)
-		{
-			MenuInflater.Inflate (Resource.Menu.group_edit_bar, menu);
-			return true;
-		}
-		
-		public override bool OnOptionsItemSelected (IMenuItem item)
-		{
-			switch (item.ItemId) {
-				case R.Id.Home:
-					var intent = new Intent(this, typeof(MainActivity));
-					intent.AddFlags (ActivityFlags.ClearTop);
-					StartActivity (intent);
-					break;
-				default:
-					break;
-			}
-			return true;
 		}
 	}
 }
