@@ -57,6 +57,7 @@
     <Compile Include="Activities\EditSMSGroupActivity.cs" />
     <Compile Include="Activities\PrattleListActivity.cs" />
     <Compile Include="Fragments\SMSHistoryFragment.cs" />
+    <Compile Include="Fragments\SMSGroupFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -20,6 +20,8 @@ namespace Prattle
 			SetContentView (Resource.Layout.Main);
 			
 			ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+			
+			//Add SMS History tab
 			var tab = this.ActionBar.NewTab ();
 			tab.SetText ("History");
 			tab.SetIcon (Resource.Drawable.ic_tab_sms_history);
@@ -31,27 +33,20 @@ namespace Prattle
 			
 			ActionBar.AddTab (tab);
 			
+			//Add SMS Group tab
+			tab = this.ActionBar.NewTab ();
+			tab.SetText ("Groups");
+			tab.SetIcon (Resource.Drawable.ic_tab_sms_group);
+			
+			// must set event handler before adding tab
+			tab.TabSelected += delegate(object sender, ActionBar.TabEventArgs e) {
+				e.FragmentTransaction.Add (Resource.Id.fragmentContainer, new SMSGroupFragment ());
+			};
+			
+			ActionBar.AddTab (tab);
+			
 			var defaultTab = Intent.GetIntExtra ("defaultTab", 0);
 			ActionBar.SetSelectedNavigationItem(defaultTab);
-			
-//			TabHost.TabSpec spec;
-//			var intent = new Intent (this, typeof (SMSHistoryActivity));
-//			intent.AddFlags (ActivityFlags.NewTask);
-//			spec = TabHost.NewTabSpec ("history");
-//			spec.SetIndicator ("History", Resources.GetDrawable (Resource.Drawable.ic_tab_sms_history));
-//			spec.SetContent (intent);
-//			TabHost.AddTab (spec);
-//			
-//			intent = new Intent (this, typeof (SMSGroupActivity));
-//			intent.AddFlags (ActivityFlags.NewTask);
-//			spec = TabHost.NewTabSpec ("groups");
-//			spec.SetIndicator ("Groups", Resources.GetDrawable (Resource.Drawable.ic_tab_sms_group));
-//			spec.SetContent (intent);
-//			TabHost.AddTab (spec);
-//			
-//			//if default tab is passed into MainActivity, then set
-//			var defaultTab = Intent.GetIntExtra ("defaultTab", 0);
-//			TabHost.CurrentTab = defaultTab;
 		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)
