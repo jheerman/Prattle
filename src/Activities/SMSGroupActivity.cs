@@ -81,11 +81,21 @@ namespace Prattle
 							_progressDialog.Show ();
 							
 							Task.Factory
-								.StartNew(() =>
-									DeleteGroup(_smsGroups[_position]))
+								.StartNew(() => {
+									var smsGroup = _smsGroups[_position];
+									//Delete all group memebers then delete sms group
+									_contactRepo = new ContactRepository(this);
+									var contacts = _contactRepo.GetMembersForSMSGroup(smsGroup.Id);
+									contacts.ForEach (c => _contactRepo.Delete (c));
+									_smsGroupRepo.Delete (smsGroup);
+								})
 								.ContinueWith(task =>
 									RunOnUiThread(() => {
-										UpdateSMSList();
+										_smsGroups.RemoveAt (_position);
+										var strGroups = _smsGroups
+											.Select (s => s.Name + " (" + s.MemberCount + " Members)").ToArray ();
+										ListAdapter = new ArrayAdapter<string> (this, Resource.Layout.list_item, strGroups);
+										((BaseAdapter)ListAdapter).NotifyDataSetChanged ();
 										_progressDialog.Dismiss ();
 									}));
 						})
@@ -97,24 +107,6 @@ namespace Prattle
 			}
 			
 			return base.OnContextItemSelected (item);
-		}
-		
-		private void DeleteGroup (SMSGroup smsGroup)
-		{
-			//Delete all group memebers
-			_contactRepo = new ContactRepository(this);
-			var contacts = _contactRepo.GetMembersForSMSGroup(smsGroup.Id);
-			contacts.ForEach (c => _contactRepo.Delete (c));
-			
-			_smsGroupRepo.Delete (smsGroup);
-		}
-		
-		private void UpdateSMSList()
-		{
-			_smsGroups.RemoveAt (_position);
-			var strGroups = _smsGroups.Select (s => s.Name + " (" + s.MemberCount + " Members)").ToArray ();
-			ListAdapter = new ArrayAdapter<string> (this, Resource.Layout.list_item, strGroups);
-			((BaseAdapter)ListAdapter).NotifyDataSetChanged ();
 		}
 	}
 }

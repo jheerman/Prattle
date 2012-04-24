@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Views.InputMethods;
 
 namespace Prattle
 {
@@ -55,6 +56,8 @@ namespace Prattle
 						.SetMessage ("Please enter a name for the SMS group:")
 						.SetView (groupName)
 						.SetPositiveButton ("Ok", (o, e) => {
+								InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
+								imm.HideSoftInputFromWindow (groupName.WindowToken, HideSoftInputFlags.None);
 								var intent = new Intent();
 								intent.SetClass(this, typeof(NewSMSGroupActivity));
 								intent.PutExtra("name", groupName.Text);
