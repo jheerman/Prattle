@@ -18,12 +18,11 @@ namespace Prattle
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.Main);
-			
 			ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
 			
 			//Add SMS History tab
 			var tab = this.ActionBar.NewTab ();
-			tab.SetText ("History");
+			tab.SetText ("Messages");
 			tab.SetIcon (Resource.Drawable.ic_tab_sms_history);
 			
 			// must set event handler before adding tab
