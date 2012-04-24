@@ -48,8 +48,13 @@ namespace Prattle
 			_contactRepo = new ContactRepository(this);
 			var selectedContacts = _contactRepo.GetMembersForSMSGroup(groupId);
 			var contacts = _contactRepo.GetAllMobile ();
+			
 			foreach (var selectedContact in selectedContacts)
-				contacts.First(c => c.AddressBookId == selectedContact.AddressBookId).Selected = true;
+			{
+				var contact = contacts.First(c => c.AddressBookId == selectedContact.AddressBookId);
+				contact.Selected = true;
+				contact.Id = selectedContact.Id;
+			}
 			
 			return contacts;
 		}

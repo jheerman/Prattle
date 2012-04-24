@@ -35,6 +35,12 @@ namespace Prattle
 			var strGroups = _smsGroups.Select (s => s.Name + " (" + s.MemberCount + " Members)").ToArray ();
 			ListAdapter = new ArrayAdapter<string> (this, Resource.Layout.list_item, strGroups);
 			ListView.TextFilterEnabled = true;
+			ListView.ItemClick += delegate(object sender, ItemEventArgs e) {
+				var editSMSIntent = new Intent();
+				editSMSIntent.PutExtra ("groupId", _smsGroups[e.Position].Id);
+				editSMSIntent.SetClass (this, typeof(EditSMSGroupActivity));
+				StartActivity (editSMSIntent);
+			};
 			
 			RegisterForContextMenu (ListView);
 		}

@@ -46,6 +46,7 @@ namespace Prattle
 			switch (item.ItemId) {
 				case R.Id.Home:
 					var intent = new Intent(this, typeof(MainActivity));
+					intent.PutExtra ("defaultTab", 1);
 					intent.AddFlags (ActivityFlags.ClearTop);
 					StartActivity (intent);
 					break;
@@ -70,6 +71,7 @@ namespace Prattle
 						.SetPositiveButton ("Yes", (o, e) => {
 								var homeIntent = new Intent();
 								homeIntent.PutExtra ("defaultTab", 1);
+								homeIntent.AddFlags (ActivityFlags.ClearTop);
 								homeIntent.SetClass (this, typeof(MainActivity));
 								StartActivity(homeIntent);
 							})
@@ -98,7 +100,8 @@ namespace Prattle
 		private void SaveGroup()
 		{
 			SMSGroup smsGroup;
-			bool update = false;
+			
+			//get the selected contacts
 			var selectedContacts = _contacts.Where (c => c.Selected);
 			
 			_smsRepo = new SMSGroupRepository();
@@ -107,7 +110,15 @@ namespace Prattle
 			if (string.IsNullOrEmpty (_groupName))
 			{
 				smsGroup = _smsRepo.Get (_groupId);
-				update = true;
+				smsGroup.MemberCount = selectedContacts.Count();
+				smsGroup.ModifiedDate = DateTime.Now;
+				_smsRepo.Save (smsGroup);
+				
+				_contactRepo.GetMembersForSMSGroup (_groupId).ForEach (c => {
+					c.Selected = false;
+					c.ModifiedDate = DateTime.Now;
+					_contactRepo.Save (c);
+				});
 			}
 			else
 			{
@@ -116,28 +127,25 @@ namespace Prattle
 				smsGroup.CreatedDate = DateTime.Now;
 				smsGroup.UUID = Guid.NewGuid ().ToString ();
 				smsGroup.MemberCount = selectedContacts.Count ();
-				smsGroup.Id = _smsRepo.Save (smsGroup);
+				_smsRepo.Save (smsGroup);
 			}
 			
 			foreach (var contact in selectedContacts)
 			{
-				switch (update)
+				if (contact.Id == 0)
 				{
-					case true:
-						smsGroup.MemberCount = selectedContacts.Count();
-						smsGroup.ModifiedDate = DateTime.Now;
-						_smsRepo.Save (smsGroup);
-					
-						contact.SMSGroupId = smsGroup.Id;
-						contact.ModifiedDate = DateTime.Now;
-						_contactRepo.Save (contact);
-						break;
-					default:
-						contact.CreatedDate = DateTime.Now;
-						contact.UUID = Guid.NewGuid ().ToString ();
-						contact.SMSGroupId = smsGroup.Id;
-						contact.Id = _contactRepo.Save(contact);
-						break;
+					contact.Selected = true;
+					contact.CreatedDate = DateTime.Now;
+					contact.UUID = Guid.NewGuid ().ToString ();
+					contact.SMSGroupId = smsGroup.Id;
+					_contactRepo.Save(contact);
+				}
+				else
+				{
+					contact.Selected = true;
+					contact.SMSGroupId = smsGroup.Id;
+					contact.ModifiedDate = DateTime.Now;
+					_contactRepo.Save (contact);
 				}
 			}
 		}
@@ -146,6 +154,7 @@ namespace Prattle
 		{
 			var homeIntent = new Intent();
 			homeIntent.PutExtra ("defaultTab", 1);
+			homeIntent.AddFlags (ActivityFlags.ClearTop);
 			homeIntent.SetClass (this, typeof(MainActivity));
 			StartActivity(homeIntent);
 		}

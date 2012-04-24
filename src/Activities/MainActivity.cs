@@ -9,7 +9,7 @@ using Android.OS;
 
 namespace Prattle
 {
-	[Activity (Label = "Prattle")]
+	[Activity (Label = "Prattle", NoHistory=true)]
 	public class MainActivity : TabActivity
 	{
 		protected override void OnCreate (Bundle bundle)

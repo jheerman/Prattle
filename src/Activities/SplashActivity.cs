@@ -21,6 +21,7 @@ namespace Prattle
 			
 			// Create your application here
 			Intent intent = new Intent();
+			intent.AddFlags (ActivityFlags.SingleTop);
 			intent.SetClass (this, typeof(MainActivity));
 			StartActivity(intent);
 		}
