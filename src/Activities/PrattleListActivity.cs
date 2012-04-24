@@ -61,7 +61,11 @@ namespace Prattle
 							RunOnUiThread(() => 
 									{
 										_progressDialog.Dismiss ();
-										CompleteSave();
+										var homeIntent = new Intent();
+										homeIntent.PutExtra ("defaultTab", 1);
+										homeIntent.AddFlags (ActivityFlags.ClearTop);
+										homeIntent.SetClass (this, typeof(MainActivity));
+										StartActivity(homeIntent);
 									}));
 					break;
 				case Resource.Id.menuCancelEdit:
@@ -107,20 +111,21 @@ namespace Prattle
 			_smsRepo = new SMSGroupRepository();
 			_contactRepo = new ContactRepository(this);
 			
-			if (string.IsNullOrEmpty (_groupName))
+			if (string.IsNullOrEmpty (_groupName))  //if updating an existing group
 			{
 				smsGroup = _smsRepo.Get (_groupId);
 				smsGroup.MemberCount = selectedContacts.Count();
 				smsGroup.ModifiedDate = DateTime.Now;
 				_smsRepo.Save (smsGroup);
 				
+				//reset previously selected contacts
 				_contactRepo.GetMembersForSMSGroup (_groupId).ForEach (c => {
 					c.Selected = false;
 					c.ModifiedDate = DateTime.Now;
 					_contactRepo.Save (c);
 				});
 			}
-			else
+			else  //if new group
 			{
 				smsGroup = new SMSGroup();
 				smsGroup.Name = _groupName;
@@ -132,7 +137,7 @@ namespace Prattle
 			
 			foreach (var contact in selectedContacts)
 			{
-				if (contact.Id == 0)
+				if (contact.Id == 0)  //if new contact
 				{
 					contact.Selected = true;
 					contact.CreatedDate = DateTime.Now;
@@ -140,7 +145,7 @@ namespace Prattle
 					contact.SMSGroupId = smsGroup.Id;
 					_contactRepo.Save(contact);
 				}
-				else
+				else  //if update existing
 				{
 					contact.Selected = true;
 					contact.SMSGroupId = smsGroup.Id;
@@ -148,15 +153,6 @@ namespace Prattle
 					_contactRepo.Save (contact);
 				}
 			}
-		}
-		
-		private void CompleteSave()
-		{
-			var homeIntent = new Intent();
-			homeIntent.PutExtra ("defaultTab", 1);
-			homeIntent.AddFlags (ActivityFlags.ClearTop);
-			homeIntent.SetClass (this, typeof(MainActivity));
-			StartActivity(homeIntent);
 		}
 	}
 }
