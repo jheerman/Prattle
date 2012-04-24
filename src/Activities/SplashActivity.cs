@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace Prattle
 {
-	[Activity (Label = "Prattle", MainLauncher=true, Theme="@style/Theme.Splash", NoHistory = true)]
+	[Activity (MainLauncher=true, Theme="@style/Theme.Splash", NoHistory = true)]
 	public class SplashActivity : Activity
 	{
 		protected override void OnCreate (Bundle bundle)

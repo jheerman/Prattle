@@ -56,6 +56,7 @@
     <Compile Include="Activities\NewSMSGroupActivity.cs" />
     <Compile Include="Activities\EditSMSGroupActivity.cs" />
     <Compile Include="Activities\PrattleListActivity.cs" />
+    <Compile Include="Fragments\SMSHistoryFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -144,6 +145,7 @@
     <Folder Include="Activities\" />
     <Folder Include="Views\" />
     <Folder Include="Resources\menu\" />
+    <Folder Include="Fragments\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Prattle.Android.Core\Prattle.Android.Core.csproj">

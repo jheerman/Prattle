@@ -10,8 +10,8 @@ using Android.Views.InputMethods;
 
 namespace Prattle
 {
-	[Activity (Label = "Prattle", NoHistory=true)]
-	public class MainActivity : TabActivity
+	[Activity (NoHistory=true)]
+	public class MainActivity : Activity
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -19,25 +19,39 @@ namespace Prattle
 
 			SetContentView (Resource.Layout.Main);
 			
-			TabHost.TabSpec spec;
+			ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
+			var tab = this.ActionBar.NewTab ();
+			tab.SetText ("History");
+			tab.SetIcon (Resource.Drawable.ic_tab_sms_history);
 			
-			var intent = new Intent (this, typeof (SMSHistoryActivity));
-			intent.AddFlags (ActivityFlags.NewTask);
-			spec = TabHost.NewTabSpec ("history");
-			spec.SetIndicator ("History", Resources.GetDrawable (Resource.Drawable.ic_tab_sms_history));
-			spec.SetContent (intent);
-			TabHost.AddTab (spec);
+			// must set event handler before adding tab
+			tab.TabSelected += delegate(object sender, ActionBar.TabEventArgs e) {
+				e.FragmentTransaction.Add (Resource.Id.fragmentContainer, new SMSHistoryFragment ());
+			};
 			
-			intent = new Intent (this, typeof (SMSGroupActivity));
-			intent.AddFlags (ActivityFlags.NewTask);
-			spec = TabHost.NewTabSpec ("groups");
-			spec.SetIndicator ("Groups", Resources.GetDrawable (Resource.Drawable.ic_tab_sms_group));
-			spec.SetContent (intent);
-			TabHost.AddTab (spec);
+			ActionBar.AddTab (tab);
 			
-			//if default tab is passed into MainActivity, then set
 			var defaultTab = Intent.GetIntExtra ("defaultTab", 0);
-			TabHost.CurrentTab = defaultTab;
+			ActionBar.SetSelectedNavigationItem(defaultTab);
+			
+//			TabHost.TabSpec spec;
+//			var intent = new Intent (this, typeof (SMSHistoryActivity));
+//			intent.AddFlags (ActivityFlags.NewTask);
+//			spec = TabHost.NewTabSpec ("history");
+//			spec.SetIndicator ("History", Resources.GetDrawable (Resource.Drawable.ic_tab_sms_history));
+//			spec.SetContent (intent);
+//			TabHost.AddTab (spec);
+//			
+//			intent = new Intent (this, typeof (SMSGroupActivity));
+//			intent.AddFlags (ActivityFlags.NewTask);
+//			spec = TabHost.NewTabSpec ("groups");
+//			spec.SetIndicator ("Groups", Resources.GetDrawable (Resource.Drawable.ic_tab_sms_group));
+//			spec.SetContent (intent);
+//			TabHost.AddTab (spec);
+//			
+//			//if default tab is passed into MainActivity, then set
+//			var defaultTab = Intent.GetIntExtra ("defaultTab", 0);
+//			TabHost.CurrentTab = defaultTab;
 		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -56,7 +70,7 @@ namespace Prattle
 						.SetMessage ("Please enter a name for the SMS group:")
 						.SetView (groupName)
 						.SetPositiveButton ("Ok", (o, e) => {
-								InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
+								var imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
 								imm.HideSoftInputFromWindow (groupName.WindowToken, HideSoftInputFlags.None);
 								var intent = new Intent();
 								intent.SetClass(this, typeof(NewSMSGroupActivity));
