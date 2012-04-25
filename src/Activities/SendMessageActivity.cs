@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 using Android.App;
 using Android.Content;
@@ -24,6 +25,7 @@ namespace Prattle
 		SmsGroupRepository _smsGroupRepo;
 		ContactRepository _contactRepo;
 		Repository<SmsMessage> _messageRepo;
+		ProgressDialog _progressDialog;
 		
 		SmsGroup _smsGroup;
 		List<Contact> _recipients;
@@ -44,7 +46,36 @@ namespace Prattle
 			
 			FindViewById <TextView>(Resource.Id.recipientGroup).Text = _smsGroup.Name;
 			FindViewById <TextView>(Resource.Id.recipients).Text = string.Join (", ", _recipients.Select (c => c.Name));
-			FindViewById <Button>(Resource.Id.cmdSend).Click += (sender, e) => SendMessage();
+			FindViewById <Button>(Resource.Id.cmdSend).Click += (sender, e) => 
+				{
+					_progressDialog = new ProgressDialog(this);
+					_progressDialog.SetTitle ("Sending Messages");
+					_progressDialog.SetMessage ("Please wait.  Sending message to recipients in group...");
+				
+					Task.Factory
+						.StartNew(() =>
+							SendMessage ())
+						.ContinueWith(task =>
+							RunOnUiThread(() => {
+								if (task.Result)
+								{
+									new AlertDialog.Builder(this)
+										.SetTitle ("Message Sent Successfully")
+										.SetMessage (string.Format ("Your message was sent to each recipient of the '{0}' group", 
+										                            _smsGroup.Name))
+										.Show ();
+								}
+								else
+								{
+									new AlertDialog.Builder(this)
+										.SetTitle ("Message Error")
+										.SetMessage (string.Format ("Doh!  Your message could not be sent to the '{0}' group.",
+										                            _smsGroup.Name))
+										.Show ();
+								}
+								_progressDialog.Dismiss ();
+							}));
+				};
 		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -90,21 +121,30 @@ namespace Prattle
 			return true;
 		}
 		
-		private void SendMessage ()
+		private bool SendMessage ()
 		{
-			var messageText = FindViewById<EditText>(Resource.Id.message).Text;
-			_recipients.ForEach (recipient => {
-				var message = new SmsMessage{
-					Text = messageText,
-					SMSGroupId = _smsGroup.Id,
-					ContactAddressBookId = recipient.AddressBookId,
-					SentDate = DateTime.Now
-				};
-				_messageRepo = new Repository<SmsMessage>();
-				_messageRepo.Save (message);
+			try 
+			{
+				var messageText = FindViewById<EditText>(Resource.Id.message).Text;
+				_recipients.ForEach (recipient => {
+					var message = new SmsMessage{
+						Text = messageText,
+						SMSGroupId = _smsGroup.Id,
+						ContactAddressBookId = recipient.AddressBookId,
+						SentDate = DateTime.Now
+					};
+					_messageRepo = new Repository<SmsMessage>();
+					_messageRepo.Save (message);
+					
+					//T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, message.Text, null, null);
+				});
+				return true;
 				
-				//T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, message.Text, null, null);
-			});
+			}
+			catch 
+			{
+				return false;
+			}
 		}
 	}
 }
