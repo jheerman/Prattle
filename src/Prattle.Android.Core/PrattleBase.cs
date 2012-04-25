@@ -10,13 +10,8 @@ namespace Prattle.Android.Core
 		
 		[PrimaryKey, AutoIncrement]
 		public int Id { get; set; }
-		public string Name { get; set; }
 		public string UUID { get; set; }
 		public DateTime CreatedDate { get; set; }
 		public DateTime ModifiedDate { get; set; }
-		public override string ToString ()
-		{
-			return Name;
-		}
 	}
 }

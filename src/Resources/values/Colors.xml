@@ -2,5 +2,7 @@
 	<drawable name="focused">#ff5500</drawable>
 	<drawable name="selected">#FF00FF</drawable>
 	<drawable name="list_background">#3f3a30</drawable>
+	<drawable name="list_text_color">#fff</drawable>
 	<drawable name="action_bar">#aaaaaa</drawable>
+	<drawable name="action_text_color">#000</drawable>
 </resources>

@@ -27,7 +27,7 @@ namespace Prattle
 			
 			// must set event handler before adding tab
 			tab.TabSelected += delegate(object sender, ActionBar.TabEventArgs e) {
-				e.FragmentTransaction.Add (Resource.Id.fragmentContainer, new SMSHistoryFragment ());
+				e.FragmentTransaction.Add (Resource.Id.fragmentContainer, new SmsHistoryFragment ());
 			};
 			
 			ActionBar.AddTab (tab);
@@ -39,7 +39,7 @@ namespace Prattle
 			
 			// must set event handler before adding tab
 			tab.TabSelected += delegate(object sender, ActionBar.TabEventArgs e) {
-				e.FragmentTransaction.Add (Resource.Id.fragmentContainer, new SMSGroupFragment ());
+				e.FragmentTransaction.Add (Resource.Id.fragmentContainer, new SmsGroupFragment ());
 			};
 			
 			ActionBar.AddTab (tab);
@@ -67,7 +67,7 @@ namespace Prattle
 								var imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
 								imm.HideSoftInputFromWindow (groupName.WindowToken, HideSoftInputFlags.None);
 								var intent = new Intent();
-								intent.SetClass(this, typeof(NewSMSGroupActivity));
+								intent.SetClass(this, typeof(NewSmsGroupActivity));
 								intent.PutExtra("name", groupName.Text);
 								StartActivity(intent);
 							})

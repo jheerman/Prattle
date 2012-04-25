@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:textColor="@drawable/list_text_color"
 	android:background="@drawable/list_background"
-	android:textColor="#fff"
 	android:padding="10dp"
 	android:textStyle="bold"
 	android:textSize="20sp">

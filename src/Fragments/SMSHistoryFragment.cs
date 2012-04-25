@@ -9,16 +9,12 @@ using Android.Widget;
 
 namespace Prattle
 {
-	public class SMSHistoryFragment: Fragment
+	public class SmsHistoryFragment: ListFragment
 	{
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			base.OnCreateView (inflater, container, savedInstanceState);
-			
-			var view = inflater.Inflate (Resource.Layout.SMSHistory, container, false);
-			view.FindViewById<TextView>(Resource.Id.sampleTextView).Text = "No Message History";
-			
-			return view;
+			return inflater.Inflate (Resource.Layout.SmsHistory, container, false);
 		}
 	}
 }

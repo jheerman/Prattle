@@ -13,13 +13,13 @@ using Android.Widget;
 namespace Prattle
 {
 	[Activity (Label = "SMSHistory")]
-	public class SMSHistoryActivity : Activity
+	public class SmsHistoryActivity : Activity
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 			
-			SetContentView (Resource.Layout.SMSHistory);
+			SetContentView (Resource.Layout.SmsHistory);
 			var container = FindViewById<LinearLayout>(Resource.Id.smsContainer);
 			container.AddView (new TextView(this) { Text = "No Message History" });
 		}

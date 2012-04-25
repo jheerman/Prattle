@@ -4,10 +4,16 @@ using Prattle.Domain;
 
 namespace Prattle.Android.Core
 {
-	public class SMSGroup : PrattleBase, ISMSGroup
+	public class SmsGroup : PrattleBase, ISmsGroup
 	{
-		public SMSGroup ()
+		public SmsGroup ()
 		{ }
 		public int MemberCount { get; set; }
+		public string Name { get; set; }
+		
+		public override string ToString ()
+		{
+			return Name;
+		}
 	}
 }

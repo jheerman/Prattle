@@ -51,13 +51,13 @@
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Views\ContactListAdapter.cs" />
-    <Compile Include="Activities\SMSHistoryActivity.cs" />
-    <Compile Include="Activities\NewSMSGroupActivity.cs" />
-    <Compile Include="Activities\EditSMSGroupActivity.cs" />
-    <Compile Include="Fragments\SMSHistoryFragment.cs" />
-    <Compile Include="Fragments\SMSGroupFragment.cs" />
-    <Compile Include="Activities\SMSGroupListActivity.cs" />
     <Compile Include="Activities\SendMessageActivity.cs" />
+    <Compile Include="Fragments\SmsGroupFragment.cs" />
+    <Compile Include="Fragments\SmsHistoryFragment.cs" />
+    <Compile Include="Activities\EditSmsGroupActivity.cs" />
+    <Compile Include="Activities\NewSmsGroupActivity.cs" />
+    <Compile Include="Activities\SmsGroupListActivity.cs" />
+    <Compile Include="Activities\SmsHistoryActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -107,8 +107,6 @@
     <AndroidResource Include="Resources\drawable-xhdpi-v5\ic_tab_sms_group_unselected.png" />
     <AndroidResource Include="Resources\drawable-xhdpi-v5\ic_tab_sms_history_selected.png" />
     <AndroidResource Include="Resources\drawable-xhdpi-v5\ic_tab_sms_history_unselected.png" />
-    <AndroidResource Include="Resources\layout\SMSGroup.axml" />
-    <AndroidResource Include="Resources\layout\SMSHistory.axml" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
     <AndroidResource Include="Resources\menu\sms_context_menu.xml" />
     <AndroidResource Include="Resources\drawable-hdpi-v5\ic_tab_sms_group_selected.png" />
@@ -127,11 +125,13 @@
     <AndroidResource Include="Resources\drawable-ldpi\ic_menu_sms_context_header.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_menu_sms_context_header.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_sms_context_header.png" />
-    <AndroidResource Include="Resources\layout\EditSMSGroup.axml" />
     <AndroidResource Include="Resources\layout\SendMessage.axml" />
     <AndroidResource Include="Resources\menu\message_edit_bar.xml" />
     <AndroidResource Include="Resources\drawable\group_list_selector.xml" />
     <AndroidResource Include="Resources\values\Colors.xml" />
+    <AndroidResource Include="Resources\layout\EditSmsGroup.axml" />
+    <AndroidResource Include="Resources\layout\SmsGroup.axml" />
+    <AndroidResource Include="Resources\layout\SmsHistory.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

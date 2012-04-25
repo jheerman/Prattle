@@ -9,6 +9,6 @@ namespace Prattle.Domain
 		string MobilePhone { get; set; }
 		string AddressBookId { get; set; }
 		bool Selected { get; set; }
-		int SMSGroupId { get; set; }
+		int SmsGroupId { get; set; }
 	}
 }

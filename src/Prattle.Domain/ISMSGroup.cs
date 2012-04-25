@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Prattle.Domain
 {
-	public interface ISMSGroup
+	public interface ISmsGroup
 	{
 		int Id { get; set; }
 		string Name { get; set; }

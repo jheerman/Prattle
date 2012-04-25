@@ -64,14 +64,14 @@
     <Compile Include="..\Prattle.Domain\ISMSGroup.cs">
       <Link>ISMSGroup.cs</Link>
     </Compile>
-    <Compile Include="SMSGroup.cs" />
     <Compile Include="..\Prattle.Domain\ISMSGroupRepository.cs">
       <Link>ISMSGroupRepository.cs</Link>
     </Compile>
-    <Compile Include="SMSGroupRepository.cs" />
-    <Compile Include="..\Prattle.Domain\IMessage.cs">
-      <Link>IMessage.cs</Link>
+    <Compile Include="..\Prattle.Domain\ISMSMessage.cs">
+      <Link>ISmsMessage.cs</Link>
     </Compile>
-    <Compile Include="Message.cs" />
+    <Compile Include="SmsMessage.cs" />
+    <Compile Include="SmsGroup.cs" />
+    <Compile Include="SmsGroupRepository.cs" />
   </ItemGroup>
 </Project>

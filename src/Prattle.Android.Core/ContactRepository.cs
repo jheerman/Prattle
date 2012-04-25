@@ -63,7 +63,7 @@ namespace Prattle.Android.Core
 		public List<Contact> GetMembersForSMSGroup (int groupId)
 		{
 			return (from contact in cn.Table<Contact>()
-			        where contact.SMSGroupId == groupId
+			        where contact.SmsGroupId == groupId
 			        where contact.Selected == true
 			        select contact).ToList ();
 		}

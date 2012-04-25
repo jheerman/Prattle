@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using R = Android.Resource;
 using V = Android.Views;
+using T = Android.Telephony;
 
 using Prattle.Android.Core;
 using Android.Views.InputMethods;
@@ -20,10 +21,11 @@ namespace Prattle
 	[Activity (Label = "Prattle Message", Theme="@style/Theme.ActionLight", WindowSoftInputMode=V.SoftInput.AdjustResize)]
 	public class SendMessageActivity : Activity
 	{
-		SMSGroupRepository _smsGroupRepo;
+		SmsGroupRepository _smsGroupRepo;
 		ContactRepository _contactRepo;
+		Repository<SmsMessage> _messageRepo;
 		
-		SMSGroup _smsGroup;
+		SmsGroup _smsGroup;
 		List<Contact> _recipients;
 		
 		protected override void OnCreate (Bundle bundle)
@@ -34,7 +36,7 @@ namespace Prattle
 			ActionBar.SetDisplayHomeAsUpEnabled (true);
 			
 			var groupId = Intent.GetIntExtra("groupId", 0);
-			_smsGroupRepo = new SMSGroupRepository();
+			_smsGroupRepo = new SmsGroupRepository();
 			_smsGroup = _smsGroupRepo.Get (groupId);
 			
 			_contactRepo = new ContactRepository(this);
@@ -42,6 +44,7 @@ namespace Prattle
 			
 			FindViewById <TextView>(Resource.Id.recipientGroup).Text = _smsGroup.Name;
 			FindViewById <TextView>(Resource.Id.recipients).Text = string.Join (", ", _recipients.Select (c => c.Name));
+			FindViewById <Button>(Resource.Id.cmdSend).Click += (sender, e) => SendMessage();
 		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -85,6 +88,23 @@ namespace Prattle
 					break;
 			}
 			return true;
+		}
+		
+		private void SendMessage ()
+		{
+			var messageText = FindViewById<EditText>(Resource.Id.message).Text;
+			_recipients.ForEach (recipient => {
+				var message = new SmsMessage{
+					Text = messageText,
+					SMSGroupId = _smsGroup.Id,
+					ContactAddressBookId = recipient.AddressBookId,
+					SentDate = DateTime.Now
+				};
+				_messageRepo = new Repository<SmsMessage>();
+				_messageRepo.Save (message);
+				
+				//T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, message.Text, null, null);
+			});
 		}
 	}
 }

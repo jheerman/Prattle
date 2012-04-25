@@ -15,30 +15,29 @@ using Prattle.Android.Core;
 
 namespace Prattle
 {
-	public class SMSGroupFragment: ListFragment
+	public class SmsGroupFragment: ListFragment
 	{
-		Repository<SMSGroup> _smsGroupRepo;
+		Repository<SmsGroup> _smsGroupRepo;
 		ContactRepository _contactRepo;
 		ProgressDialog _progressDialog;
 		
-		List<SMSGroup> _smsGroups;
+		List<SmsGroup> _smsGroups;
 		int _position = -1;
 		
 		public override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			_smsGroupRepo = new Repository<SMSGroup>();
+			_smsGroupRepo = new Repository<SmsGroup>();
 			_smsGroups = _smsGroupRepo.GetAll ().ToList ();
 			
 			var strGroups = _smsGroups.Select (s => s.Name + " (" + s.MemberCount + " Members)").ToArray ();
 			ListAdapter = new ArrayAdapter<string> (Activity, Resource.Layout.list_item, strGroups);
-			//ListView.SetSelector(Resource.Drawable.group_list_selector);
 		}
 		
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			base.OnCreateView (inflater, container, savedInstanceState);
-			return inflater.Inflate (Resource.Layout.SMSGroup, container, false);
+			return inflater.Inflate (Resource.Layout.SmsGroup, container, false);
 		}
 		
 		public override void OnActivityCreated (Bundle bundle)
@@ -51,7 +50,7 @@ namespace Prattle
 		{
 			var editSMSIntent = new Intent();
 			editSMSIntent.PutExtra ("groupId", _smsGroups[position].Id);
-			editSMSIntent.SetClass (Activity, typeof(EditSMSGroupActivity));
+			editSMSIntent.SetClass (Activity, typeof(EditSmsGroupActivity));
 			StartActivity (editSMSIntent);
 		}
 		
@@ -74,7 +73,7 @@ namespace Prattle
 				case Resource.Id.editSMS:
 					var editSMSIntent = new Intent();
 					editSMSIntent.PutExtra ("groupId", _smsGroups[_position].Id);
-					editSMSIntent.SetClass (Activity, typeof(EditSMSGroupActivity));
+					editSMSIntent.SetClass (Activity, typeof(EditSmsGroupActivity));
 					StartActivity (editSMSIntent);
 					break;
 				case Resource.Id.sendSMS:

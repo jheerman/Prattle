@@ -1,15 +1,17 @@
 using System;
 
+using Prattle.Domain;
+
 namespace Prattle.Android.Core
 {
-	public class Message
+	public class SmsMessage : PrattleBase, ISmsMessage
 	{
-		public Message ()
+		public SmsMessage ()
 		{ }
 		
-		public int Id { get; set; }
 		public string Text { get; set; }
 		public int SMSGroupId { get; set; }
+		public string ContactAddressBookId { get; set; }
 		public DateTime SentDate { get; set; }
 	}
 }
