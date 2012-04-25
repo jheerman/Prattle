@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Prattle
 {
-	[Activity (Label = "Edit SMS Group", NoHistory=true)]
+	[Activity (Label = "Edit SMS Group", Theme="@style/Theme.ActionLight", NoHistory=true)]
 	public class EditSMSGroupActivity : PrattleListActivity
 	{
 		private ContactRepository _contactRepo;

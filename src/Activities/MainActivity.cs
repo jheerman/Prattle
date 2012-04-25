@@ -10,7 +10,7 @@ using Android.Views.InputMethods;
 
 namespace Prattle
 {
-	[Activity (NoHistory=true)]
+	[Activity (NoHistory=true, Theme="@style/Theme.ActionLight")]
 	public class MainActivity : Activity
 	{
 		protected override void OnCreate (Bundle bundle)
@@ -21,7 +21,7 @@ namespace Prattle
 			ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
 			
 			//Add SMS History tab
-			var tab = this.ActionBar.NewTab ();
+			var tab = ActionBar.NewTab ();
 			tab.SetText ("Messages");
 			tab.SetIcon (Resource.Drawable.ic_tab_sms_history);
 			
@@ -33,7 +33,7 @@ namespace Prattle
 			ActionBar.AddTab (tab);
 			
 			//Add SMS Group tab
-			tab = this.ActionBar.NewTab ();
+			tab = ActionBar.NewTab ();
 			tab.SetText ("Groups");
 			tab.SetIcon (Resource.Drawable.ic_tab_sms_group);
 			

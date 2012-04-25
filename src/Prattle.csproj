@@ -51,7 +51,6 @@
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Views\ContactListAdapter.cs" />
-    <Compile Include="Activities\SMSGroupActivity.cs" />
     <Compile Include="Activities\SMSHistoryActivity.cs" />
     <Compile Include="Activities\NewSMSGroupActivity.cs" />
     <Compile Include="Activities\EditSMSGroupActivity.cs" />

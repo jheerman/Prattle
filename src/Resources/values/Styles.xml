@@ -3,4 +3,10 @@
 		<item name="android:windowBackground">@drawable/splash</item>
 		<item name="android:windowNoTitle">true</item>
 	</style>
+	<style name="Theme.ActionLight" parent="@android:style/Theme.Holo.Light">
+		<item name="android:actionBarStyle">@style/SMSActionBar</item>
+	</style>
+	<style name="SMSActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+		<item name="android:background">#aaaaaa</item>
+	</style>
 </resources>

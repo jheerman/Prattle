@@ -16,7 +16,7 @@ using Prattle.Android.Core;
 
 namespace Prattle
 {
-	[Activity (Label = "Group Contacts", NoHistory = true)]
+	[Activity (Label = "Group Contacts", Theme="@style/Theme.ActionLight", NoHistory = true)]
 	public class NewSMSGroupActivity : PrattleListActivity
 	{
 		ProgressDialog _progressDialog;
