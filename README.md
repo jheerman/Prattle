@@ -5,14 +5,13 @@ Prattle SMS Client allows users to create contact groups to simplify messaging
 to multiple recipients.  Groups are maintained in a SQLite database
 and contacts are pulled from the address book on the device.
 
-Currently, this app supports Android 2.2+
+Currently, this app supports Android 4.0+
 
 Basic Features
 
-  * Create new group
-  * Browse contacts (filtered to show only those with mobile phone numbers)
-  * Create new SMS Text Message
-  * Browse SMS Message History
+  * Browse device contacts (filtered to show only those with mobile phone numbers)
+  * Organize contacts into groups 
+  * Send SMS text messages to groups of contacts 
 
 Screenshot
 =======================

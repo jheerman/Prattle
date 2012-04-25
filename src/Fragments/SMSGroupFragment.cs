@@ -76,6 +76,10 @@ namespace Prattle
 					StartActivity (editSMSIntent);
 					break;
 				case Resource.Id.sendSMS:
+					var sendMessage = new Intent();
+					sendMessage.PutExtra ("groupId", _smsGroups[_position].Id);
+					sendMessage.SetClass (Activity, typeof(SendMessageActivity));
+					StartActivity (sendMessage);
 					break;
 				case Resource.Id.deleteSMS:
 					new AlertDialog.Builder(Activity)

@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace Prattle
 {
 	[Activity (Label = "Edit SMS Group", Theme="@style/Theme.ActionLight", NoHistory=true)]
-	public class EditSMSGroupActivity : PrattleListActivity
+	public class EditSMSGroupActivity : SMSGroupListActivity
 	{
 		private ContactRepository _contactRepo;
 		private ProgressDialog _progressDialog;

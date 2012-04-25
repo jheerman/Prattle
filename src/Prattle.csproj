@@ -54,9 +54,10 @@
     <Compile Include="Activities\SMSHistoryActivity.cs" />
     <Compile Include="Activities\NewSMSGroupActivity.cs" />
     <Compile Include="Activities\EditSMSGroupActivity.cs" />
-    <Compile Include="Activities\PrattleListActivity.cs" />
     <Compile Include="Fragments\SMSHistoryFragment.cs" />
     <Compile Include="Fragments\SMSGroupFragment.cs" />
+    <Compile Include="Activities\SMSGroupListActivity.cs" />
+    <Compile Include="Activities\SendMessageActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -139,6 +140,8 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_menu_sms_context_header.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_sms_context_header.png" />
     <AndroidResource Include="Resources\layout\EditSMSGroup.axml" />
+    <AndroidResource Include="Resources\layout\SendMessage.axml" />
+    <AndroidResource Include="Resources\menu\message_edit_bar.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

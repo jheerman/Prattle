@@ -16,8 +16,8 @@ using Prattle.Android.Core;
 
 namespace Prattle
 {
-	[Activity (Label = "PrattleListActivity")]
-	public class PrattleListActivity : ListActivity
+	[Activity (Label = "SMSGroupListActivity")]
+	public class SMSGroupListActivity : ListActivity
 	{
 		private ProgressDialog _progressDialog;
 		private List<Contact> _contacts;
