@@ -111,26 +111,14 @@
     <AndroidResource Include="Resources\layout\SMSHistory.axml" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
     <AndroidResource Include="Resources\menu\sms_context_menu.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_delete_sms_group.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_edit_sms_group.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_send_sms_message.png" />
     <AndroidResource Include="Resources\drawable-hdpi-v5\ic_tab_sms_group_selected.png" />
     <AndroidResource Include="Resources\drawable-hdpi-v5\ic_tab_sms_group_unselected.png" />
     <AndroidResource Include="Resources\drawable-hdpi-v5\ic_tab_sms_history_selected.png" />
     <AndroidResource Include="Resources\drawable-hdpi-v5\ic_tab_sms_history_unselected.png" />
-    <AndroidResource Include="Resources\drawable-ldpi\ic_menu_delete_sms_group.png" />
-    <AndroidResource Include="Resources\drawable-ldpi\ic_menu_edit_sms_group.png" />
-    <AndroidResource Include="Resources\drawable-ldpi\ic_menu_send_sms_message.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_delete_sms_group.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_edit_sms_group.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_menu_send_sms_message.png" />
     <AndroidResource Include="Resources\drawable-mdpi-v5\ic_tab_sms_group_selected.png" />
     <AndroidResource Include="Resources\drawable-mdpi-v5\ic_tab_sms_group_unselected.png" />
     <AndroidResource Include="Resources\drawable-mdpi-v5\ic_tab_sms_history_selected.png" />
     <AndroidResource Include="Resources\drawable-mdpi-v5\ic_tab_sms_history_unselected.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_delete_sms_group.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_edit_sms_group.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_menu_send_sms_message.png" />
     <AndroidResource Include="Resources\drawable-ldpi-v5\ic_tab_sms_group_selected.png" />
     <AndroidResource Include="Resources\drawable-ldpi-v5\ic_tab_sms_group_unselected.png" />
     <AndroidResource Include="Resources\drawable-ldpi-v5\ic_tab_sms_history_selected.png" />
@@ -142,10 +130,6 @@
     <AndroidResource Include="Resources\layout\EditSMSGroup.axml" />
     <AndroidResource Include="Resources\layout\SendMessage.axml" />
     <AndroidResource Include="Resources\menu\message_edit_bar.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_action_send.png" />
-    <AndroidResource Include="Resources\drawable-ldpi\ic_action_send.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_action_send.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_send.png" />
     <AndroidResource Include="Resources\drawable\group_list_selector.xml" />
     <AndroidResource Include="Resources\values\Colors.xml" />
   </ItemGroup>
