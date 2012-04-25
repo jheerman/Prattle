@@ -10,13 +10,14 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using R = Android.Resource;
+using V = Android.Views;
 
 using Prattle.Android.Core;
 using Android.Views.InputMethods;
 
 namespace Prattle
 {
-	[Activity (Label = "Send Message", Theme="@style/Theme.ActionLight")]
+	[Activity (Label = "Prattle Message", Theme="@style/Theme.ActionLight", WindowSoftInputMode=V.SoftInput.AdjustResize)]
 	public class SendMessageActivity : Activity
 	{
 		SMSGroupRepository _smsGroupRepo;
@@ -41,10 +42,6 @@ namespace Prattle
 			
 			FindViewById <TextView>(Resource.Id.recipientGroup).Text = _smsGroup.Name;
 			FindViewById <TextView>(Resource.Id.recipients).Text = string.Join (", ", _recipients.Select (c => c.Name));
-			
-			var message = FindViewById<EditText>(Resource.Id.message);
-			var imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
-			imm.ShowSoftInput (message, (int)ShowSoftInputFlags.Explicit);
 		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -57,15 +54,23 @@ namespace Prattle
 		{
 			switch (item.ItemId) {
 				case R.Id.Home:
-					var intent = new Intent(this, typeof(MainActivity));
-					intent.PutExtra ("defaultTab", 1);
-					intent.AddFlags (ActivityFlags.ClearTop);
-					StartActivity (intent);
+					new AlertDialog.Builder(this)
+						.SetTitle ("Cancel")
+						.SetMessage ("Are you sure you want to cancel your message?")
+						.SetPositiveButton ("Yes", (o, e) => {
+								var homeIntent = new Intent();
+								homeIntent.PutExtra ("defaultTab", 1);
+								homeIntent.AddFlags (ActivityFlags.ClearTop);
+								homeIntent.SetClass (this, typeof(MainActivity));
+								StartActivity(homeIntent);
+							})
+						.SetNegativeButton ("No", (o, e) => { })
+						.Show ();
 					break;
 				case Resource.Id.menuCancelMessage:
 					new AlertDialog.Builder(this)
 						.SetTitle ("Cancel")
-						.SetMessage ("Are you sure you want to cancel your changes for this SMS Group?")
+						.SetMessage ("Are you sure you want to cancel your message?")
 						.SetPositiveButton ("Yes", (o, e) => {
 								var homeIntent = new Intent();
 								homeIntent.PutExtra ("defaultTab", 1);

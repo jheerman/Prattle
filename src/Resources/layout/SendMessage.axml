@@ -33,6 +33,8 @@
 		android:id="@+id/message"
 		android:textSize="16sp"
 		android:textColor="#fff"
+		android:maxLength="200"
+		android:maxLines="4"
 		android:layout_alignParentBottom = "true"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"/>

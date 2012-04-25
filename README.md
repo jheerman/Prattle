@@ -17,6 +17,8 @@ Screenshot
 =======================
 [Prattle Splash Screen](https://github.com/jheerman/Prattle/raw/master/docs/screenshots/device_splash.png)
 
-[Prattle Group List](https://github.com/jheerman/Prattle/raw/master/docs/screenshots/device_groups.png)
+[Prattle Group List - Landscape](https://github.com/jheerman/Prattle/raw/master/docs/screenshots/device_groups_landscape.png)
+
+[Prattle Group List - Portrait](https://github.com/jheerman/Prattle/raw/master/docs/screenshots/device_groups_portrait.png)
 
 John (info@jheerman.com)

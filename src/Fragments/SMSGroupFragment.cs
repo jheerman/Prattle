@@ -45,7 +45,7 @@ namespace Prattle
 			RegisterForContextMenu (ListView);
 		}
 		
-		public override void OnListItemClick (ListView l, View v, int position, long id)
+		public override void OnListItemClick (ListView listView, View view, int position, long id)
 		{
 			var editSMSIntent = new Intent();
 			editSMSIntent.PutExtra ("groupId", _smsGroups[position].Id);
