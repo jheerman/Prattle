@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:id="@+id/smsContainer"
-		android:background="#3f3a30"
+		android:background="@drawable/list_background"
 		android:textColor="#fff"
 		android:orientation="vertical"
 		android:layout_width="fill_parent"
@@ -29,13 +29,30 @@
 		android:textColor="#fff"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"/>
-	<EditText xmlns:android="http://schemas.android.com/apk/res/android"
-		android:id="@+id/message"
-		android:textSize="16sp"
-		android:textColor="#fff"
-		android:maxLength="200"
-		android:maxLines="4"
-		android:layout_alignParentBottom = "true"
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/envelope"
+		android:orientation="horizontal"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:padding="5dp">
+		<EditText xmlns:android="http://schemas.android.com/apk/res/android"
+			android:id="@+id/message"
+			android:textSize="16sp"
+			android:textColor="#fff"
+			android:maxLength="200"
+			android:maxLines="4"
+			android:layout_weight="1"
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"/>
+		<Button xmlns:android="http://schemas.android.com/apk/res/android"
+			android:id="@+id/cmdSend"
+			android:text="Send"
+			android:textSize="16sp"
+			android:padding="2dp"
+			android:textColor="#000"
+			android:background="@drawable/action_bar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
+	</LinearLayout>
 </RelativeLayout>

@@ -142,6 +142,12 @@
     <AndroidResource Include="Resources\layout\EditSMSGroup.axml" />
     <AndroidResource Include="Resources\layout\SendMessage.axml" />
     <AndroidResource Include="Resources\menu\message_edit_bar.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_send.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_action_send.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_send.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_send.png" />
+    <AndroidResource Include="Resources\drawable\group_list_selector.xml" />
+    <AndroidResource Include="Resources\values\Colors.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

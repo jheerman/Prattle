@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using G = Android.Graphics;
 
 using Prattle.Android.Core;
 
@@ -31,6 +32,7 @@ namespace Prattle
 			
 			var strGroups = _smsGroups.Select (s => s.Name + " (" + s.MemberCount + " Members)").ToArray ();
 			ListAdapter = new ArrayAdapter<string> (Activity, Resource.Layout.list_item, strGroups);
+			//ListView.SetSelector(Resource.Drawable.group_list_selector);
 		}
 		
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

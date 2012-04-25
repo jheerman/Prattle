@@ -7,6 +7,6 @@
 		<item name="android:actionBarStyle">@style/SMSActionBar</item>
 	</style>
 	<style name="SMSActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
-		<item name="android:background">#aaaaaa</item>
+		<item name="android:background">@drawable/action_bar</item>
 	</style>
 </resources>
