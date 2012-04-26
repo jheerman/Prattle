@@ -48,8 +48,9 @@ namespace Prattle
 				_context.LayoutInflater.Inflate(Resource.Layout.message_item, null);
 			
 			view.FindViewById<TextView>(Resource.Id.groupName).Text = message.SmsGroup.Name;
-			view.FindViewById<TextView>(Resource.Id.recipientCount).Text = message.RecipientCount.ToString ();
-			view.FindViewById<TextView>(Resource.Id.date).Text = message.DateSent.ToString ("MMM dd");
+			view.FindViewById<TextView>(Resource.Id.recipientCount).Text = string.Format ("{0} recipients", message.RecipientCount);
+			view.FindViewById <TextView>(Resource.Id.dayOfMonth).Text = message.DateSent.Day.ToString ();
+			view.FindViewById<TextView>(Resource.Id.month).Text = message.DateSent.ToString ("MMM");
 			view.FindViewById<TextView>(Resource.Id.message).Text = message.Text;
 			return view;
 		}

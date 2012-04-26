@@ -5,4 +5,8 @@
 	<drawable name="list_text_color">#fff</drawable>
 	<drawable name="action_bar">#aaaaaa</drawable>
 	<drawable name="action_text_color">#000</drawable>
+	<drawable name="thumb_list_text">#3e3e3e</drawable>
+	<drawable name="thumb_list_background">#f5f5ee</drawable>
+	<drawable name="detail_list_background">#fbfbf4</drawable>
+	<drawable name="detail_list_text">#3e3e3e</drawable>
 </resources>

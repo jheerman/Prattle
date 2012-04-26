@@ -30,8 +30,7 @@ namespace Prattle
 			_smsGroupRepo = new Repository<SmsGroup>();
 			_smsGroups = _smsGroupRepo.GetAll ().ToList ();
 			
-			var strGroups = _smsGroups.Select (s => s.Name + " (" + s.MemberCount + " Members)").ToArray ();
-			ListAdapter = new ArrayAdapter<string> (Activity, Resource.Layout.list_item, strGroups);
+			ListAdapter = new GroupListAdapter(Activity, _smsGroups);
 		}
 		
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
