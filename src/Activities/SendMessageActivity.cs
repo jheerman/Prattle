@@ -63,6 +63,13 @@ namespace Prattle
 										.SetTitle ("Message Sent Successfully")
 										.SetMessage (string.Format ("Your message was sent to each recipient of the '{0}' group", 
 										                            _smsGroup.Name))
+										.SetPositiveButton ("Ok", (o, args) => {
+													var homeIntent = new Intent();
+													homeIntent.PutExtra ("defaultTab", 0);
+													homeIntent.AddFlags (ActivityFlags.ClearTop);
+													homeIntent.SetClass (this, typeof(MainActivity));
+													StartActivity(homeIntent);
+												})
 										.Show ();
 								}
 								else

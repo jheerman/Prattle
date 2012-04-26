@@ -67,6 +67,8 @@ namespace Prattle
 		
 		public override bool OnContextItemSelected (IMenuItem item)
 		{
+			if (_position < 0) return false;
+			
 			switch (item.ItemId)
 			{
 				case Resource.Id.editSMS:
