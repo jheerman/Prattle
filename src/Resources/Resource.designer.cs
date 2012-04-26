@@ -91,41 +91,47 @@ namespace Prattle
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f070009
-			public const int cmdSend = 2131165193;
+			// aapt resource value: 0x7f07000d
+			public const int cmdSend = 2131165197;
 			
 			// aapt resource value: 0x7f070000
 			public const int contactName = 2131165184;
 			
-			// aapt resource value: 0x7f070011
-			public const int deleteSMS = 2131165201;
+			// aapt resource value: 0x7f070006
+			public const int date = 2131165190;
 			
-			// aapt resource value: 0x7f070010
-			public const int editSMS = 2131165200;
+			// aapt resource value: 0x7f070015
+			public const int deleteSMS = 2131165205;
 			
-			// aapt resource value: 0x7f070007
-			public const int envelope = 2131165191;
+			// aapt resource value: 0x7f070014
+			public const int editSMS = 2131165204;
+			
+			// aapt resource value: 0x7f07000c
+			public const int envelope = 2131165196;
 			
 			// aapt resource value: 0x7f070003
 			public const int fragmentContainer = 2131165187;
 			
-			// aapt resource value: 0x7f070004
-			public const int lblTo = 2131165188;
+			// aapt resource value: 0x7f070007
+			public const int groupName = 2131165191;
 			
-			// aapt resource value: 0x7f07000a
-			public const int menuCancelEdit = 2131165194;
+			// aapt resource value: 0x7f070009
+			public const int lblTo = 2131165193;
 			
 			// aapt resource value: 0x7f07000e
-			public const int menuCancelMessage = 2131165198;
+			public const int menuCancelEdit = 2131165198;
 			
-			// aapt resource value: 0x7f07000d
-			public const int menuCreateGroup = 2131165197;
+			// aapt resource value: 0x7f070012
+			public const int menuCancelMessage = 2131165202;
 			
-			// aapt resource value: 0x7f07000c
-			public const int menuCreateMessage = 2131165196;
+			// aapt resource value: 0x7f070011
+			public const int menuCreateGroup = 2131165201;
 			
-			// aapt resource value: 0x7f07000b
-			public const int menuSaveGroup = 2131165195;
+			// aapt resource value: 0x7f070010
+			public const int menuCreateMessage = 2131165200;
+			
+			// aapt resource value: 0x7f07000f
+			public const int menuSaveGroup = 2131165199;
 			
 			// aapt resource value: 0x7f070008
 			public const int message = 2131165192;
@@ -134,16 +140,22 @@ namespace Prattle
 			public const int mobileNumber = 2131165185;
 			
 			// aapt resource value: 0x7f070005
-			public const int recipientGroup = 2131165189;
+			public const int recipientCount = 2131165189;
 			
-			// aapt resource value: 0x7f070006
-			public const int recipients = 2131165190;
+			// aapt resource value: 0x7f07000a
+			public const int recipientGroup = 2131165194;
 			
-			// aapt resource value: 0x7f07000f
-			public const int sendSMS = 2131165199;
+			// aapt resource value: 0x7f07000b
+			public const int recipients = 2131165195;
+			
+			// aapt resource value: 0x7f070013
+			public const int sendSMS = 2131165203;
 			
 			// aapt resource value: 0x7f070002
 			public const int smsContainer = 2131165186;
+			
+			// aapt resource value: 0x7f070004
+			public const int thumbContainer = 2131165188;
 			
 			private Id()
 			{
@@ -166,13 +178,16 @@ namespace Prattle
 			public const int Main = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int SendMessage = 2130903044;
+			public const int message_item = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int SmsGroup = 2130903045;
+			public const int SendMessage = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int SmsHistory = 2130903046;
+			public const int SmsGroup = 2130903046;
+			
+			// aapt resource value: 0x7f030007
+			public const int SmsHistory = 2130903047;
 			
 			private Layout()
 			{

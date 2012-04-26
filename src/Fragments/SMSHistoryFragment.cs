@@ -16,20 +16,41 @@ namespace Prattle
 	public class SmsHistoryFragment: ListFragment
 	{
 		Repository<SmsMessage> _messageRepo;
+		SmsGroupRepository _smsRepo;
 		
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 			
 			_messageRepo = new Repository<SmsMessage>();
-			var messages = _messageRepo.GetAll ().ToList ();
-			if (messages == null || messages.Count == 0) return;
+			_smsRepo = new SmsGroupRepository();
 			
-			var strMessages = messages.Select (message => 
-			                                                   string.Format ("{0} - {1}", 
-			               message.ContactAddressBookId, 
-			               message.Text.Substring (0, message.Text.Length < 20 ? message.Text.Length : 20))).ToArray ();
-			ListAdapter = new ArrayAdapter<string>(Activity, Resource.Layout.list_item, strMessages);
+			var messages = _messageRepo.GetAll ();
+			var smsGroups = _smsRepo.GetAll ();
+			
+			//join messages to groups to get the linked smsGroup
+			var items = from message in messages
+						join smsGroup in smsGroups
+						on message.SMSGroupId equals smsGroup.Id
+						select new 
+						{
+							SmsGroup = smsGroup,
+							Text = message.Text,
+							DateSent = message.SentDate
+						};
+			
+			//group messages
+			var summary = from item in items
+							group item by new { item.SmsGroup, item.DateSent, item.Text } into g
+							select new MessageListItem
+							{
+								SmsGroup = g.Key.SmsGroup,
+								DateSent = g.Key.DateSent,
+								Text = g.Key.Text,
+								RecipientCount = g.Count()
+							};
+			
+			ListAdapter = new MessageListAdapter(Activity, summary.ToList ());
 		}
 		
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

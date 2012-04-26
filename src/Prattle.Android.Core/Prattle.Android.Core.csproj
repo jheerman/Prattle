@@ -73,5 +73,6 @@
     <Compile Include="SmsMessage.cs" />
     <Compile Include="SmsGroup.cs" />
     <Compile Include="SmsGroupRepository.cs" />
+    <Compile Include="MessageListItem.cs" />
   </ItemGroup>
 </Project>

@@ -58,6 +58,7 @@
     <Compile Include="Activities\NewSmsGroupActivity.cs" />
     <Compile Include="Activities\SmsGroupListActivity.cs" />
     <Compile Include="Activities\SmsHistoryActivity.cs" />
+    <Compile Include="Views\MessageListAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -132,6 +133,7 @@
     <AndroidResource Include="Resources\layout\EditSmsGroup.axml" />
     <AndroidResource Include="Resources\layout\SmsGroup.axml" />
     <AndroidResource Include="Resources\layout\SmsHistory.axml" />
+    <AndroidResource Include="Resources\layout\message_item.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
