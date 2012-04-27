@@ -57,6 +57,8 @@ namespace Prattle
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
 			switch (item.ItemId) {
+				case Resource.Id.sendSMS:
+					break;
 				case Resource.Id.menuCreateGroup:
 					var groupName = new EditText(this);
 					new AlertDialog.Builder(this)

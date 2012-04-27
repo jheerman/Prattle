@@ -133,12 +133,13 @@ namespace Prattle
 			try 
 			{
 				var messageText = FindViewById<EditText>(Resource.Id.message).Text;
+				var dateSent = DateTime.Now;
 				_recipients.ForEach (recipient => {
 					var message = new SmsMessage{
 						Text = messageText,
-						SMSGroupId = _smsGroup.Id,
+						SmsGroupId = _smsGroup.Id,
 						ContactAddressBookId = recipient.AddressBookId,
-						SentDate = DateTime.Now
+						SentDate = dateSent
 					};
 					_messageRepo = new Repository<SmsMessage>();
 					_messageRepo.Save (message);

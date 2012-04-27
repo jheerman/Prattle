@@ -6,7 +6,7 @@ namespace Prattle.Domain
 	{
 		int Id { get; set; }
 		string Text { get; set; }
-		int SMSGroupId { get; set; }
+		int SmsGroupId { get; set; }
 		string ContactAddressBookId { get;set; }
 		DateTime SentDate { get; set; }
 	}

@@ -1,11 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/menuCreateMessage"
-		android:icon="@drawable/ic_action_new_message"
-		android:title="New SMS"
-		android:showAsAction="ifRoom|withText"/>
-	
 	<item android:id="@+id/menuCreateGroup"
 		android:icon="@drawable/ic_action_new_sms_group"
 		android:title="Add Group"
-		android:showAsAction="ifRoom|withText"/>
+		android:showAsAction="always|withText"/>
 </menu>

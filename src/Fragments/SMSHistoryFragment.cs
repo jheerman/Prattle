@@ -28,10 +28,10 @@ namespace Prattle
 			var messages = _messageRepo.GetAll ();
 			var smsGroups = _smsRepo.GetAll ();
 			
-			//join messages to groups to get the linked smsGroup
+			//join messages to groups to get the sms group name
 			var items = from message in messages
 						join smsGroup in smsGroups
-						on message.SMSGroupId equals smsGroup.Id
+						on message.SmsGroupId equals smsGroup.Id
 						select new 
 						{
 							SmsGroup = smsGroup,
@@ -50,7 +50,9 @@ namespace Prattle
 								RecipientCount = g.Count()
 							};
 			
-			ListAdapter = new MessageListAdapter(Activity, summary.ToList ());
+			//sort the summaries and display the top 20
+			var sortedItems = summary.OrderByDescending (message => message.DateSent).Take(20);
+			ListAdapter = new MessageListAdapter(Activity, sortedItems.ToList());
 		}
 		
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

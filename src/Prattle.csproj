@@ -57,7 +57,6 @@
     <Compile Include="Activities\EditSmsGroupActivity.cs" />
     <Compile Include="Activities\NewSmsGroupActivity.cs" />
     <Compile Include="Activities\SmsGroupListActivity.cs" />
-    <Compile Include="Activities\SmsHistoryActivity.cs" />
     <Compile Include="Views\MessageListAdapter.cs" />
     <Compile Include="Views\GroupListAdapter.cs" />
   </ItemGroup>

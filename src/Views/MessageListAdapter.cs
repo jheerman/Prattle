@@ -51,6 +51,7 @@ namespace Prattle
 			view.FindViewById<TextView>(Resource.Id.recipientCount).Text = string.Format ("{0} recipients", message.RecipientCount);
 			view.FindViewById <TextView>(Resource.Id.dayOfMonth).Text = message.DateSent.Day.ToString ();
 			view.FindViewById<TextView>(Resource.Id.month).Text = message.DateSent.ToString ("MMM");
+			
 			view.FindViewById<TextView>(Resource.Id.message).Text = message.Text.Length > 50 ? 
 				String.Concat (message.Text.Substring (0, 50), "...") :
 				message.Text;

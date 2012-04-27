@@ -115,11 +115,11 @@ namespace Prattle
 			// aapt resource value: 0x7f070008
 			public const int dayOfMonth = 2131165192;
 			
-			// aapt resource value: 0x7f070017
-			public const int deleteSMS = 2131165207;
-			
 			// aapt resource value: 0x7f070016
-			public const int editSMS = 2131165206;
+			public const int deleteSMS = 2131165206;
+			
+			// aapt resource value: 0x7f070015
+			public const int editSMS = 2131165205;
 			
 			// aapt resource value: 0x7f07000e
 			public const int envelope = 2131165198;
@@ -139,14 +139,11 @@ namespace Prattle
 			// aapt resource value: 0x7f070010
 			public const int menuCancelEdit = 2131165200;
 			
-			// aapt resource value: 0x7f070014
-			public const int menuCancelMessage = 2131165204;
-			
 			// aapt resource value: 0x7f070013
-			public const int menuCreateGroup = 2131165203;
+			public const int menuCancelMessage = 2131165203;
 			
 			// aapt resource value: 0x7f070012
-			public const int menuCreateMessage = 2131165202;
+			public const int menuCreateGroup = 2131165202;
 			
 			// aapt resource value: 0x7f070011
 			public const int menuSaveGroup = 2131165201;
@@ -169,8 +166,8 @@ namespace Prattle
 			// aapt resource value: 0x7f07000d
 			public const int recipients = 2131165197;
 			
-			// aapt resource value: 0x7f070015
-			public const int sendSMS = 2131165205;
+			// aapt resource value: 0x7f070014
+			public const int sendSMS = 2131165204;
 			
 			// aapt resource value: 0x7f070002
 			public const int smsContainer = 2131165186;
@@ -241,11 +238,11 @@ namespace Prattle
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040001
-			public const int app_name = 2130968577;
-			
 			// aapt resource value: 0x7f040000
-			public const int hello = 2130968576;
+			public const int app_name = 2130968576;
+			
+			// aapt resource value: 0x7f040001
+			public const int splash_title = 2130968577;
 			
 			private String()
 			{
