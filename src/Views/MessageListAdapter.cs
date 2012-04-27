@@ -42,6 +42,18 @@ namespace Prattle
 
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
+			var charLimit = -1;
+			
+			switch (_context.WindowManager.DefaultDisplay.Orientation)
+			{
+				case (int)Orientation.Horizontal:
+					charLimit = (_context.WindowManager.DefaultDisplay.Width / 8);
+					break;
+				case (int)Orientation.Vertical:
+					charLimit = (_context.WindowManager.DefaultDisplay.Width / 7);
+					break;
+			}
+ 			
 			var message = _messages[position];
 			
 			var view = convertView ??
@@ -52,8 +64,8 @@ namespace Prattle
 			view.FindViewById <TextView>(Resource.Id.dayOfMonth).Text = message.DateSent.Day.ToString ();
 			view.FindViewById<TextView>(Resource.Id.month).Text = message.DateSent.ToString ("MMM");
 			
-			view.FindViewById<TextView>(Resource.Id.message).Text = message.Text.Length > 50 ? 
-				String.Concat (message.Text.Substring (0, 50), "...") :
+			view.FindViewById<TextView>(Resource.Id.message).Text = message.Text.Length > charLimit ? 
+				String.Concat (message.Text.Substring (0, charLimit), "...") :
 				message.Text;
 			return view;
 		}

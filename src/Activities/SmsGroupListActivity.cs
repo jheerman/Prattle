@@ -17,12 +17,12 @@ using Prattle.Android.Core;
 namespace Prattle
 {
 	[Activity (Label = "SMSGroupListActivity")]
-	public class SMSGroupListActivity : ListActivity
+	public class SmsGroupListActivity : ListActivity
 	{
 		private ProgressDialog _progressDialog;
 		private List<Contact> _contacts;
 		
-		private SMSGroupRepository _smsRepo;
+		private SmsGroupRepository _smsRepo;
 		private ContactRepository _contactRepo;
 		
 		public int _groupId;
@@ -103,12 +103,12 @@ namespace Prattle
 		
 		private void SaveGroup()
 		{
-			SMSGroup smsGroup;
+			SmsGroup smsGroup;
 			
 			//get the selected contacts
 			var selectedContacts = _contacts.Where (c => c.Selected);
 			
-			_smsRepo = new SMSGroupRepository();
+			_smsRepo = new SmsGroupRepository();
 			_contactRepo = new ContactRepository(this);
 			
 			if (string.IsNullOrEmpty (_groupName))  //if updating an existing group
@@ -127,7 +127,7 @@ namespace Prattle
 			}
 			else  //if new group
 			{
-				smsGroup = new SMSGroup();
+				smsGroup = new SmsGroup();
 				smsGroup.Name = _groupName;
 				smsGroup.CreatedDate = DateTime.Now;
 				smsGroup.UUID = Guid.NewGuid ().ToString ();
@@ -142,13 +142,13 @@ namespace Prattle
 					contact.Selected = true;
 					contact.CreatedDate = DateTime.Now;
 					contact.UUID = Guid.NewGuid ().ToString ();
-					contact.SMSGroupId = smsGroup.Id;
+					contact.SmsGroupId = smsGroup.Id;
 					_contactRepo.Save(contact);
 				}
 				else  //if update existing
 				{
 					contact.Selected = true;
-					contact.SMSGroupId = smsGroup.Id;
+					contact.SmsGroupId = smsGroup.Id;
 					contact.ModifiedDate = DateTime.Now;
 					_contactRepo.Save (contact);
 				}

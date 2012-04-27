@@ -7,14 +7,14 @@ using SQLite;
 
 namespace Prattle.Android.Core
 {
-	public class SmsGroupRepository: Repository<SmsGroup>, ISmsGroupRepository<SmsGroup>
+	public class SMSGroupRepository: Repository<SMSGroup>, ISMSGroupRepository<SMSGroup>
 	{
-		public SmsGroupRepository ()
+		public SMSGroupRepository ()
 		{ }
 		
-		public SmsGroup GetByName (string name)
+		public SMSGroup GetByName (string name)
 		{
-			return (from smsGroup in cn.Table<SmsGroup>()
+			return (from smsGroup in cn.Table<SMSGroup>()
 					where smsGroup.Name == name
 					select smsGroup).FirstOrDefault();
 		}
