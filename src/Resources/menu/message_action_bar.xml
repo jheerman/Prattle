@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/viewMessage"
+		android:title="View"
+		android:showAsAction="always|withText"/>
+	<item android:id="@+id/deleteMessage"
+		android:title="Delete"
+		android:showAsAction="always|withText"/>
+</menu>

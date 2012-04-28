@@ -42,7 +42,7 @@ namespace Prattle
 
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
-			var charLimit = -1;
+			var charLimit = 50;
 			
 			switch (_context.WindowManager.DefaultDisplay.Orientation)
 			{

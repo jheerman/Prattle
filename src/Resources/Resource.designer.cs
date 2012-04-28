@@ -115,11 +115,14 @@ namespace Prattle
 			// aapt resource value: 0x7f070008
 			public const int dayOfMonth = 2131165192;
 			
-			// aapt resource value: 0x7f070016
-			public const int deleteSMS = 2131165206;
+			// aapt resource value: 0x7f070014
+			public const int deleteMessage = 2131165204;
 			
-			// aapt resource value: 0x7f070015
-			public const int editSMS = 2131165205;
+			// aapt resource value: 0x7f070018
+			public const int deleteSMS = 2131165208;
+			
+			// aapt resource value: 0x7f070017
+			public const int editSMS = 2131165207;
 			
 			// aapt resource value: 0x7f07000e
 			public const int envelope = 2131165198;
@@ -139,8 +142,8 @@ namespace Prattle
 			// aapt resource value: 0x7f070010
 			public const int menuCancelEdit = 2131165200;
 			
-			// aapt resource value: 0x7f070013
-			public const int menuCancelMessage = 2131165203;
+			// aapt resource value: 0x7f070015
+			public const int menuCancelMessage = 2131165205;
 			
 			// aapt resource value: 0x7f070012
 			public const int menuCreateGroup = 2131165202;
@@ -166,14 +169,17 @@ namespace Prattle
 			// aapt resource value: 0x7f07000d
 			public const int recipients = 2131165197;
 			
-			// aapt resource value: 0x7f070014
-			public const int sendSMS = 2131165204;
+			// aapt resource value: 0x7f070016
+			public const int sendSMS = 2131165206;
 			
 			// aapt resource value: 0x7f070002
 			public const int smsContainer = 2131165186;
 			
 			// aapt resource value: 0x7f070003
 			public const int thumbContainer = 2131165187;
+			
+			// aapt resource value: 0x7f070013
+			public const int viewMessage = 2131165203;
 			
 			private Id()
 			{
@@ -225,10 +231,13 @@ namespace Prattle
 			public const int main_action_bar = 2131099649;
 			
 			// aapt resource value: 0x7f060002
-			public const int message_edit_bar = 2131099650;
+			public const int message_action_bar = 2131099650;
 			
 			// aapt resource value: 0x7f060003
-			public const int sms_context_menu = 2131099651;
+			public const int message_edit_bar = 2131099651;
+			
+			// aapt resource value: 0x7f060004
+			public const int sms_context_menu = 2131099652;
 			
 			private Menu()
 			{
@@ -240,6 +249,9 @@ namespace Prattle
 			
 			// aapt resource value: 0x7f040000
 			public const int app_name = 2130968576;
+			
+			// aapt resource value: 0x7f040002
+			public const int message_action_title = 2130968578;
 			
 			// aapt resource value: 0x7f040001
 			public const int splash_title = 2130968577;

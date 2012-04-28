@@ -136,6 +136,7 @@
     <AndroidResource Include="Resources\layout\message_item.xml" />
     <AndroidResource Include="Resources\drawable\list_separator.xml" />
     <AndroidResource Include="Resources\layout\group_item.xml" />
+    <AndroidResource Include="Resources\menu\message_action_bar.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
