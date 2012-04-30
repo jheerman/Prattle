@@ -20,7 +20,7 @@ namespace Prattle
 		Repository<SmsMessage> _messageRepo;
 		SmsGroupRepository _smsRepo;
 		
-		ActionMode _actionMode;
+		private ActionMode _actionMode;
 		bool _systemUIVisible = true;
 		
 		public override void OnCreate (Bundle savedInstanceState)
@@ -30,6 +30,7 @@ namespace Prattle
 			_messageRepo = new Repository<SmsMessage>();
 			_smsRepo = new SmsGroupRepository();
 			
+			//TODO: Join messages and groups in the message query and eliminate the need to select all groups
 			var messages = _messageRepo.GetAll ();
 			var smsGroups = _smsRepo.GetAll ();
 			
@@ -89,7 +90,12 @@ namespace Prattle
 				if (_actionMode != null)
 					return;
 				
-				_actionMode = Activity.StartActionMode (new MessageAction(Activity));
+				var callback = new MessageAction(Activity);
+				callback.MessageProcessed += delegate {
+					_actionMode.Finish ();
+					_actionMode = null;
+				};
+				_actionMode = Activity.StartActionMode (callback);
 			};
 		}
 		
@@ -99,9 +105,20 @@ namespace Prattle
 			return inflater.Inflate (Resource.Layout.SmsHistory, container, false);
 		}
 		
-		private class MessageAction: Java.Lang.Object, ActionMode.ICallback
+		public void DeleteMessage()
 		{
+			_actionMode.Finish ();
+		}
+	}
+	
+	//TODO:Find a way to destroy this class so the context menu can be displayed again after making a selection
+		public class MessageAction: Java.Lang.Object, ActionMode.ICallback, IActionModeNotification
+		{
+			public MessageAction ()
+			{ }
+		
 			Activity _activity;
+			public event EventHandler<EventArgs> MessageProcessed;
 			
 			public MessageAction (Activity activity)
 			{
@@ -113,10 +130,10 @@ namespace Prattle
 				switch (item.ItemId)
 				{
 					case Resource.Id.deleteMessage:
-						mode.Finish ();
-						break;
 					case Resource.Id.viewMessage:
 						mode.Finish ();
+						if (MessageProcessed != null)
+							MessageProcessed (null, null);
 						break;
 					default:
 						break;
@@ -140,5 +157,4 @@ namespace Prattle
 				return false;
 			}
 		}
-	}
 }

@@ -74,5 +74,6 @@
     <Compile Include="SmsGroup.cs" />
     <Compile Include="SmsGroupRepository.cs" />
     <Compile Include="MessageListItem.cs" />
+    <Compile Include="IActionModeNotification.cs" />
   </ItemGroup>
 </Project>

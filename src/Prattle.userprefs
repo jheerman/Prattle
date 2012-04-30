@@ -1,27 +1,27 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Activities/PrattleListActivity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Fragments/SmsHistoryFragment.cs">
     <Files>
-      <File FileName="Activities/NewSMSGroupActivity.cs" Line="25" Column="51" />
-      <File FileName="Activities/SMSGroupActivity.cs" Line="34" Column="3" />
-      <File FileName="Activities/PrattleListActivity.cs" Line="30" Column="3" />
-      <File FileName="Activities/MainActivity.cs" Line="15" Column="40" />
-      <File FileName="Activities/EditSMSGroupActivity.cs" Line="11" Column="22" />
+      <File FileName="Fragments/SmsHistoryFragment.cs" Line="136" Column="6" />
+      <File FileName="Resources/menu/message_action_bar.xml" Line="8" Column="8" />
+      <File FileName="Resources/menu/main_action_bar.xml" Line="6" Column="8" />
+      <File FileName="Activities/SendMessageActivity.cs" Line="96" Column="24" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
+          <Option id="ShowVersionControlOverlays" value="True" />
+          <Option id="ShowAllFiles" value="False" />
           <Node name="Prattle" expanded="True">
-            <Node name="Activities" expanded="True">
-              <Node name="PrattleListActivity.cs" selected="True" />
+            <Node name="Activities" expanded="True" />
+            <Node name="Fragments" expanded="True">
+              <Node name="SmsHistoryFragment.cs" selected="True" />
             </Node>
             <Node name="Resources" expanded="True">
-              <Option id="ShowVersionControlOverlays" value="True" />
               <Option id="ShowAllFiles" value="True" />
-              <Node name="layout" expanded="True" />
+              <Node name="values" expanded="True" />
             </Node>
           </Node>
-          <Node name="Prattle.Domain" expanded="True" />
         </State>
       </Pad>
     </Pads>
