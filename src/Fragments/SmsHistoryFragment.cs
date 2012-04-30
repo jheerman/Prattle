@@ -12,6 +12,8 @@ using Android.Widget;
 using Java.IO;
 
 using Prattle.Android.Core;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Prattle
 {
@@ -19,6 +21,9 @@ namespace Prattle
 	{
 		Repository<SmsMessage> _messageRepo;
 		SmsGroupRepository _smsRepo;
+		
+		List<MessageListItem> _sortedItems;
+		ProgressDialog _progressDialog;
 		
 		private ActionMode _actionMode;
 		bool _systemUIVisible = true;
@@ -57,8 +62,8 @@ namespace Prattle
 							};
 			
 			//sort the summaries and display the top 20
-			var sortedItems = summary.OrderByDescending (message => message.DateSent).Take(20);
-			ListAdapter = new MessageListAdapter(Activity, sortedItems.ToList());
+			_sortedItems = summary.OrderByDescending (message => message.DateSent).Take(20).ToList();
+			ListAdapter = new MessageListAdapter(Activity, _sortedItems);
 		}
 		
 		public override void OnActivityCreated (Bundle savedInstanceState)
@@ -86,16 +91,23 @@ namespace Prattle
 				_systemUIVisible = !_systemUIVisible;
 			};
 			
-			ListView.ItemLongClick += (sender, e) => {
+			ListView.ItemLongClick += delegate(object sender, AdapterView.ItemLongClickEventArgs e) {
 				if (_actionMode != null)
 					return;
 				
 				var callback = new MessageAction(Activity);
-				callback.MessageProcessed += delegate {
+			
+				callback.DeleteMessageHandler += delegate {
+					_actionMode.Finish ();
+					_actionMode = null;
+					DeleteMessage (_sortedItems[e.Position]);
+				};
+				
+				callback.ViewMessageHandler += delegate {
 					_actionMode.Finish ();
 					_actionMode = null;
 				};
-				_actionMode = Activity.StartActionMode (callback);
+				_actionMode = Activity.StartActionMode (callback);	
 			};
 		}
 		
@@ -105,56 +117,69 @@ namespace Prattle
 			return inflater.Inflate (Resource.Layout.SmsHistory, container, false);
 		}
 		
-		public void DeleteMessage()
+		private void DeleteMessage(MessageListItem selectedMessage)
 		{
-			_actionMode.Finish ();
+			_progressDialog = new ProgressDialog(Activity);
+			_progressDialog.SetTitle ("Delete Message");
+			_progressDialog.SetMessage (string.Format ("Deleting Message with {0} recipients.  Please wait...", selectedMessage.RecipientCount));
+			_progressDialog.Show ();
+			
+			Task.Factory
+				.StartNew(() => {
+					Thread.Sleep(2000);
+				})
+				.ContinueWith(task =>
+					Activity.RunOnUiThread(() => {
+						_progressDialog.Dismiss ();
+				}));
 		}
 	}
 	
-	//TODO:Find a way to destroy this class so the context menu can be displayed again after making a selection
-		public class MessageAction: Java.Lang.Object, ActionMode.ICallback, IActionModeNotification
-		{
-			public MessageAction ()
-			{ }
+	public class MessageAction: Java.Lang.Object, ActionMode.ICallback, IActionModeNotification
+	{
+		Activity _activity;
+	
+		public event EventHandler<EventArgs> DeleteMessageHandler;
+		public event EventHandler<EventArgs> ViewMessageHandler;
 		
-			Activity _activity;
-			public event EventHandler<EventArgs> MessageProcessed;
-			
-			public MessageAction (Activity activity)
-			{
-				_activity = activity;
-			}
-			
-			bool ActionMode.ICallback.OnActionItemClicked (ActionMode mode, IMenuItem item)
-			{
-				switch (item.ItemId)
-				{
-					case Resource.Id.deleteMessage:
-					case Resource.Id.viewMessage:
-						mode.Finish ();
-						if (MessageProcessed != null)
-							MessageProcessed (null, null);
-						break;
-					default:
-						break;
-				}
-				
-				return true;
-			}
-
-			bool ActionMode.ICallback.OnCreateActionMode (ActionMode mode, IMenu menu)
-			{
-				mode.Title = _activity.GetString(Resource.String.message_action_title);
-				_activity.MenuInflater.Inflate(Resource.Menu.message_action_bar, menu);
-				return true;
-			}
-
-			void ActionMode.ICallback.OnDestroyActionMode (ActionMode mode)
-			{ }
-
-			bool ActionMode.ICallback.OnPrepareActionMode (ActionMode mode, IMenu menu)
-			{
-				return false;
-			}
+		public MessageAction (Activity activity)
+		{
+			_activity = activity;
 		}
+		
+		bool ActionMode.ICallback.OnActionItemClicked (ActionMode mode, IMenuItem item)
+		{
+			switch (item.ItemId)
+			{
+				case Resource.Id.deleteMessage:
+					if (DeleteMessageHandler != null)
+						DeleteMessageHandler (null, null);
+					break;
+				case Resource.Id.viewMessage:
+					if (ViewMessageHandler != null)
+						ViewMessageHandler(null, null);
+					break;
+				default:
+					break;
+			}
+			
+			mode.Finish ();
+			return true;
+		}
+
+		bool ActionMode.ICallback.OnCreateActionMode (ActionMode mode, IMenu menu)
+		{
+			mode.Title = _activity.GetString(Resource.String.message_action_title);
+			_activity.MenuInflater.Inflate(Resource.Menu.message_action_bar, menu);
+			return true;
+		}
+
+		void ActionMode.ICallback.OnDestroyActionMode (ActionMode mode)
+		{ }
+
+		bool ActionMode.ICallback.OnPrepareActionMode (ActionMode mode, IMenu menu)
+		{
+			return false;
+		}
+	}
 }
