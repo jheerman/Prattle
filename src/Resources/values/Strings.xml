@@ -3,4 +3,5 @@
 	<string name="app_name">Prattle</string>
 	<string name="splash_title">Prattle SMS</string>
 	<string name="message_action_title">Actions</string>
+	<string name="message_action_subtitle"></string>
 </resources>

@@ -96,18 +96,23 @@ namespace Prattle
 					return;
 				
 				var callback = new MessageAction(Activity);
-			
-				callback.DeleteMessageHandler += delegate {
+				
+				callback.DeleteActionHandler += delegate {
 					_actionMode.Finish ();
 					_actionMode = null;
 					DeleteMessage (_sortedItems[e.Position]);
 				};
 				
-				callback.ViewMessageHandler += delegate {
+				callback.ViewActionHandler += delegate {
 					_actionMode.Finish ();
 					_actionMode = null;
 				};
-				_actionMode = Activity.StartActionMode (callback);	
+				
+				callback.CancelActionHandler += delegate {
+					_actionMode.Finish ();
+					_actionMode = null;
+				};
+				_actionMode = Activity.StartActionMode (callback);
 			};
 		}
 		
@@ -135,12 +140,13 @@ namespace Prattle
 		}
 	}
 	
-	public class MessageAction: Java.Lang.Object, ActionMode.ICallback, IActionModeNotification
+	public class MessageAction: Java.Lang.Object, ActionMode.ICallback, IMessageActionNotification
 	{
 		Activity _activity;
 	
-		public event EventHandler<EventArgs> DeleteMessageHandler;
-		public event EventHandler<EventArgs> ViewMessageHandler;
+		public event EventHandler<EventArgs> DeleteActionHandler;
+		public event EventHandler<EventArgs> ViewActionHandler;
+		public event EventHandler<EventArgs> CancelActionHandler;
 		
 		public MessageAction (Activity activity)
 		{
@@ -152,14 +158,16 @@ namespace Prattle
 			switch (item.ItemId)
 			{
 				case Resource.Id.deleteMessage:
-					if (DeleteMessageHandler != null)
-						DeleteMessageHandler (null, null);
+					if (DeleteActionHandler != null)
+						DeleteActionHandler (null, null);
 					break;
 				case Resource.Id.viewMessage:
-					if (ViewMessageHandler != null)
-						ViewMessageHandler(null, null);
+					if (ViewActionHandler != null)
+						ViewActionHandler(null, null);
 					break;
 				default:
+					if (CancelActionHandler != null)
+						CancelActionHandler (null, null);
 					break;
 			}
 			
@@ -170,6 +178,7 @@ namespace Prattle
 		bool ActionMode.ICallback.OnCreateActionMode (ActionMode mode, IMenu menu)
 		{
 			mode.Title = _activity.GetString(Resource.String.message_action_title);
+			mode.Subtitle = _activity.GetString (Resource.String.message_action_subtitle);
 			_activity.MenuInflater.Inflate(Resource.Menu.message_action_bar, menu);
 			return true;
 		}
