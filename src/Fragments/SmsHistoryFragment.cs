@@ -19,7 +19,7 @@ namespace Prattle
 {
 	public class SmsHistoryFragment: ListFragment
 	{
-		Repository<SmsMessage> _messageRepo;
+		SmsMessageRepository _messageRepo;
 		SmsGroupRepository _smsRepo;
 		
 		List<MessageListItem> _sortedItems;
@@ -27,14 +27,9 @@ namespace Prattle
 		
 		private ActionMode _actionMode;
 		bool _systemUIVisible = true;
-		
-		public override void OnCreate (Bundle savedInstanceState)
+
+		List<MessageListItem> GetGroupedMessages (int rowCount)
 		{
-			base.OnCreate (savedInstanceState);
-			
-			_messageRepo = new Repository<SmsMessage>();
-			_smsRepo = new SmsGroupRepository();
-			
 			//TODO: Join messages and groups in the message query and eliminate the need to select all groups
 			var messages = _messageRepo.GetAll ();
 			var smsGroups = _smsRepo.GetAll ();
@@ -62,7 +57,17 @@ namespace Prattle
 							};
 			
 			//sort the summaries and display the top 20
-			_sortedItems = summary.OrderByDescending (message => message.DateSent).Take(20).ToList();
+			return summary.OrderByDescending (message => message.DateSent).Take(rowCount).ToList();
+		}
+		
+		public override void OnCreate (Bundle savedInstanceState)
+		{
+			base.OnCreate (savedInstanceState);
+			
+			_messageRepo = new SmsMessageRepository();
+			_smsRepo = new SmsGroupRepository();
+			
+			_sortedItems = GetGroupedMessages (20);
 			ListAdapter = new MessageListAdapter(Activity, _sortedItems);
 		}
 		
@@ -95,7 +100,8 @@ namespace Prattle
 				if (_actionMode != null)
 					return;
 				
-				var callback = new MessageAction(Activity);
+				var callback = new MessageAction(Activity.GetString(Resource.String.message_action_title),
+				                                 Activity.GetString(Resource.String.message_action_subtitle));
 				
 				callback.DeleteActionHandler += delegate {
 					_actionMode.Finish ();
@@ -131,10 +137,14 @@ namespace Prattle
 			
 			Task.Factory
 				.StartNew(() => {
-					Thread.Sleep(2000);
+					var messages = _messageRepo.GetAllForEvent (selectedMessage.SmsGroup.Id, selectedMessage.DateSent, selectedMessage.Text);
+					messages.ForEach (message => _messageRepo.Delete (message));
 				})
 				.ContinueWith(task =>
 					Activity.RunOnUiThread(() => {
+						_sortedItems = GetGroupedMessages (20);
+						ListAdapter = new MessageListAdapter(Activity, _sortedItems);
+						((BaseAdapter)ListAdapter).NotifyDataSetChanged ();
 						_progressDialog.Dismiss ();
 				}));
 		}
@@ -142,15 +152,17 @@ namespace Prattle
 	
 	public class MessageAction: Java.Lang.Object, ActionMode.ICallback, IMessageActionNotification
 	{
-		Activity _activity;
+		string _title;
+		string _subTitle;
 	
 		public event EventHandler<EventArgs> DeleteActionHandler;
 		public event EventHandler<EventArgs> ViewActionHandler;
 		public event EventHandler<EventArgs> CancelActionHandler;
 		
-		public MessageAction (Activity activity)
+		public MessageAction (string title, string subTitle)
 		{
-			_activity = activity;
+			_title = title;
+			_subTitle = subTitle;
 		}
 		
 		bool ActionMode.ICallback.OnActionItemClicked (ActionMode mode, IMenuItem item)
@@ -177,9 +189,9 @@ namespace Prattle
 
 		bool ActionMode.ICallback.OnCreateActionMode (ActionMode mode, IMenu menu)
 		{
-			mode.Title = _activity.GetString(Resource.String.message_action_title);
-			mode.Subtitle = _activity.GetString (Resource.String.message_action_subtitle);
-			_activity.MenuInflater.Inflate(Resource.Menu.message_action_bar, menu);
+			mode.Title = _title;
+			mode.Subtitle = _subTitle;
+			mode.MenuInflater.Inflate (Resource.Menu.message_action_bar, menu);
 			return true;
 		}
 
