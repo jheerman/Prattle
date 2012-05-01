@@ -75,5 +75,9 @@
     <Compile Include="SmsGroupRepository.cs" />
     <Compile Include="MessageListItem.cs" />
     <Compile Include="IMessageActionNotification.cs" />
+    <Compile Include="..\Prattle.Domain\ISmsMessageRepository.cs">
+      <Link>ISmsMessageRepository.cs</Link>
+    </Compile>
+    <Compile Include="SmsMessageRepository.cs" />
   </ItemGroup>
 </Project>
