@@ -106,9 +106,7 @@ namespace Prattle
 								.ContinueWith(task =>
 									Activity.RunOnUiThread(() => {
 										_smsGroups.RemoveAt (_position);
-										var strGroups = _smsGroups
-											.Select (s => s.Name + " (" + s.MemberCount + " Members)").ToArray ();
-										ListAdapter = new ArrayAdapter<string> (Activity, Resource.Layout.list_item, strGroups);
+										ListAdapter = new GroupListAdapter(Activity, _smsGroups);
 										((BaseAdapter)ListAdapter).NotifyDataSetChanged ();
 										_progressDialog.Dismiss ();
 									}));
