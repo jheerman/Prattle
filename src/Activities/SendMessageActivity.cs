@@ -19,7 +19,7 @@ using Android.Views.InputMethods;
 
 namespace Prattle
 {
-	[Activity (Label = "Prattle Message", Theme="@style/Theme.ActionLight", WindowSoftInputMode=V.SoftInput.AdjustResize)]
+	[Activity (Label = "Prattle Message", Theme="@style/Theme.ActionLight", WindowSoftInputMode=V.SoftInput.AdjustResize, NoHistory=true)]
 	public class SendMessageActivity : Activity
 	{
 		SmsGroupRepository _smsGroupRepo;
