@@ -145,7 +145,7 @@ namespace Prattle
 					_messageRepo = new Repository<SmsMessage>();
 					_messageRepo.Save (message);
 					
-					//T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, message.Text, null, null);
+					T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, message.Text, null, null);
 				});
 				return true;
 			}
