@@ -19,6 +19,8 @@ Screenshot
 
 [Prattle Message List](https://github.com/jheerman/Prattle/raw/master/docs/screenshots/nexus_messages.png)
 
+[Prattle Message Actions](https://github.com/jheerman/Prattle/raw/master/docs/screenshots/nexus_messages_actions.png)
+
 John (info@jheerman.com)
 
 Copyright (C) 2012 John Heerman
