@@ -21,8 +21,6 @@ namespace Prattle
 	{
 		SmsMessageRepository _messageRepo;
 		SmsGroupRepository _smsRepo;
-		ContactRepository _contactRepo;
-		
 		List<MessageListItem> _sortedItems;
 		ProgressDialog _progressDialog;
 		
@@ -35,7 +33,6 @@ namespace Prattle
 			
 			_messageRepo = new SmsMessageRepository();
 			_smsRepo = new SmsGroupRepository();
-			_contactRepo = new ContactRepository(Activity);
 			
 			_sortedItems = GetGroupedMessages (20);
 			ListAdapter = new MessageListAdapter(Activity, _sortedItems);
@@ -111,7 +108,7 @@ namespace Prattle
 					var items = _messageRepo.GetAllForEvent (selectedMessage.SmsGroup.Id, selectedMessage.DateSent, selectedMessage.Text);
 					List<string> recipients = new List<string>();
 					items.ForEach (message => {
-						recipients.Add(_contactRepo.GetByAddressBookId (message.ContactAddressBookId).Name);
+						recipients.Add(message.ContactName);
 					});
 					return recipients;
 				})

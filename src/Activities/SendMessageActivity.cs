@@ -130,7 +130,7 @@ namespace Prattle
 		
 		private bool SendMessage ()
 		{
-			try 
+			try
 			{
 				var messageText = FindViewById<EditText>(Resource.Id.message).Text;
 				var dateSent = DateTime.Now;
@@ -139,6 +139,7 @@ namespace Prattle
 						Text = messageText,
 						SmsGroupId = _smsGroup.Id,
 						ContactAddressBookId = recipient.AddressBookId,
+						ContactName = recipient.Name,
 						SentDate = dateSent
 					};
 					_messageRepo = new Repository<SmsMessage>();
@@ -147,7 +148,6 @@ namespace Prattle
 					//T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, message.Text, null, null);
 				});
 				return true;
-				
 			}
 			catch 
 			{

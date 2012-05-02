@@ -12,6 +12,7 @@ namespace Prattle.Android.Core
 		public string Text { get; set; }
 		public int SmsGroupId { get; set; }
 		public string ContactAddressBookId { get; set; }
+		public string ContactName { get; set; }
 		public DateTime SentDate { get; set; }
 	}
 }
