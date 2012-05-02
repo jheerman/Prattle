@@ -10,7 +10,7 @@ using Android.Views.InputMethods;
 
 namespace Prattle
 {
-	[Activity (NoHistory=true, Theme="@style/Theme.ActionLight")]
+	[Activity (Theme="@style/Theme.ActionLight")]
 	public class MainActivity : Activity
 	{
 		protected override void OnCreate (Bundle bundle)
