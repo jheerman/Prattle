@@ -226,7 +226,8 @@ namespace Prattle
 	
 			void ActionMode.ICallback.OnDestroyActionMode (ActionMode mode)
 			{
-				DestroyActionHandler(null, null);
+				if (DestroyActionHandler != null)
+					DestroyActionHandler(null, null);
 			}
 	
 			bool ActionMode.ICallback.OnPrepareActionMode (ActionMode mode, IMenu menu)

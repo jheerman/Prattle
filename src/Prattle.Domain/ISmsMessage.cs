@@ -8,6 +8,7 @@ namespace Prattle.Domain
 		string Text { get; set; }
 		int SmsGroupId { get; set; }
 		string ContactAddressBookId { get;set; }
+		string ContactName { get; set; }
 		DateTime SentDate { get; set; }
 	}
 }
