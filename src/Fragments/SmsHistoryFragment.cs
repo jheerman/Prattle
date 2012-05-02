@@ -104,9 +104,9 @@ namespace Prattle
 				                                 Activity.GetString(Resource.String.message_action_subtitle));
 				
 				callback.DeleteActionHandler += delegate {
+					DeleteMessage (_sortedItems[e.Position]);
 					_actionMode.Finish ();
 					_actionMode = null;
-					DeleteMessage (_sortedItems[e.Position]);
 				};
 				
 				callback.ViewActionHandler += delegate {
@@ -114,10 +114,10 @@ namespace Prattle
 					_actionMode = null;
 				};
 				
-				callback.CancelActionHandler += delegate {
-					_actionMode.Finish ();
+				callback.DestroyActionHandler += delegate {
 					_actionMode = null;
 				};
+				
 				_actionMode = Activity.StartActionMode (callback);
 			};
 		}
@@ -148,59 +148,56 @@ namespace Prattle
 						_progressDialog.Dismiss ();
 				}));
 		}
-	}
-	
-	public class MessageAction: Java.Lang.Object, ActionMode.ICallback, IMessageActionNotification
-	{
-		string _title;
-		string _subTitle;
-	
-		public event EventHandler<EventArgs> DeleteActionHandler;
-		public event EventHandler<EventArgs> ViewActionHandler;
-		public event EventHandler<EventArgs> CancelActionHandler;
 		
-		public MessageAction (string title, string subTitle)
+		private class MessageAction: Java.Lang.Object, ActionMode.ICallback, IMessageActionNotification
 		{
-			_title = title;
-			_subTitle = subTitle;
-		}
-		
-		bool ActionMode.ICallback.OnActionItemClicked (ActionMode mode, IMenuItem item)
-		{
-			switch (item.ItemId)
+			string _title;
+			string _subTitle;
+			
+			public event EventHandler<EventArgs> DeleteActionHandler;
+			public event EventHandler<EventArgs> ViewActionHandler;
+			public event EventHandler<EventArgs> DestroyActionHandler;
+			
+			public MessageAction (string title, string subTitle)
 			{
-				case Resource.Id.deleteMessage:
-					if (DeleteActionHandler != null)
-						DeleteActionHandler (null, null);
-					break;
-				case Resource.Id.viewMessage:
-					if (ViewActionHandler != null)
-						ViewActionHandler(null, null);
-					break;
-				default:
-					if (CancelActionHandler != null)
-						CancelActionHandler (null, null);
-					break;
+				_title = title;
+				_subTitle = subTitle;
 			}
 			
-			mode.Finish ();
-			return true;
-		}
-
-		bool ActionMode.ICallback.OnCreateActionMode (ActionMode mode, IMenu menu)
-		{
-			mode.Title = _title;
-			mode.Subtitle = _subTitle;
-			mode.MenuInflater.Inflate (Resource.Menu.message_action_bar, menu);
-			return true;
-		}
-
-		void ActionMode.ICallback.OnDestroyActionMode (ActionMode mode)
-		{ }
-
-		bool ActionMode.ICallback.OnPrepareActionMode (ActionMode mode, IMenu menu)
-		{
-			return false;
+			bool ActionMode.ICallback.OnActionItemClicked (ActionMode mode, IMenuItem item)
+			{
+				switch (item.ItemId)
+				{
+					case Resource.Id.deleteMessage:
+						if (DeleteActionHandler != null)
+							DeleteActionHandler (null, null);
+						return true;
+					case Resource.Id.viewMessage:
+						if (ViewActionHandler != null)
+							ViewActionHandler(null, null);
+						return true;
+					default:
+						return false;
+				}
+			}
+	
+			bool ActionMode.ICallback.OnCreateActionMode (ActionMode mode, IMenu menu)
+			{
+				mode.Title = _title;
+				mode.Subtitle = _subTitle;
+				mode.MenuInflater.Inflate (Resource.Menu.message_action_bar, menu);
+				return true;
+			}
+	
+			void ActionMode.ICallback.OnDestroyActionMode (ActionMode mode)
+			{ 
+				DestroyActionHandler(null, null);
+			}
+	
+			bool ActionMode.ICallback.OnPrepareActionMode (ActionMode mode, IMenu menu)
+			{
+				return false;
+			}
 		}
 	}
 }

@@ -61,15 +61,6 @@
     <Compile Include="..\Prattle.Domain\IContactRepository.cs">
       <Link>IContactRepository.cs</Link>
     </Compile>
-    <Compile Include="..\Prattle.Domain\ISMSGroup.cs">
-      <Link>ISMSGroup.cs</Link>
-    </Compile>
-    <Compile Include="..\Prattle.Domain\ISMSGroupRepository.cs">
-      <Link>ISMSGroupRepository.cs</Link>
-    </Compile>
-    <Compile Include="..\Prattle.Domain\ISMSMessage.cs">
-      <Link>ISmsMessage.cs</Link>
-    </Compile>
     <Compile Include="SmsMessage.cs" />
     <Compile Include="SmsGroup.cs" />
     <Compile Include="SmsGroupRepository.cs" />
@@ -79,5 +70,14 @@
       <Link>ISmsMessageRepository.cs</Link>
     </Compile>
     <Compile Include="SmsMessageRepository.cs" />
+    <Compile Include="..\Prattle.Domain\ISmsMessage.cs">
+      <Link>ISmsMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\Prattle.Domain\ISmsGroup.cs">
+      <Link>ISmsGroup.cs</Link>
+    </Compile>
+    <Compile Include="..\Prattle.Domain\ISmsGroupRepository.cs">
+      <Link>ISmsGroupRepository.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>
