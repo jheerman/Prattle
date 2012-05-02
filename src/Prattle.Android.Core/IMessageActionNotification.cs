@@ -6,5 +6,6 @@ namespace Prattle.Android.Core
 	{
 		event EventHandler <EventArgs> DeleteActionHandler;
 		event EventHandler <EventArgs> ViewActionHandler;
+		event EventHandler <EventArgs> DestroyActionHandler;
 	}
 }

@@ -11,7 +11,7 @@
 		android:paddingRight="15dp"
 		android:paddingLeft="15dp"
 		android:layout_alignParentTop="true"
-		android:layout_width="90dp"
+		android:layout_width="80dp"
 		android:layout_height="wrap_content">
 		<TextView
 			android:id="@+id/dayOfMonth"

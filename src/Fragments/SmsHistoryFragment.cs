@@ -21,44 +21,13 @@ namespace Prattle
 	{
 		SmsMessageRepository _messageRepo;
 		SmsGroupRepository _smsRepo;
+		ContactRepository _contactRepo;
 		
 		List<MessageListItem> _sortedItems;
 		ProgressDialog _progressDialog;
 		
 		private ActionMode _actionMode;
 		bool _systemUIVisible = true;
-
-		List<MessageListItem> GetGroupedMessages (int rowCount)
-		{
-			//TODO: Join messages and groups in the message query and eliminate the need to select all groups
-			var messages = _messageRepo.GetAll ();
-			var smsGroups = _smsRepo.GetAll ();
-			
-			//join messages to groups to get the sms group name
-			var items = from message in messages
-						join smsGroup in smsGroups
-						on message.SmsGroupId equals smsGroup.Id
-						select new 
-						{
-							SmsGroup = smsGroup,
-							Text = message.Text,
-							DateSent = message.SentDate
-						};
-			
-			//group messages
-			var summary = from item in items
-							group item by new { item.SmsGroup, item.DateSent, item.Text } into g
-							select new MessageListItem
-							{
-								SmsGroup = g.Key.SmsGroup,
-								DateSent = g.Key.DateSent,
-								Text = g.Key.Text,
-								RecipientCount = g.Count()
-							};
-			
-			//sort the summaries and display the top 20
-			return summary.OrderByDescending (message => message.DateSent).Take(rowCount).ToList();
-		}
 		
 		public override void OnCreate (Bundle savedInstanceState)
 		{
@@ -66,6 +35,7 @@ namespace Prattle
 			
 			_messageRepo = new SmsMessageRepository();
 			_smsRepo = new SmsGroupRepository();
+			_contactRepo = new ContactRepository(Activity);
 			
 			_sortedItems = GetGroupedMessages (20);
 			ListAdapter = new MessageListAdapter(Activity, _sortedItems);
@@ -110,6 +80,7 @@ namespace Prattle
 				};
 				
 				callback.ViewActionHandler += delegate {
+					ViewMessage(_sortedItems[e.Position]);
 					_actionMode.Finish ();
 					_actionMode = null;
 				};
@@ -126,6 +97,73 @@ namespace Prattle
 		{
 			base.OnCreateView (inflater, container, savedInstanceState);
 			return inflater.Inflate (Resource.Layout.SmsHistory, container, false);
+		}
+		
+		private void ViewMessage(MessageListItem selectedMessage)
+		{
+			_progressDialog = new ProgressDialog(Activity);
+			_progressDialog.SetTitle ("Getting Message Details");
+			_progressDialog.SetMessage ("Please Wait.  Retrieving Message Details...");
+			_progressDialog.Show ();
+			
+			Task.Factory
+				.StartNew(() => {
+					var items = _messageRepo.GetAllForEvent (selectedMessage.SmsGroup.Id, selectedMessage.DateSent, selectedMessage.Text);
+					List<string> recipients = new List<string>();
+					items.ForEach (message => {
+						recipients.Add(_contactRepo.GetByAddressBookId (message.ContactAddressBookId).Name);
+					});
+					return recipients;
+				})
+				.ContinueWith(task =>
+					Activity.RunOnUiThread(() => {
+						DisplayDetail(task.Result, selectedMessage);
+						_progressDialog.Dismiss ();
+					}));
+			
+		}
+		
+		private void DisplayDetail(List<string> recipients, MessageListItem selectedMessage)
+		{
+			var contactNames = string.Join (", ", recipients.ToArray());
+			
+			new AlertDialog.Builder(Activity)
+				.SetTitle ("Message Details")
+				.SetMessage (string.Format ("Sent To: {0} at {1} on {2}",
+		                            contactNames, selectedMessage.DateSent.ToShortTimeString(), selectedMessage.DateSent.ToShortDateString()))
+				.Show ();
+		}
+		
+		private List<MessageListItem> GetGroupedMessages (int rowCount)
+		{
+			//TODO: Join messages and groups in the message query and eliminate the need to select all groups
+			var messages = _messageRepo.GetAll ();
+			var smsGroups = _smsRepo.GetAll ();
+			
+			//join messages to groups to get the sms group name
+			var items = from message in messages
+						join smsGroup in smsGroups
+						on message.SmsGroupId equals smsGroup.Id
+						select new 
+						{
+							SmsGroup = smsGroup,
+							Text = message.Text,
+							DateSent = message.SentDate
+						};
+			
+			//group messages
+			var summary = from item in items
+							group item by new { item.SmsGroup, item.DateSent, item.Text } into g
+							select new MessageListItem
+							{
+								SmsGroup = g.Key.SmsGroup,
+								DateSent = g.Key.DateSent,
+								Text = g.Key.Text,
+								RecipientCount = g.Count()
+							};
+			
+			//sort the summaries and display the top 20
+			return summary.OrderByDescending (message => message.DateSent).Take(rowCount).ToList();
 		}
 		
 		private void DeleteMessage(MessageListItem selectedMessage)
@@ -190,7 +228,7 @@ namespace Prattle
 			}
 	
 			void ActionMode.ICallback.OnDestroyActionMode (ActionMode mode)
-			{ 
+			{
 				DestroyActionHandler(null, null);
 			}
 	
