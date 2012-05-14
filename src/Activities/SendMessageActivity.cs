@@ -133,8 +133,21 @@ namespace Prattle
 			try
 			{
 				var messageText = FindViewById<EditText>(Resource.Id.message).Text;
+				
+				//Check to see if any recipients were removed from list
+				var strContacts = FindViewById<EditText>(Resource.Id.recipients).Text;
+				var contacts = strContacts.Split (',');
+				var newRecipients = new List<Contact>();
+				
+				for (var i=0; i<contacts.Length; i++)
+				{
+					var recipient = _recipients.FirstOrDefault (r => r.Name == contacts[i].Trim ());
+					if (recipient == null) continue;
+					newRecipients.Add (recipient);
+				}
+				
 				var dateSent = DateTime.Now;
-				_recipients.ForEach (recipient => {
+				newRecipients.ForEach (recipient => {
 					var message = new SmsMessage{
 						Text = messageText,
 						SmsGroupId = _smsGroup.Id,
@@ -145,7 +158,7 @@ namespace Prattle
 					_messageRepo = new Repository<SmsMessage>();
 					_messageRepo.Save (message);
 					
-					T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, message.Text, null, null);
+					//T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, message.Text, null, null);
 				});
 				return true;
 			}

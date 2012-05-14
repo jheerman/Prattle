@@ -96,7 +96,7 @@ namespace Prattle
 			ListAdapter = new ContactListAdapter(this, contacts);
 			ListView.TextFilterEnabled = true;
 			ListView.ChoiceMode = ChoiceMode.Multiple;
-			ListView.ItemClick += delegate(object sender, ItemEventArgs e) {
+			ListView.ItemClick += delegate(object sender, AdapterView.ItemClickEventArgs  e) {
 				contacts[e.Position].Selected = ListView.IsItemChecked (e.Position);
 			};
 		}

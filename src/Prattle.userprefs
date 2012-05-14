@@ -1,11 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Fragments/SmsHistoryFragment.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Activities/SendMessageActivity.cs">
     <Files>
-      <File FileName="Fragments/SmsHistoryFragment.cs" Line="136" Column="6" />
-      <File FileName="Resources/menu/message_action_bar.xml" Line="8" Column="8" />
-      <File FileName="Resources/menu/main_action_bar.xml" Line="6" Column="8" />
-      <File FileName="Activities/SendMessageActivity.cs" Line="96" Column="24" />
+      <File FileName="Activities/SendMessageActivity.cs" Line="141" Column="5" />
+      <File FileName="Activities/SmsGroupListActivity.cs" Line="100" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,15 +11,18 @@
           <Option id="ShowVersionControlOverlays" value="True" />
           <Option id="ShowAllFiles" value="False" />
           <Node name="Prattle" expanded="True">
-            <Node name="Activities" expanded="True" />
+            <Node name="Activities" expanded="True">
+              <Node name="SendMessageActivity.cs" selected="True" />
+            </Node>
             <Node name="Fragments" expanded="True">
-              <Node name="SmsHistoryFragment.cs" selected="True" />
+              <Option id="ShowAllFiles" value="True" />
             </Node>
             <Node name="Resources" expanded="True">
               <Option id="ShowAllFiles" value="True" />
-              <Node name="values" expanded="True" />
+              <Node name="layout" expanded="True" />
             </Node>
           </Node>
+          <Node name="Prattle.Android.Core" expanded="True" />
         </State>
       </Pad>
     </Pads>
@@ -30,5 +31,4 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.Prattle AndroidDeviceId-Debug="3530601EEE7200EC" />
 </Properties>
