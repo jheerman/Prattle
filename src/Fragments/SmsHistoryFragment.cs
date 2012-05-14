@@ -38,6 +38,11 @@ namespace Prattle
 			ListAdapter = new MessageListAdapter(Activity, _sortedItems);
 		}
 		
+		public override void OnStart ()
+		{
+			base.OnStart ();
+		}
+		
 		public override void OnActivityCreated (Bundle savedInstanceState)
 		{
 			base.OnActivityCreated(savedInstanceState);

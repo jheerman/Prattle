@@ -24,7 +24,6 @@ namespace Prattle
 	{
 		SmsGroupRepository _smsGroupRepo;
 		ContactRepository _contactRepo;
-		Repository<SmsMessage> _messageRepo;
 		ProgressDialog _progressDialog;
 		
 		SmsGroup _smsGroup;
@@ -155,16 +154,40 @@ namespace Prattle
 						ContactName = recipient.Name,
 						SentDate = dateSent
 					};
-					_messageRepo = new Repository<SmsMessage>();
-					_messageRepo.Save (message);
 					
-					//T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, message.Text, null, null);
+					var pendingIntent = PendingIntent.GetBroadcast (this, 0, new Intent("SMS_SENT"), 0);
+					var receiver = new PrattleBroadcastReceiver { Message = message };
+					
+					T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, message.Text, pendingIntent, null);
+					RegisterReceiver (receiver, new IntentFilter("SMS_SENT"));
 				});
 				return true;
 			}
-			catch 
+			catch
 			{
 				return false;
+			}
+		}
+		
+		[IntentFilter (new []{"SMS_SENT"})]
+		private class PrattleBroadcastReceiver: BroadcastReceiver
+		{
+			Repository<SmsMessage> _messageRepo;
+			public SmsMessage Message { get; set; }
+			
+			public override void OnReceive (Context context, Intent intent)
+			{
+				switch (ResultCode)
+				{
+					case Result.Ok:
+						_messageRepo = new Repository<SmsMessage>();
+						_messageRepo.Save (Message);
+						break;
+					default:
+						Toast.MakeText (context, "Doh!  Message was unsuccessful.", ToastLength.Short).Show ();
+						break;
+				}
+				_messageRepo = null;
 			}
 		}
 	}
