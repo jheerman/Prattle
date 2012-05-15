@@ -11,7 +11,7 @@ using Android.Views.InputMethods;
 namespace Prattle
 {
 	[Activity (Theme="@style/Theme.ActionLight")]
-	public class MainActivity : BaseActivity
+	public class MainActivity : Activity
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -51,8 +51,6 @@ namespace Prattle
 		protected override void OnDestroy ()
 		{
 			base.OnDestroy ();
-			UnbindService ();
-			StopService (new Intent(this, typeof(PrattleSmsService)));
 		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)

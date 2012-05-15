@@ -12,13 +12,13 @@ using Android.Widget;
 
 namespace Prattle
 {
-	public class BaseActivity : Activity
+	public class SmsServiceActivity : Activity
 	{
 		private bool _isBound;
 		private IServiceConnection _connection;
 		public PrattleSmsService boundService;
 
-		public BaseActivity ()
+		public SmsServiceActivity ()
 		{
 			_connection = new PrattleSmsServiceConnection (this);
 		}
@@ -46,9 +46,9 @@ namespace Prattle
 	
 	class PrattleSmsServiceConnection : Java.Lang.Object, IServiceConnection
 	{
-		BaseActivity _self;
+		SmsServiceActivity _self;
 
-		public PrattleSmsServiceConnection (BaseActivity self)
+		public PrattleSmsServiceConnection (SmsServiceActivity self)
 		{
 			_self = self;
 		}

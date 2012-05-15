@@ -21,6 +21,7 @@ namespace Prattle
 	{
 		PrattleSmsReceiver _receiver;
 		IBinder _binder;
+		PendingIntent _sentIntent;
 		
 		public PrattleSmsService ()
 		{
@@ -30,6 +31,7 @@ namespace Prattle
 		public override void OnCreate ()
 		{
 			base.OnCreate ();
+			_sentIntent = PendingIntent.GetBroadcast (ApplicationContext, 0, new Intent("SMS_SENT"), 0);
 		}
 		
 		public override IBinder OnBind (Intent intent)
@@ -54,12 +56,10 @@ namespace Prattle
 			UnregisterReceiver (_receiver);
 		}
 		
-		public void SendMessage (string messageText, SmsGroup smsGroup, List<Contact> recipients)
+		public bool SendMessage (string messageText, SmsGroup smsGroup, List<Contact> recipients)
 		{
 			var dateSent = DateTime.Now;
-			foreach (var recipient in recipients)
-			{
-			//recipients.ForEach (recipient => {
+			recipients.ForEach (recipient => {
 				var message = new SmsMessage{
 					Text = messageText,
 					SmsGroupId = smsGroup.Id,
@@ -68,16 +68,15 @@ namespace Prattle
 					SentDate = dateSent
 				};
 				
-				var sentIntent = PendingIntent.GetBroadcast (this, 0, new Intent("SMS_SENT"), 0);
 				_receiver = new PrattleSmsReceiver { Message = message };
-				
-				T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, message.Text, sentIntent, null);
 				RegisterReceiver (_receiver, new IntentFilter("SMS_SENT"));
-			}
-			//);
+				T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, messageText, _sentIntent, null);
+			});
+			return true;
 		}
 		
-		public class LocalBinder : Binder {
+		public class LocalBinder : Binder
+		{
 			PrattleSmsService _self;
 
 			public LocalBinder (PrattleSmsService self)
@@ -85,7 +84,8 @@ namespace Prattle
 				_self = self;
 			}
 
-			public PrattleSmsService Service {
+			public PrattleSmsService Service
+			{
 				get { return _self; }
 			}
 		}

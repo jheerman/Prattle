@@ -19,7 +19,7 @@ using Android.Views.InputMethods;
 namespace Prattle
 {
 	[Activity (Label = "Prattle Message", Theme="@style/Theme.ActionLight", WindowSoftInputMode=V.SoftInput.AdjustResize, NoHistory=true)]
-	public class SendMessageActivity : Activity
+	public class SendMessageActivity : SmsServiceActivity
 	{
 		SmsGroupRepository _smsGroupRepo;
 		ContactRepository _contactRepo;
@@ -31,6 +31,10 @@ namespace Prattle
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+			
+			//start the sms service
+			StartService (new Intent(Application.Context, typeof(PrattleSmsService)));
+			BindService ();
 			
 			SetContentView(Resource.Layout.SendMessage);
 			ActionBar.SetDisplayHomeAsUpEnabled (true);
@@ -81,6 +85,13 @@ namespace Prattle
 								_progressDialog.Dismiss ();
 							}));
 				};
+		}
+		
+		protected override void OnDestroy ()
+		{
+			base.OnDestroy ();
+//			UnbindService ();
+//			StopService (new Intent(this, typeof(PrattleSmsService)));
 		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -144,13 +155,10 @@ namespace Prattle
 					messageRecipients.Add (recipient);
 				}
 				
-				//call service and pass message and recipients
-				var service = new PrattleSmsService();
-				
-				service.SendMessage (messageText, _smsGroup, messageRecipients);
+				boundService.SendMessage (messageText, _smsGroup, messageRecipients);
 				return true;
 			}
-			catch 
+			catch
 			{
 				return false;
 			}
