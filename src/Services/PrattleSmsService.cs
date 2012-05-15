@@ -46,7 +46,6 @@ namespace Prattle
 		
 		public override StartCommandResult OnStartCommand (Intent intent, StartCommandFlags flags, int startId)
 		{
-			Log.Info ("PrattleSmsService", "Received start id " + startId + ": " + intent);
 			return StartCommandResult.Sticky;
 		}
 		

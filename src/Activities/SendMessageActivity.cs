@@ -33,7 +33,7 @@ namespace Prattle
 			base.OnCreate (bundle);
 			
 			//start the sms service
-			StartService (new Intent(Application.Context, typeof(PrattleSmsService)));
+			StartService (new Intent(ApplicationContext, typeof(PrattleSmsService)));
 			BindService ();
 			
 			SetContentView(Resource.Layout.SendMessage);

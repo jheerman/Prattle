@@ -30,7 +30,7 @@ namespace Prattle
 		
 		protected void BindService ()
 		{
-			base.BindService (new Intent (this, typeof (PrattleSmsService)),
+			base.BindService (new Intent (ApplicationContext, typeof (PrattleSmsService)),
 						_connection, Bind.AutoCreate);
 			_isBound = true;
 		}
