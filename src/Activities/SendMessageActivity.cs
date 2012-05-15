@@ -32,8 +32,6 @@ namespace Prattle
 		{
 			base.OnCreate (bundle);
 			
-			//start the sms service
-			StartService (new Intent(ApplicationContext, typeof(PrattleSmsService)));
 			BindService ();
 			
 			SetContentView(Resource.Layout.SendMessage);
@@ -90,8 +88,7 @@ namespace Prattle
 		protected override void OnDestroy ()
 		{
 			base.OnDestroy ();
-//			UnbindService ();
-//			StopService (new Intent(this, typeof(PrattleSmsService)));
+			UnbindService ();
 		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)

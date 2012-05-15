@@ -46,7 +46,7 @@ namespace Prattle
 		
 		public override StartCommandResult OnStartCommand (Intent intent, StartCommandFlags flags, int startId)
 		{
-			return StartCommandResult.Sticky;
+			return StartCommandResult.NotSticky;
 		}
 		
 		public override void OnDestroy ()

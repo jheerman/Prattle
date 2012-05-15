@@ -16,6 +16,9 @@ namespace Prattle
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+			
+			//start the prattle sms service listener
+			StartService (new Intent(ApplicationContext, typeof(PrattleSmsService)));
 
 			SetContentView (Resource.Layout.Main);
 			ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
@@ -51,6 +54,9 @@ namespace Prattle
 		protected override void OnDestroy ()
 		{
 			base.OnDestroy ();
+			
+			//stop the prattle sms service listener
+			StopService (new Intent(ApplicationContext, typeof(PrattleSmsService)));
 		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)
