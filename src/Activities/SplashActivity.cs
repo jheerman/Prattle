@@ -13,17 +13,21 @@ using Android.Widget;
 namespace Prattle
 {
 	[Activity (MainLauncher=true, Theme="@style/Theme.Splash", NoHistory = true)]
-	public class SplashActivity : Activity
+	public class SplashActivity : BaseActivity
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 			
-			// Create your application here
+			// start the main activity
 			Intent intent = new Intent();
 			intent.AddFlags (ActivityFlags.SingleTop);
 			intent.SetClass (this, typeof(MainActivity));
 			StartActivity(intent);
+			
+			//start the sms service
+			StartService (new Intent(this, typeof(PrattleSmsService)));
+			BindService ();
 		}
 	}
 }

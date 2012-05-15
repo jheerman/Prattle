@@ -12,7 +12,6 @@ using Android.Views;
 using Android.Widget;
 using R = Android.Resource;
 using V = Android.Views;
-using T = Android.Telephony;
 
 using Prattle.Android.Core;
 using Android.Views.InputMethods;
@@ -26,8 +25,8 @@ namespace Prattle
 		ContactRepository _contactRepo;
 		ProgressDialog _progressDialog;
 		
-		SmsGroup _smsGroup;
 		List<Contact> _recipients;
+		SmsGroup _smsGroup;
 		
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -53,14 +52,14 @@ namespace Prattle
 				
 					Task.Factory
 						.StartNew(() =>
-							SendMessage ())
+							QueueMessage ())
 						.ContinueWith(task =>
 							RunOnUiThread(() => {
 								if (task.Result)
 								{
 									new AlertDialog.Builder(this)
-										.SetTitle ("Message Sent Successfully")
-										.SetMessage (string.Format ("Your message was sent to each recipient of the '{0}' group", 
+										.SetTitle ("Messages Queued")
+										.SetMessage (string.Format ("Your message was queued to be sent to each recipient of the '{0}' group", 
 										                            _smsGroup.Name))
 										.SetPositiveButton ("Ok", (o, args) => {
 													var homeIntent = new Intent();
@@ -127,67 +126,33 @@ namespace Prattle
 			return true;
 		}
 		
-		private bool SendMessage ()
+		private bool QueueMessage()
 		{
 			try
 			{
 				var messageText = FindViewById<EditText>(Resource.Id.message).Text;
-				
+	
 				//Check to see if any recipients were removed from list
 				var strContacts = FindViewById<EditText>(Resource.Id.recipients).Text;
 				var contacts = strContacts.Split (',');
-				var newRecipients = new List<Contact>();
+				var messageRecipients = new List<Contact>();
 				
 				for (var i=0; i<contacts.Length; i++)
 				{
 					var recipient = _recipients.FirstOrDefault (r => r.Name == contacts[i].Trim ());
 					if (recipient == null) continue;
-					newRecipients.Add (recipient);
+					messageRecipients.Add (recipient);
 				}
 				
-				var dateSent = DateTime.Now;
-				newRecipients.ForEach (recipient => {
-					var message = new SmsMessage{
-						Text = messageText,
-						SmsGroupId = _smsGroup.Id,
-						ContactAddressBookId = recipient.AddressBookId,
-						ContactName = recipient.Name,
-						SentDate = dateSent
-					};
-					
-					var pendingIntent = PendingIntent.GetBroadcast (this, 0, new Intent("SMS_SENT"), 0);
-					var receiver = new PrattleBroadcastReceiver { Message = message };
-					
-					T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, message.Text, pendingIntent, null);
-					RegisterReceiver (receiver, new IntentFilter("SMS_SENT"));
-				});
+				//call service and pass message and recipients
+				var service = new PrattleSmsService();
+				
+				service.SendMessage (messageText, _smsGroup, messageRecipients);
 				return true;
 			}
-			catch
+			catch 
 			{
 				return false;
-			}
-		}
-		
-		[IntentFilter (new []{"SMS_SENT"})]
-		private class PrattleBroadcastReceiver: BroadcastReceiver
-		{
-			Repository<SmsMessage> _messageRepo;
-			public SmsMessage Message { get; set; }
-			
-			public override void OnReceive (Context context, Intent intent)
-			{
-				switch (ResultCode)
-				{
-					case Result.Ok:
-						_messageRepo = new Repository<SmsMessage>();
-						_messageRepo.Save (Message);
-						break;
-					default:
-						Toast.MakeText (context, "Doh!  Message was unsuccessful.", ToastLength.Short).Show ();
-						break;
-				}
-				_messageRepo = null;
 			}
 		}
 	}

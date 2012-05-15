@@ -59,6 +59,9 @@
     <Compile Include="Activities\SmsGroupListActivity.cs" />
     <Compile Include="Views\MessageListAdapter.cs" />
     <Compile Include="Views\GroupListAdapter.cs" />
+    <Compile Include="Services\PrattleSmsService.cs" />
+    <Compile Include="Receivers\PrattleSmsReceiver.cs" />
+    <Compile Include="Activities\BaseActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -152,6 +155,8 @@
     <Folder Include="Views\" />
     <Folder Include="Resources\menu\" />
     <Folder Include="Fragments\" />
+    <Folder Include="Receivers\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Prattle.Android.Core\Prattle.Android.Core.csproj">

@@ -11,7 +11,7 @@ using Android.Views.InputMethods;
 namespace Prattle
 {
 	[Activity (Theme="@style/Theme.ActionLight")]
-	public class MainActivity : Activity
+	public class MainActivity : BaseActivity
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -46,6 +46,13 @@ namespace Prattle
 			
 			var defaultTab = Intent.GetIntExtra ("defaultTab", 0);
 			ActionBar.SetSelectedNavigationItem(defaultTab);
+		}
+		
+		protected override void OnDestroy ()
+		{
+			base.OnDestroy ();
+			UnbindService ();
+			StopService (new Intent(this, typeof(PrattleSmsService)));
 		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)
