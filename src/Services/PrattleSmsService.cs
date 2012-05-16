@@ -21,7 +21,7 @@ namespace Prattle
 	{
 		PrattleSmsReceiver _receiver;
 		IBinder _binder;
-		PendingIntent _sentIntent;
+		//PendingIntent _sentIntent;
 		
 		public PrattleSmsService ()
 		{
@@ -67,8 +67,9 @@ namespace Prattle
 				messageIntent.PutExtra ("addressBookId", recipient.AddressBookId);
 				messageIntent.PutExtra ("contactName", recipient.Name);
 				messageIntent.PutExtra ("dateSent", dateSent.ToString ("M/d/yyyy hh:mm:ss tt"));
-				
-				_sentIntent = PendingIntent.GetBroadcast (ApplicationContext, 0, messageIntent, PendingIntentFlags.UpdateCurrent);
+
+				var requestCode = new Random(1).Next (Int32.MaxValue);
+				var _sentIntent = PendingIntent.GetBroadcast (ApplicationContext, requestCode, messageIntent, PendingIntentFlags.OneShot);
 				T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, messageText, _sentIntent, null);
 			});
 			return true;
