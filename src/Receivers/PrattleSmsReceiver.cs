@@ -33,17 +33,18 @@ namespace Prattle
 			
 			switch ((int)ResultCode)
 			{
-				case (int)T.SmsResultError.NoService:
-				case (int)T.SmsResultError.RadioOff:
 				case (int)Result.Ok:
 					_messageRepo = new Repository<SmsMessage>();
 					_messageRepo.Save (message);
 					Toast.MakeText (context, string.Format ("Message sent to {0}", message.ContactName), ToastLength.Short).Show ();
 					break;
+				case (int)T.SmsResultError.NoService:
+				case (int)T.SmsResultError.RadioOff:
 				case (int)T.SmsResultError.NullPdu:
 				case (int)T.SmsResultError.GenericFailure:
 				default:
-					Toast.MakeText (context, "Doh!  Message was unsuccessful.", ToastLength.Short).Show ();
+					Toast.MakeText (context, string.Format("Doh! Message could not be sent to {0}.", message.ContactName), 
+				                ToastLength.Short).Show ();
 					break;
 			}
 			_messageRepo = null;
