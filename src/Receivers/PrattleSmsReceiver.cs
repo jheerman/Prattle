@@ -10,6 +10,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
+using T = Android.Telephony;
+
 using Prattle.Android.Core;
 
 namespace Prattle
@@ -18,17 +20,28 @@ namespace Prattle
 	public class PrattleSmsReceiver : BroadcastReceiver
 	{
 		Repository<SmsMessage> _messageRepo;
-		public SmsMessage Message { get; set; }
 		
 		public override void OnReceive (Context context, Intent intent)
 		{
-			switch (ResultCode)
+			var message = new SmsMessage {
+				Text = intent.GetStringExtra ("messageText"),
+				SmsGroupId = intent.GetIntExtra ("smsGroupId", -1),
+				ContactAddressBookId = intent.GetStringExtra ("addressBookId"),
+				ContactName = intent.GetStringExtra ("contactName"),
+				SentDate = DateTime.Parse (intent.GetStringExtra ("dateSent"))
+			};
+			
+			switch ((int)ResultCode)
 			{
-				case Result.Ok:
+				case (int)T.SmsResultError.NoService:
+				case (int)T.SmsResultError.RadioOff:
+				case (int)Result.Ok:
 					_messageRepo = new Repository<SmsMessage>();
-					_messageRepo.Save (Message);
-					Toast.MakeText (context, string.Format ("Message sent to {0}", Message.ContactName), ToastLength.Short).Show ();
+					_messageRepo.Save (message);
+					Toast.MakeText (context, string.Format ("Message sent to {0}", message.ContactName), ToastLength.Short).Show ();
 					break;
+				case (int)T.SmsResultError.NullPdu:
+				case (int)T.SmsResultError.GenericFailure:
 				default:
 					Toast.MakeText (context, "Doh!  Message was unsuccessful.", ToastLength.Short).Show ();
 					break;

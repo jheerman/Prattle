@@ -56,13 +56,11 @@ namespace Prattle
 		public void OnServiceConnected (ComponentName className, IBinder service)
 		{
 			_self.boundService = ((PrattleSmsService.LocalBinder) service).Service;
-			Toast.MakeText (_self, "connected", ToastLength.Short).Show ();
 		}
 
 		public void OnServiceDisconnected (ComponentName className)
 		{
 			_self.boundService = null;
-			Toast.MakeText (_self, "disconnected", ToastLength.Short).Show ();
 		}
 	}
 }
