@@ -87,6 +87,12 @@ namespace Prattle
 					_actionMode = null;
 				};
 				
+				callback.CopyActionHandler += delegate {
+					CopyMessage (_sortedItems[e.Position]);
+					_actionMode.Finish ();
+					_actionMode = null;
+				};
+				
 				callback.DestroyActionHandler += delegate {
 					_actionMode = null;
 				};
@@ -99,6 +105,13 @@ namespace Prattle
 		{
 			base.OnCreateView (inflater, container, savedInstanceState);
 			return inflater.Inflate (Resource.Layout.SmsHistory, container, false);
+		}
+		
+		private void CopyMessage(MessageListItem selectedMessage)
+		{
+			var clipboard = (ClipboardManager)Activity.GetSystemService (Context.ClipboardService);
+			clipboard.PrimaryClip = ClipData.NewPlainText ("message", selectedMessage.Text);
+			Toast.MakeText (Activity, "Message text copied to clipboard", ToastLength.Short).Show ();
 		}
 		
 		private void ViewMessage(MessageListItem selectedMessage)
@@ -122,7 +135,6 @@ namespace Prattle
 						DisplayDetail(task.Result, selectedMessage);
 						_progressDialog.Dismiss ();
 					}));
-			
 		}
 		
 		private void DisplayDetail(List<string> recipients, MessageListItem selectedMessage)
@@ -196,6 +208,7 @@ namespace Prattle
 			
 			public event EventHandler<EventArgs> DeleteActionHandler;
 			public event EventHandler<EventArgs> ViewActionHandler;
+			public event EventHandler<EventArgs> CopyActionHandler;
 			public event EventHandler<EventArgs> DestroyActionHandler;
 			
 			public MessageAction (string title, string subTitle)
@@ -215,6 +228,10 @@ namespace Prattle
 					case Resource.Id.viewMessage:
 						if (ViewActionHandler != null)
 							ViewActionHandler(null, null);
+						return true;
+					case Resource.Id.copyMessage:
+						if (CopyActionHandler != null)
+							CopyActionHandler (null, null);
 						return true;
 					default:
 						return false;

@@ -1,26 +1,21 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Activities/SendMessageActivity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Services/PrattleSmsService.cs">
     <Files>
-      <File FileName="Activities/SendMessageActivity.cs" Line="154" Column="36" />
-      <File FileName="Activities/SmsGroupListActivity.cs" Line="100" Column="1" />
+      <File FileName="Services/PrattleSmsService.cs" Line="53" Column="3" />
+      <File FileName="Activities/SmsServiceActivity.cs" Line="32" Column="4" />
+      <File FileName="Receivers/PrattleSmsReceiver.cs" Line="25" Column="4" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
+        <State expanded="True" selected="True">
           <Option id="ShowVersionControlOverlays" value="True" />
           <Option id="ShowAllFiles" value="False" />
           <Node name="Prattle" expanded="True">
-            <Node name="Activities" expanded="True">
-              <Node name="SendMessageActivity.cs" selected="True" />
-            </Node>
-            <Node name="Fragments" expanded="True">
-              <Option id="ShowAllFiles" value="True" />
-            </Node>
-            <Node name="Resources" expanded="True">
-              <Option id="ShowAllFiles" value="True" />
-              <Node name="layout" expanded="True" />
-            </Node>
+            <Node name="Activities" expanded="True" />
+            <Node name="Fragments" expanded="True" />
+            <Node name="Receivers" expanded="True" />
+            <Node name="Services" expanded="True" />
           </Node>
           <Node name="Prattle.Android.Core" expanded="True" />
         </State>
@@ -28,12 +23,11 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/jheerman/Projects/Prattle/src/Activities/SendMessageActivity.cs" line="180" />
-      <Breakpoint file="/Users/jheerman/Projects/Prattle/src/Activities/SendMessageActivity.cs" line="158" />
-      <Breakpoint file="/Users/jheerman/Projects/Prattle/src/Activities/SendMessageActivity.cs" line="168" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.Prattle AndroidDeviceId-Debug="0146828701004015" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Activities/SendMessageActivity.cs" line="150" offsetX="364" offsetY="2831" expression="ex" liveUpdate="False" />
+    <Watch file="Receivers/PrattleSmsReceiver.cs" line="26" offsetX="451" offsetY="475" expression="message" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.ItemProperties.Prattle />
 </Properties>

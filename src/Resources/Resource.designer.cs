@@ -26,83 +26,86 @@ namespace Prattle
 		public partial class Drawable
 		{
 			
-			// aapt resource value: 0x7f020014
-			public const int action_bar = 2130837524;
-			
 			// aapt resource value: 0x7f020015
-			public const int action_text_color = 2130837525;
+			public const int action_bar = 2130837525;
 			
-			// aapt resource value: 0x7f020018
-			public const int detail_list_background = 2130837528;
+			// aapt resource value: 0x7f020016
+			public const int action_text_color = 2130837526;
 			
 			// aapt resource value: 0x7f020019
-			public const int detail_list_text = 2130837529;
+			public const int detail_list_background = 2130837529;
 			
-			// aapt resource value: 0x7f020010
-			public const int focused = 2130837520;
+			// aapt resource value: 0x7f02001a
+			public const int detail_list_text = 2130837530;
+			
+			// aapt resource value: 0x7f020011
+			public const int focused = 2130837521;
 			
 			// aapt resource value: 0x7f020000
 			public const int group_list_selector = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int ic_action_delete_message = 2130837505;
+			public const int ic_action_copy = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int ic_action_edit_sms_group = 2130837506;
+			public const int ic_action_delete_message = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int ic_action_new_message = 2130837507;
+			public const int ic_action_edit_sms_group = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int ic_action_new_sms_group = 2130837508;
+			public const int ic_action_new_message = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int ic_action_view_message = 2130837509;
+			public const int ic_action_new_sms_group = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int ic_menu_sms_context_header = 2130837510;
+			public const int ic_action_view_message = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int ic_tab_sms_group = 2130837511;
+			public const int ic_menu_sms_context_header = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int ic_tab_sms_group_selected = 2130837512;
+			public const int ic_tab_sms_group = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int ic_tab_sms_group_unselected = 2130837513;
+			public const int ic_tab_sms_group_selected = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int ic_tab_sms_history = 2130837514;
+			public const int ic_tab_sms_group_unselected = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-			public const int ic_tab_sms_history_selected = 2130837515;
+			public const int ic_tab_sms_history = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
-			public const int ic_tab_sms_history_unselected = 2130837516;
+			public const int ic_tab_sms_history_selected = 2130837516;
 			
 			// aapt resource value: 0x7f02000d
-			public const int Icon = 2130837517;
-			
-			// aapt resource value: 0x7f020012
-			public const int list_background = 2130837522;
+			public const int ic_tab_sms_history_unselected = 2130837517;
 			
 			// aapt resource value: 0x7f02000e
-			public const int list_separator = 2130837518;
+			public const int Icon = 2130837518;
 			
 			// aapt resource value: 0x7f020013
-			public const int list_text_color = 2130837523;
-			
-			// aapt resource value: 0x7f020011
-			public const int selected = 2130837521;
+			public const int list_background = 2130837523;
 			
 			// aapt resource value: 0x7f02000f
-			public const int splash = 2130837519;
+			public const int list_separator = 2130837519;
+			
+			// aapt resource value: 0x7f020014
+			public const int list_text_color = 2130837524;
+			
+			// aapt resource value: 0x7f020012
+			public const int selected = 2130837522;
+			
+			// aapt resource value: 0x7f020010
+			public const int splash = 2130837520;
+			
+			// aapt resource value: 0x7f020018
+			public const int thumb_list_background = 2130837528;
 			
 			// aapt resource value: 0x7f020017
-			public const int thumb_list_background = 2130837527;
-			
-			// aapt resource value: 0x7f020016
-			public const int thumb_list_text = 2130837526;
+			public const int thumb_list_text = 2130837527;
 			
 			private Drawable()
 			{
@@ -118,17 +121,20 @@ namespace Prattle
 			// aapt resource value: 0x7f070000
 			public const int contactName = 2131165184;
 			
+			// aapt resource value: 0x7f070014
+			public const int copyMessage = 2131165204;
+			
 			// aapt resource value: 0x7f070008
 			public const int dayOfMonth = 2131165192;
 			
-			// aapt resource value: 0x7f070014
-			public const int deleteMessage = 2131165204;
+			// aapt resource value: 0x7f070015
+			public const int deleteMessage = 2131165205;
+			
+			// aapt resource value: 0x7f070019
+			public const int deleteSMS = 2131165209;
 			
 			// aapt resource value: 0x7f070018
-			public const int deleteSMS = 2131165208;
-			
-			// aapt resource value: 0x7f070017
-			public const int editSMS = 2131165207;
+			public const int editSMS = 2131165208;
 			
 			// aapt resource value: 0x7f07000e
 			public const int envelope = 2131165198;
@@ -148,8 +154,8 @@ namespace Prattle
 			// aapt resource value: 0x7f070010
 			public const int menuCancelEdit = 2131165200;
 			
-			// aapt resource value: 0x7f070015
-			public const int menuCancelMessage = 2131165205;
+			// aapt resource value: 0x7f070016
+			public const int menuCancelMessage = 2131165206;
 			
 			// aapt resource value: 0x7f070012
 			public const int menuCreateGroup = 2131165202;
@@ -175,8 +181,8 @@ namespace Prattle
 			// aapt resource value: 0x7f07000d
 			public const int recipients = 2131165197;
 			
-			// aapt resource value: 0x7f070016
-			public const int sendSMS = 2131165206;
+			// aapt resource value: 0x7f070017
+			public const int sendSMS = 2131165207;
 			
 			// aapt resource value: 0x7f070002
 			public const int smsContainer = 2131165186;

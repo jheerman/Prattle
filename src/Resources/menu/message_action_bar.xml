@@ -3,6 +3,10 @@
 		android:title="View"
 		android:icon="@drawable/ic_action_view_message"
 		android:showAsAction="always|withText"/>
+	<item android:id="@+id/copyMessage"
+		android:title="Copy"
+		android:icon="@drawable/ic_action_copy"
+		android:showAsAction="always|withText"/>
 	<item android:id="@+id/deleteMessage"
 		android:title="Delete"
 		android:icon="@drawable/ic_action_delete_message"

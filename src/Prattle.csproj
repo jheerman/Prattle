@@ -148,6 +148,9 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_view_message.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_delete_message.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_view_message.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_copy.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_copy.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_copy.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

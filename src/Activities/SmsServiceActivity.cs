@@ -37,7 +37,8 @@ namespace Prattle
 
 		protected void UnbindService ()
 		{
-			if (_isBound) {
+			if (_isBound) 
+			{
 				base.UnbindService (_connection);
 				_isBound = false;
 			}
@@ -46,21 +47,21 @@ namespace Prattle
 	
 	class PrattleSmsServiceConnection : Java.Lang.Object, IServiceConnection
 	{
-		SmsServiceActivity _self;
+		SmsServiceActivity _serviceActivity;
 
-		public PrattleSmsServiceConnection (SmsServiceActivity self)
+		public PrattleSmsServiceConnection (SmsServiceActivity serviceActivity)
 		{
-			_self = self;
+			_serviceActivity = serviceActivity;
 		}
 
 		public void OnServiceConnected (ComponentName className, IBinder service)
 		{
-			_self.boundService = ((PrattleSmsService.LocalBinder) service).Service;
+			_serviceActivity.boundService = ((PrattleSmsService.LocalBinder) service).Service;
 		}
 
 		public void OnServiceDisconnected (ComponentName className)
 		{
-			_self.boundService = null;
+			_serviceActivity.boundService = null;
 		}
 	}
 }
