@@ -151,6 +151,9 @@
     <AndroidResource Include="Resources\drawable-xhdpi-v5\ic_tab_group_unselected.png" />
     <AndroidResource Include="Resources\drawable-xhdpi-v5\ic_tab_message_selected.png" />
     <AndroidResource Include="Resources\drawable-xhdpi-v5\ic_tab_message_unselected.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_send.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_send.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_send.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

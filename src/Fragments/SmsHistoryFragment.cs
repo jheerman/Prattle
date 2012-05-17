@@ -116,11 +116,6 @@ namespace Prattle
 		
 		private void ViewMessage(MessageListItem selectedMessage)
 		{
-//			_progressDialog = new ProgressDialog(Activity);
-//			_progressDialog.SetTitle ("Getting Message Details");
-//			_progressDialog.SetMessage ("Please Wait.  Retrieving Message Details...");
-//			_progressDialog.Show ();
-			
 			Task.Factory
 				.StartNew(() => {
 					var items = _messageRepo.GetAllForEvent (selectedMessage.SmsGroup.Id, selectedMessage.DateSent, selectedMessage.Text);
@@ -133,7 +128,6 @@ namespace Prattle
 				.ContinueWith(task =>
 					Activity.RunOnUiThread(() => {
 						DisplayDetail(task.Result, selectedMessage);
-//						_progressDialog.Dismiss ();
 					}));
 		}
 		

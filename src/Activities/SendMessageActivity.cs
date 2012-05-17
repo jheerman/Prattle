@@ -46,7 +46,7 @@ namespace Prattle
 			
 			FindViewById <TextView>(Resource.Id.recipientGroup).Text = _smsGroup.Name;
 			FindViewById <TextView>(Resource.Id.recipients).Text = string.Join (", ", _recipients.Select (c => c.Name));
-			FindViewById <Button>(Resource.Id.cmdSend).Click += (sender, e) => 
+			FindViewById <ImageButton>(Resource.Id.cmdSend).Click += (sender, e) => 
 				{
 					_progressDialog = new ProgressDialog(this);
 					_progressDialog.SetTitle ("Sending Messages");
