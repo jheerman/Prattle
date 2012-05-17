@@ -68,8 +68,9 @@ namespace Prattle
 				messageIntent.PutExtra ("contactName", recipient.Name);
 				messageIntent.PutExtra ("dateSent", dateSent.ToString ("M/d/yyyy hh:mm:ss tt"));
 
-				var requestCode = new Random(1).Next (Int32.MaxValue);
-				var _sentIntent = PendingIntent.GetBroadcast (ApplicationContext, requestCode, messageIntent, PendingIntentFlags.OneShot);
+				var random = new Random();
+				var requestCode = random.Next (Int32.MinValue, Int32.MaxValue);
+				var _sentIntent = PendingIntent.GetBroadcast (ApplicationContext, requestCode, messageIntent, PendingIntentFlags.UpdateCurrent);
 				T.SmsManager.Default.SendTextMessage (recipient.MobilePhone, null, messageText, _sentIntent, null);
 			});
 			return true;
