@@ -73,7 +73,6 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\layout\list_item.xml" />
     <AndroidResource Include="Resources\values\Styles.xml" />
-    <AndroidResource Include="Resources\drawable\splash.png" />
     <AndroidResource Include="Resources\layout\contact_item.xml" />
     <AndroidResource Include="Resources\menu\main_action_bar.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_new_message.png" />
@@ -125,11 +124,8 @@
     <AndroidResource Include="Resources\drawable\list_separator.xml" />
     <AndroidResource Include="Resources\layout\group_item.xml" />
     <AndroidResource Include="Resources\menu\message_action_bar.xml" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_action_delete_message.png" />
     <AndroidResource Include="Resources\drawable-ldpi\ic_action_delete_message.png" />
     <AndroidResource Include="Resources\drawable-ldpi\ic_action_view_message.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_action_delete_message.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_delete_message.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_copy.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_copy.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_copy.png" />
@@ -154,6 +150,12 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_send.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_send.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_send.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\splash.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\splash.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\splash.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_delete.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_delete.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

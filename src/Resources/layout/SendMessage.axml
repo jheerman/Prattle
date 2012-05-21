@@ -51,7 +51,7 @@
         <ImageButton
             android:id="@+id/cmdSend"
             android:src="@drawable/ic_action_send"
-            android:background="@drawable/action_bar"
+            android:background="@drawable/list_background"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:scaleType="center"

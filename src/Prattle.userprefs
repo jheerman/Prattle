@@ -7,15 +7,12 @@
           <Option id="ShowVersionControlOverlays" value="True" />
           <Option id="ShowAllFiles" value="False" />
           <Node name="Prattle" expanded="True">
-            <Node name="Activities" expanded="True" />
-            <Node name="Fragments" expanded="True">
-              <Node name="SmsHistoryFragment.cs" selected="True" />
-            </Node>
-            <Node name="Receivers" expanded="True" />
-            <Node name="Resources">
+            <Node name="Resources" expanded="True">
               <Option id="ShowAllFiles" value="True" />
+              <Node name="layout" expanded="True">
+                <Node name="SendMessage.axml" selected="True" />
+              </Node>
             </Node>
-            <Node name="Services" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -28,5 +25,5 @@
     <Watch file="Activities/SendMessageActivity.cs" line="150" offsetX="364" offsetY="2831" expression="ex" liveUpdate="False" />
     <Watch file="Receivers/PrattleSmsReceiver.cs" line="26" offsetX="451" offsetY="475" expression="message" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
-  <MonoDevelop.Ide.ItemProperties.Prattle AndroidDeviceId-Debug="0146828701004015" />
+  <MonoDevelop.Ide.ItemProperties.Prattle AndroidDeviceId-Debug="0146828701004015" MonoForAntroid.PreferredDevice="3.7in WVGA (Nexus One)" />
 </Properties>
