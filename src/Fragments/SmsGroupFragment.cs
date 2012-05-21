@@ -97,10 +97,16 @@ namespace Prattle
 							Task.Factory
 								.StartNew(() => {
 									var smsGroup = _smsGroups[_position];
-									//Delete all group memebers then delete sms group
+									
+									//Delete all messages, group memebers, and then delete sms group
+									var messageRepo = new SmsMessageRepository();
+									var messages = messageRepo.GetAllForGroup (smsGroup.Id);
+									messages.ForEach (m => messageRepo.Delete (m));
+									
 									_contactRepo = new ContactRepository(Activity);
 									var contacts = _contactRepo.GetMembersForSMSGroup(smsGroup.Id);
 									contacts.ForEach (c => _contactRepo.Delete (c));
+									
 									_smsGroupRepo.Delete (smsGroup);
 								})
 								.ContinueWith(task =>
