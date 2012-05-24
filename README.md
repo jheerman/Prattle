@@ -15,11 +15,7 @@ Basic Features
 
 Screenshot
 =======================
-[Prattle Group List](https://github.com/jheerman/Prattle/raw/master/docs/screenshots/nexus_groups.png)
-
-[Prattle Message List](https://github.com/jheerman/Prattle/raw/master/docs/screenshots/nexus_messages.png)
-
-[Prattle Message Actions](https://github.com/jheerman/Prattle/raw/master/docs/screenshots/nexus_message_actions.png)
+![Showcase](https://github.com/jheerman/Prattle/raw/master/docs/screenshots/galaxy/device_marketing.png)
 
 John (info@jheerman.com)
 
