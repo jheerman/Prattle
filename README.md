@@ -8,13 +8,13 @@ SMS groups and message history are persisted in a SQLite database on the device.
 Currently, this app supports Android 4.0+
 
 Basic Features
-
+-----------------------
   * Browse device contacts (filtered to show only those with mobile phone numbers)
   * Organize contacts into groups 
   * Send SMS text messages to groups of contacts 
 
 Screenshot
-=======================
+-----------------------
 ![Showcase](https://github.com/jheerman/Prattle/raw/master/docs/screenshots/galaxy/device_marketing.png)
 
 John (info@jheerman.com)
