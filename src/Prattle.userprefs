@@ -3,23 +3,23 @@
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True">
-          <Option id="ShowVersionControlOverlays" value="True" />
-          <Option id="ShowAllFiles" value="False" />
-          <Node name="Prattle" expanded="True" />
-          <Node name="Prattle.Android.Core" expanded="True" />
+        <State expanded="True">
+          <Node name="Prattle" expanded="True">
+            <Node name="Activities" expanded="True">
+              <Node name="SendMessageActivity.cs" selected="True" />
+            </Node>
+            <Node name="Fragments" expanded="True" />
+            <Node name="Views" expanded="True" />
+          </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/jheerman/Projects/Prattle/src/Activities/SmsGroupListActivity.cs" line="96" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="Activities/SendMessageActivity.cs" line="150" offsetX="364" offsetY="2831" expression="ex" liveUpdate="False" />
     <Watch file="Receivers/PrattleSmsReceiver.cs" line="26" offsetX="451" offsetY="475" expression="message" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
-  <MonoDevelop.Ide.ItemProperties.Prattle />
 </Properties>

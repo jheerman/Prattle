@@ -89,6 +89,11 @@ namespace Prattle
 		{
 			base.OnDestroy ();
 			UnbindService ();
+
+			_recipients = null;
+			_smsGroup = null;
+			_smsGroupRepo = null;
+			_contactRepo = null;
 		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -145,7 +150,7 @@ namespace Prattle
 				var contacts = strContacts.Split (',');
 				var messageRecipients = new List<Contact>();
 				
-				for (var i=0; i<contacts.Length; i++)
+				for (var i=0; i < contacts.Length; i++)
 				{
 					var recipient = _recipients.FirstOrDefault (r => r.Name == contacts[i].Trim ());
 					if (recipient == null) continue;
@@ -153,6 +158,11 @@ namespace Prattle
 				}
 				
 				boundService.SendMessage (messageText, _smsGroup, messageRecipients);
+
+				//release resources
+				contacts = null;
+				messageRecipients = null;
+
 				return true;
 			}
 			catch

@@ -34,6 +34,15 @@ namespace Prattle
 			
 			ActionBar.SetDisplayHomeAsUpEnabled (true);
 		}
+
+		protected override void OnDestroy ()
+		{
+			base.OnDestroy ();
+
+			_contacts = null;
+			_contactRepo = null;
+			_smsRepo = null;
+		}
 		
 		public override bool OnCreateOptionsMenu (IMenu menu)
 		{
