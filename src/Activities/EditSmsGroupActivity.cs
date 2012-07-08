@@ -56,7 +56,6 @@ namespace Prattle
 				contact.Id = selectedContact.Id;
 			}
 
-			contacts = null;
 			selectedContacts = null;
 			
 			return contacts;

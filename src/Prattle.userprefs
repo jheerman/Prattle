@@ -1,15 +1,23 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/MessageListAdapter.cs">
+    <Files>
+      <File FileName="Activities/EditSmsGroupActivity.cs" Line="41" Column="19" />
+      <File FileName="Views/ContactListAdapter.cs" Line="36" Column="4" />
+      <File FileName="Activities/SmsGroupListActivity.cs" Line="110" Column="6" />
+      <File FileName="Resources/values/Colors.xml" Line="9" Column="48" />
+      <File FileName="Fragments/SmsHistoryFragment.cs" Line="13" Column="1" />
+      <File FileName="Views/MessageListAdapter.cs" Line="53" Column="66" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Prattle" expanded="True">
-            <Node name="Activities" expanded="True">
-              <Node name="SendMessageActivity.cs" selected="True" />
-            </Node>
+            <Node name="Activities" expanded="True" />
             <Node name="Fragments" expanded="True" />
-            <Node name="Views" expanded="True" />
+            <Node name="Views" expanded="True">
+              <Node name="MessageListAdapter.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
@@ -22,4 +30,5 @@
     <Watch file="Activities/SendMessageActivity.cs" line="150" offsetX="364" offsetY="2831" expression="ex" liveUpdate="False" />
     <Watch file="Receivers/PrattleSmsReceiver.cs" line="26" offsetX="451" offsetY="475" expression="message" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.ItemProperties.Prattle AndroidDeviceId-Debug="0146828701004015" />
 </Properties>
