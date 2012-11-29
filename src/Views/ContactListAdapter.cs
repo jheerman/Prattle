@@ -46,9 +46,10 @@ namespace Prattle
 			
 			var view = convertView ??
 				_context.LayoutInflater.Inflate(Resource.Layout.contact_item, null);
-			
-			view.FindViewById<CheckedTextView>(Resource.Id.contactName).Text = contact.Name;
-			view.FindViewById<CheckedTextView>(Resource.Id.contactName).Checked = contact.Selected;
+
+			var contactView = view.FindViewById<CheckedTextView>(Resource.Id.contactName);
+			contactView.Text = contact.Name;
+			contactView.Checked = contact.Selected;
 			view.FindViewById<TextView>(Resource.Id.mobileNumber).Text = contact.MobilePhone;
 			return view;
 		}

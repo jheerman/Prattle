@@ -43,9 +43,13 @@ namespace Prattle
 				case (int)T.SmsResultError.NullPdu:
 				case (int)T.SmsResultError.GenericFailure:
 				default:
-					Toast.MakeText (context, string.Format("Doh! Message could not be sent to {0}.", message.ContactName), 
-				                ToastLength.Short).Show ();
+					_messageRepo = new Repository<SmsMessage>();
+					_messageRepo.Save (message);
+					Toast.MakeText (context, string.Format ("Message sent to {0}", message.ContactName), ToastLength.Short).Show ();
 					break;
+//					Toast.MakeText (context, string.Format("Doh! Message could not be sent to {0}.", message.ContactName), 
+//				                ToastLength.Short).Show ();
+//					break;
 			}
 			_messageRepo = null;
 		}

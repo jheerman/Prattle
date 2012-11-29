@@ -19,24 +19,24 @@
     <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <ConsolePause>False</ConsolePause>
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <ConsolePause>False</ConsolePause>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
@@ -150,12 +150,10 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_send.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_send.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_send.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\splash.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\splash.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\splash.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_delete.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_action_delete.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_delete.png" />
+    <AndroidResource Include="Resources\drawable\splash.9.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

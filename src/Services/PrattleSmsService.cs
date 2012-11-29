@@ -21,7 +21,6 @@ namespace Prattle
 	{
 		PrattleSmsReceiver _receiver;
 		IBinder _binder;
-		//PendingIntent _sentIntent;
 		
 		public PrattleSmsService ()
 		{

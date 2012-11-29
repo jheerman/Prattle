@@ -50,7 +50,7 @@ namespace Prattle
 					charLimit = (_context.WindowManager.DefaultDisplay.Width / 8);
 					break;
 				case (int)Orientation.Vertical:
-					charLimit = (_context.WindowManager.DefaultDisplay.Width / 7);
+					charLimit = (_context.WindowManager.DefaultDisplay.Width / 9);
 					break;
 			}
  			
