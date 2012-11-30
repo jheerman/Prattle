@@ -1,22 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Activities/SmsGroupListActivity.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Activities/MainActivity.cs">
     <Files>
-      <File FileName="Receivers/PrattleSmsReceiver.cs" Line="37" Column="29" />
-      <File FileName="Activities/SmsGroupListActivity.cs" Line="101" Column="4" />
-      <File FileName="Views/ContactListAdapter.cs" Line="50" Column="15" />
-      <File FileName="Activities/EditSmsGroupActivity.cs" Line="30" Column="28" />
+      <File FileName="Receivers/PrattleSmsReceiver.cs" Line="13" Column="29" />
+      <File FileName="Activities/MainActivity.cs" Line="11" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Prattle" expanded="True">
             <Node name="Activities" expanded="True">
-              <Node name="SmsGroupListActivity.cs" selected="True" />
+              <Node name="MainActivity.cs" selected="True" />
             </Node>
-            <Node name="Resources" expanded="True">
-              <Node name="layout" expanded="True" />
-            </Node>
+            <Node name="Receivers" expanded="True" />
             <Node name="Views" expanded="True" />
           </Node>
         </State>
@@ -24,9 +20,7 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/jheerman/Projects/Prattle/src/Receivers/PrattleSmsReceiver.cs" line="34" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="Activities/SendMessageActivity.cs" line="150" offsetX="364" offsetY="2831" expression="ex" liveUpdate="False" />

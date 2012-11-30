@@ -107,8 +107,9 @@ namespace Prattle
 			ListView.ItemsCanFocus = true;
 			ListView.ChoiceMode = ChoiceMode.Multiple;
 			ListView.ItemClick += delegate(object sender, AdapterView.ItemClickEventArgs  e) {
-				contacts[e.Position].Selected = ListView.IsItemChecked (e.Position);
-				ListView.SetItemChecked (e.Position, true);
+				var itemChecked = ListView.IsItemChecked (e.Position);
+				contacts[e.Position].Selected = itemChecked;
+				ListView.SetItemChecked (e.Position, itemChecked);
 			};
 		}
 		
