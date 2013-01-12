@@ -1,18 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Activities/MainActivity.cs">
-    <Files>
-      <File FileName="Receivers/PrattleSmsReceiver.cs" Line="13" Column="29" />
-      <File FileName="Activities/MainActivity.cs" Line="13" Column="47" />
-    </Files>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
+        <State expanded="True" selected="True">
           <Node name="Prattle" expanded="True">
             <Node name="Activities" expanded="True" />
-          </Node>
-          <Node name="Prattle.Android.Core" expanded="True">
-            <Node name="References" expanded="True" />
           </Node>
         </State>
       </Pad>
