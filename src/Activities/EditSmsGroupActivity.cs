@@ -1,20 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using R = Android.Resource;
-
 using Prattle.Android.Core;
 using System.Threading.Tasks;
 
-namespace Prattle
+namespace Prattle.Activities
 {
 	[Activity (Label = "Edit SMS Group", Theme="@style/Theme.ActionLight", NoHistory=true)]
 	public class EditSmsGroupActivity : SmsGroupListActivity
@@ -27,7 +18,7 @@ namespace Prattle
 			base.OnCreate (bundle);
 			
 			var groupId = Intent.GetIntExtra ("groupId", -1);
-			base._groupId = groupId;
+			GroupId = groupId;
 			
 			_progressDialog = new ProgressDialog(this);
 			_progressDialog.SetMessage("Loading Contacts.  Please wait...");
@@ -46,7 +37,7 @@ namespace Prattle
 		private List<Contact> GetContacts(int groupId)
 		{
 			_contactRepo = new ContactRepository(this);
-			var selectedContacts = _contactRepo.GetMembersForSMSGroup(groupId);
+			var selectedContacts = _contactRepo.GetMembersForSmsGroup(groupId);
 			var contacts = _contactRepo.GetAllMobile ();
 			
 			foreach (var selectedContact in selectedContacts)
@@ -56,9 +47,7 @@ namespace Prattle
 				contact.Id = selectedContact.Id;
 			}
 
-			selectedContacts = null;
-			
-			return contacts;
+		    return contacts;
 		}
 	}
 }

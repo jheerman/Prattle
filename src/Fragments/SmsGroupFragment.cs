@@ -1,19 +1,16 @@
-using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using G = Android.Graphics;
-
+using Prattle.Activities;
 using Prattle.Android.Core;
+using Prattle.Views;
 
-namespace Prattle
+namespace Prattle.Fragments
 {
 	public class SmsGroupFragment: ListFragment
 	{
@@ -47,10 +44,10 @@ namespace Prattle
 		
 		public override void OnListItemClick (ListView listView, View view, int position, long id)
 		{
-			var editSMSIntent = new Intent();
-			editSMSIntent.PutExtra ("groupId", _smsGroups[position].Id);
-			editSMSIntent.SetClass (Activity, typeof(EditSmsGroupActivity));
-			StartActivity (editSMSIntent);
+			var editSmsIntent = new Intent();
+			editSmsIntent.PutExtra ("groupId", _smsGroups[position].Id);
+			editSmsIntent.SetClass (Activity, typeof(EditSmsGroupActivity));
+			StartActivity (editSmsIntent);
 		}
 		
 		public override void OnCreateContextMenu (IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
@@ -72,17 +69,21 @@ namespace Prattle
 			switch (item.ItemId)
 			{
 				case Resource.Id.editSMS:
-					var editSMSIntent = new Intent();
-					editSMSIntent.PutExtra ("groupId", _smsGroups[_position].Id);
-					editSMSIntent.SetClass (Activity, typeof(EditSmsGroupActivity));
-					StartActivity (editSMSIntent);
-					break;
+			        using (var editSmsIntent = new Intent())
+			        {
+			            editSmsIntent.PutExtra ("groupId", _smsGroups[_position].Id);
+			            editSmsIntent.SetClass (Activity, typeof(EditSmsGroupActivity));
+			            StartActivity (editSmsIntent);
+			        }
+			        break;
 				case Resource.Id.sendSMS:
-					var sendMessage = new Intent();
-					sendMessage.PutExtra ("groupId", _smsGroups[_position].Id);
-					sendMessage.SetClass (Activity, typeof(SendMessageActivity));
-					StartActivity (sendMessage);
-					break;
+			        using (var sendMessage = new Intent())
+			        {
+			            sendMessage.PutExtra ("groupId", _smsGroups[_position].Id);
+			            sendMessage.SetClass (Activity, typeof(SendMessageActivity));
+			            StartActivity (sendMessage);
+			        }
+			        break;
 				case Resource.Id.deleteSMS:
 					new AlertDialog.Builder(Activity)
 						.SetTitle ("Delete SMS Group")
@@ -101,10 +102,10 @@ namespace Prattle
 									//Delete all messages, group memebers, and then delete sms group
 									var messageRepo = new SmsMessageRepository();
 									var messages = messageRepo.GetAllForGroup (smsGroup.Id);
-									messages.ForEach (m => messageRepo.Delete (m));
+									messages.ForEach (messageRepo.Delete);
 									
 									_contactRepo = new ContactRepository(Activity);
-									var contacts = _contactRepo.GetMembersForSMSGroup(smsGroup.Id);
+									var contacts = _contactRepo.GetMembersForSmsGroup(smsGroup.Id);
 									contacts.ForEach (c => _contactRepo.Delete (c));
 									
 									_smsGroupRepo.Delete (smsGroup);
@@ -119,8 +120,6 @@ namespace Prattle
 						})
 						.SetNegativeButton ("Cancel", (o, e) => { })
 						.Show ();
-					break;
-				default:
 					break;
 			}
 			

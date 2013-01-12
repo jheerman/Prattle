@@ -1,20 +1,18 @@
-using System;
 using System.Collections.Generic;
-
+using System.Globalization;
 using Prattle.Android.Core;
-
 using Android.Widget;
 using Android.App;
 using Android.Views;
 
-namespace Prattle
+namespace Prattle.Views
 {
 	public class GroupListAdapter : BaseAdapter
 	{
-		private Activity _context;
-		private List<SmsGroup> _groups;
+		private readonly Activity _context;
+		private readonly List<SmsGroup> _groups;
 
-		public GroupListAdapter (Activity context, List<SmsGroup> groups) : base ()
+		public GroupListAdapter (Activity context, List<SmsGroup> groups)
 		{
 			_context = context;
 			_groups = groups;
@@ -48,7 +46,7 @@ namespace Prattle
 				_context.LayoutInflater.Inflate(Resource.Layout.group_item, null);
 			
 			view.FindViewById<TextView>(Resource.Id.groupName).Text = group.Name;
-			view.FindViewById<TextView>(Resource.Id.recipientCount).Text = group.MemberCount.ToString ();
+			view.FindViewById<TextView>(Resource.Id.recipientCount).Text = group.MemberCount.ToString (CultureInfo.InvariantCulture);
 			return view;
 		}
 	}

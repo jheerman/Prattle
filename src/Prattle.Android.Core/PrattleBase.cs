@@ -5,10 +5,7 @@ namespace Prattle.Android.Core
 {
 	public class PrattleBase
 	{
-		public PrattleBase ()
-		{ }
-		
-		[PrimaryKey, AutoIncrement]
+	    [PrimaryKey, AutoIncrement]
 		public int Id { get; set; }
 		public string UUID { get; set; }
 		public DateTime CreatedDate { get; set; }

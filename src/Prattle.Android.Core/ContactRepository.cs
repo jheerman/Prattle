@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -10,7 +9,7 @@ namespace Prattle.Android.Core
 {
 	public class ContactRepository : Repository<Contact>, IContactRepository<Contact>
 	{
-		AddressBook _book;
+	    readonly AddressBook _book;
 		public ContactRepository (Context context)
 		{
 			_book = new AddressBook(context);
@@ -22,49 +21,42 @@ namespace Prattle.Android.Core
 			
 			var contact = _book.FirstOrDefault (c => c.Id == addressBookId);
 			if (contact == null) return null;
-			
-			return new Contact {
-				AddressBookId = contact.Id,
-				Name = contact.DisplayName,
-				MobilePhone = contact.Phones.FirstOrDefault(pt => pt.Type == PhoneType.Mobile).Number
-			};
+
+		    var firstOrDefault = contact.Phones.FirstOrDefault(pt => pt.Type == PhoneType.Mobile);
+		    if (firstOrDefault != null)
+		        return new Contact {
+		            AddressBookId = contact.Id,
+		            Name = contact.DisplayName,
+		            MobilePhone = firstOrDefault.Number
+		        };
+		    return null;
 		}
 		
 		public new List<Contact> GetAll()
 		{
-			var contacts = new List<Contact>();
-			_book.PreferContactAggregation = true;
-			foreach (var contact in _book)
-				contacts.Add ( new Contact 
-								{
-									AddressBookId = contact.Id,
-									Name = contact.DisplayName
-								});
-			
-			return contacts;
+		    _book.PreferContactAggregation = true;
+
+		    return _book.Select(contact => new Contact
+		        {
+		            AddressBookId = contact.Id, Name = contact.DisplayName
+		        }).ToList();
 		}
 		
 		public List<Contact> GetAllMobile()
 		{
-			var contacts = new List<Contact>();
-			_book.PreferContactAggregation = true;
-			
-			foreach (var contact in _book.Where (c => c.Phones.Any(p => p.Type == PhoneType.Mobile)))
-				contacts.Add ( new Contact 
-								{
-									AddressBookId = contact.Id,
-									Name = contact.DisplayName,
-									MobilePhone = contact.Phones.FirstOrDefault (p => p.Type == PhoneType.Mobile).Number
-								});
-			
-			return contacts;
+		    _book.PreferContactAggregation = true;
+
+		    return _book.Where(c => c.Phones.Any(p => p.Type == PhoneType.Mobile)).Select(contact => new Contact
+		        {
+		            AddressBookId = contact.Id, Name = contact.DisplayName, MobilePhone = contact.Phones.FirstOrDefault(p => p.Type == PhoneType.Mobile).Number
+		        }).ToList();
 		}
 		
-		public List<Contact> GetMembersForSMSGroup (int groupId)
+		public List<Contact> GetMembersForSmsGroup (int groupId)
 		{
-			return (from contact in cn.Table<Contact>()
+			return (from contact in Cn.Table<Contact>()
 			        where contact.SmsGroupId == groupId
-			        where contact.Selected == true
+			        where contact.Selected
 			        select contact).ToList ();
 		}
 	}

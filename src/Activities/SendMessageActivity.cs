@@ -1,24 +1,16 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using R = Android.Resource;
-using V = Android.Views;
-
 using Prattle.Android.Core;
-using Android.Views.InputMethods;
 
-namespace Prattle
+namespace Prattle.Activities
 {
-	[Activity (Label = "Prattle Message", Theme="@style/Theme.ActionLight", WindowSoftInputMode=V.SoftInput.AdjustResize, NoHistory=true)]
+	[Activity (Label = "Prattle Message", Theme="@style/Theme.ActionLight", WindowSoftInputMode=SoftInput.AdjustResize, NoHistory=true)]
 	public class SendMessageActivity : SmsServiceActivity
 	{
 		SmsGroupRepository _smsGroupRepo;
@@ -42,7 +34,7 @@ namespace Prattle
 			_smsGroup = _smsGroupRepo.Get (groupId);
 			
 			_contactRepo = new ContactRepository(this);
-			_recipients = _contactRepo.GetMembersForSMSGroup (groupId);
+			_recipients = _contactRepo.GetMembersForSmsGroup (groupId);
 			
 			FindViewById <TextView>(Resource.Id.recipientGroup).Text = _smsGroup.Name;
 			FindViewById <TextView>(Resource.Id.recipients).Text = string.Join (", ", _recipients.Select (c => c.Name));
@@ -105,7 +97,7 @@ namespace Prattle
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
 			switch (item.ItemId) {
-				case R.Id.Home:
+				case global::Android.Resource.Id.Home:
 					new AlertDialog.Builder(this)
 						.SetTitle ("Cancel")
 						.SetMessage ("Are you sure you want to cancel your message?")
@@ -133,8 +125,6 @@ namespace Prattle
 						.SetNegativeButton ("No", (o, e) => { })
 						.Show ();
 					break;
-				default:
-					break;
 			}
 			return true;
 		}
@@ -148,22 +138,12 @@ namespace Prattle
 				//Check to see if any recipients were removed from list
 				var strContacts = FindViewById<EditText>(Resource.Id.recipients).Text;
 				var contacts = strContacts.Split (',');
-				var messageRecipients = new List<Contact>();
-				
-				for (var i=0; i < contacts.Length; i++)
-				{
-					var recipient = _recipients.FirstOrDefault (r => r.Name == contacts[i].Trim ());
-					if (recipient == null) continue;
-					messageRecipients.Add (recipient);
-				}
-				
-				boundService.SendMessage (messageText, _smsGroup, messageRecipients);
+				var messageRecipients = contacts.Select(t => _recipients.FirstOrDefault(r => r.Name == t.Trim()))
+                    .Where(recipient => recipient != null).ToList();
 
-				//release resources
-				contacts = null;
-				messageRecipients = null;
+			    BoundService.SendMessage (messageText, _smsGroup, messageRecipients);
 
-				return true;
+			    return true;
 			}
 			catch
 			{

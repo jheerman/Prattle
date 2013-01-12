@@ -1,20 +1,19 @@
 using System;
 using System.Collections.Generic;
-
+using System.Globalization;
 using Prattle.Android.Core;
-
 using Android.Widget;
 using Android.App;
 using Android.Views;
 
-namespace Prattle
+namespace Prattle.Views
 {
 	public class MessageListAdapter : BaseAdapter
 	{
-		private Activity _context;
-		private List<MessageListItem> _messages;
+		private readonly Activity _context;
+		private readonly List<MessageListItem> _messages;
 
-		public MessageListAdapter (Activity context, List<MessageListItem> messages) : base ()
+		public MessageListAdapter (Activity context, List<MessageListItem> messages)
 		{
 			_context = context;
 			_messages = messages;
@@ -61,7 +60,7 @@ namespace Prattle
 			
 			view.FindViewById<TextView>(Resource.Id.groupName).Text = message.SmsGroup.Name;
 			view.FindViewById<TextView>(Resource.Id.recipientCount).Text = string.Format ("{0} recipients", message.RecipientCount);
-			view.FindViewById <TextView>(Resource.Id.dayOfMonth).Text = message.DateSent.Day.ToString ();
+			view.FindViewById <TextView>(Resource.Id.dayOfMonth).Text = message.DateSent.Day.ToString (CultureInfo.InvariantCulture);
 			view.FindViewById<TextView>(Resource.Id.month).Text = message.DateSent.ToString ("MMM");
 			
 			view.FindViewById<TextView>(Resource.Id.message).Text = message.Text.Length > charLimit ? 

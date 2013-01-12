@@ -10,45 +10,45 @@ namespace Prattle.Android.Core
 {
 	public class Repository<T> : IRepository<T> where T: PrattleBase, new()
 	{
-		protected const string dbName = "db_prattle.db3";
-		protected SQLiteConnection cn;
+		protected const string DbName = "db_prattle.db3";
+		protected SQLiteConnection Cn;
 		
 		public Repository ()
 		{
 			//if the database table doesn't exist, create one
 			var path = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
-			cn = new SQLiteConnection(Path.Combine (path, dbName));
-			cn.CreateTable<T>();
+			Cn = new SQLiteConnection(Path.Combine (path, DbName));
+			Cn.CreateTable<T>();
 		}
 		
 		public int Save (T item)
 		{
 			return item.Id == 0
-				? cn.Insert (item)
-				: cn.Update (item);
+				? Cn.Insert (item)
+				: Cn.Update (item);
 		}
 		
 		public T Get (int id)
 		{
-			return (from item in cn.Table<T> ()
+			return (from item in Cn.Table<T> ()
 				where item.Id == id
 				select item).FirstOrDefault ();
 		}
 		
 		public IEnumerable<T> GetAll ()
 		{
-			return (from item in cn.Table<T> () select item);
+			return (from item in Cn.Table<T> () select item);
 		}
 		
 		public void Delete(T item)
 		{
-			cn.Delete<T>(item);
+			Cn.Delete(item);
 		}
 		
 		public void Truncate()
 		{
-			foreach (var item in cn.Table<T>())
-				cn.Delete<T>(item);
+			foreach (var item in Cn.Table<T>())
+				Cn.Delete(item);
 		}
 	}
 }

@@ -1,20 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using R = Android.Resource;
-
 using Prattle.Android.Core;
+using Prattle.Views;
 
-namespace Prattle
+namespace Prattle.Activities
 {
 	[Activity (Label = "SMSGroupListActivity")]
 	public class SmsGroupListActivity : ListActivity
@@ -25,8 +21,8 @@ namespace Prattle
 		private SmsGroupRepository _smsRepo;
 		private ContactRepository _contactRepo;
 		
-		public int _groupId;
-		public string _groupName;
+		public int GroupId;
+		public string GroupName;
 		
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -53,7 +49,7 @@ namespace Prattle
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
 			switch (item.ItemId) {
-				case R.Id.Home:
+				case global::Android.Resource.Id.Home:
 					var intent = new Intent(this, typeof(MainActivity));
 					intent.PutExtra ("defaultTab", 1);
 					intent.AddFlags (ActivityFlags.ClearTop);
@@ -64,8 +60,7 @@ namespace Prattle
 					_progressDialog.SetMessage("Saving SMS Group.  Please wait...");
 					_progressDialog.Show();
 					Task.Factory
-						.StartNew(() =>
-							SaveGroup())
+						.StartNew(SaveGroup)
 						.ContinueWith(task =>
 							RunOnUiThread(() => 
 									{
@@ -90,8 +85,6 @@ namespace Prattle
 							})
 						.SetNegativeButton ("No", (o, e) => { })
 						.Show ();
-					break;
-				default:
 					break;
 			}
 			return true;
@@ -122,16 +115,17 @@ namespace Prattle
 			
 			_smsRepo = new SmsGroupRepository();
 			_contactRepo = new ContactRepository(this);
-			
-			if (string.IsNullOrEmpty (_groupName))  //if updating an existing group
+
+		    var enumerable = selectedContacts as IList<Contact> ?? selectedContacts.ToList();
+		    if (string.IsNullOrEmpty (GroupName))  //if updating an existing group
 			{
-				smsGroup = _smsRepo.Get (_groupId);
-				smsGroup.MemberCount = selectedContacts.Count();
+				smsGroup = _smsRepo.Get (GroupId);
+				smsGroup.MemberCount = enumerable.Count();
 				smsGroup.ModifiedDate = DateTime.Now;
 				_smsRepo.Save (smsGroup);
 				
 				//reset previously selected contacts
-				_contactRepo.GetMembersForSMSGroup (_groupId).ForEach (c => {
+				_contactRepo.GetMembersForSmsGroup (GroupId).ForEach (c => {
 					c.Selected = false;
 					c.ModifiedDate = DateTime.Now;
 					_contactRepo.Save (c);
@@ -139,15 +133,17 @@ namespace Prattle
 			}
 			else  //if new group
 			{
-				smsGroup = new SmsGroup();
-				smsGroup.Name = _groupName;
-				smsGroup.CreatedDate = DateTime.Now;
-				smsGroup.UUID = Guid.NewGuid ().ToString ();
-				smsGroup.MemberCount = selectedContacts.Count ();
-				_smsRepo.Save (smsGroup);
+				smsGroup = new SmsGroup
+				    {
+				        Name = GroupName,
+				        CreatedDate = DateTime.Now,
+				        UUID = Guid.NewGuid().ToString(),
+				        MemberCount = enumerable.Count()
+				    };
+			    _smsRepo.Save (smsGroup);
 			}
 			
-			foreach (var contact in selectedContacts)
+			foreach (var contact in enumerable)
 			{
 				if (contact.Id == 0)  //if new contact
 				{
