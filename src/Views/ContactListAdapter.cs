@@ -1,20 +1,17 @@
-using System;
 using System.Collections.Generic;
-
 using Prattle.Android.Core;
-
 using Android.Widget;
 using Android.App;
 using Android.Views;
 
-namespace Prattle
+namespace Prattle.Views
 {
 	public class ContactListAdapter : BaseAdapter
 	{
-		private Activity _context;
-		private List<Contact> _contacts;
+		private readonly Activity _context;
+		private readonly List<Contact> _contacts;
 
-		public ContactListAdapter (Activity context, List<Contact> contacts) : base ()
+		public ContactListAdapter (Activity context, List<Contact> contacts)
 		{
 			_context = context;
 			_contacts = contacts;

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace Prattle.Domain
@@ -8,6 +7,6 @@ namespace Prattle.Domain
 		T GetByAddressBookId (string addressId);
 		List<T> GetAll();
 		List<T> GetAllMobile();
-		List<T> GetMembersForSMSGroup(int groupId);
+		List<T> GetMembersForSmsGroup(int groupId);
 	}
 }

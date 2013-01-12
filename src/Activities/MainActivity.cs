@@ -1,14 +1,12 @@
-using System;
-
 using Android.App;
 using Android.Content;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Views.InputMethods;
+using Prattle.Fragments;
 
-namespace Prattle
+namespace Prattle.Activities
 {
 	[Activity (Theme="@style/Theme.ActionLight")]
 	public class MainActivity : Activity
@@ -29,9 +27,7 @@ namespace Prattle
 			tab.SetIcon (Resource.Drawable.ic_tab_sms_history);
 			
 			// must set event handler before adding tab
-			tab.TabSelected += delegate(object sender, ActionBar.TabEventArgs e) {
-				e.FragmentTransaction.Add (Resource.Id.fragmentContainer, new SmsHistoryFragment ());
-			};
+			tab.TabSelected += (sender, e) => e.FragmentTransaction.Add(Resource.Id.fragmentContainer, new SmsHistoryFragment());
 			
 			ActionBar.AddTab (tab);
 			
@@ -41,9 +37,7 @@ namespace Prattle
 			tab.SetIcon (Resource.Drawable.ic_tab_sms_group);
 			
 			// must set event handler before adding tab
-			tab.TabSelected += delegate(object sender, ActionBar.TabEventArgs e) {
-				e.FragmentTransaction.Add (Resource.Id.fragmentContainer, new SmsGroupFragment ());
-			};
+			tab.TabSelected += (sender, e) => e.FragmentTransaction.Add(Resource.Id.fragmentContainer, new SmsGroupFragment());
 			
 			ActionBar.AddTab (tab);
 			
@@ -77,7 +71,7 @@ namespace Prattle
 						.SetMessage ("Please enter a name for the SMS group:")
 						.SetView (groupName)
 						.SetPositiveButton ("Ok", (o, e) => {
-								var imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
+								var imm = (InputMethodManager)GetSystemService(InputMethodService);
 								imm.HideSoftInputFromWindow (groupName.WindowToken, HideSoftInputFlags.None);
 								var intent = new Intent();
 								intent.SetClass(this, typeof(NewSmsGroupActivity));
@@ -86,8 +80,6 @@ namespace Prattle
 							})
 						.SetNegativeButton ("Cancel", (o, e) => { })
 						.Show ();
-					break;
-				default:
 					break;
 			}
 			

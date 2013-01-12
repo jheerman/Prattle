@@ -1,22 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
-namespace Prattle
+namespace Prattle.Activities
 {
 	public class SmsServiceActivity : Activity
 	{
 		private bool _isBound;
-		private IServiceConnection _connection;
-		public PrattleSmsService boundService;
+		private readonly IServiceConnection _connection;
+		public PrattleSmsService BoundService;
 
 		public SmsServiceActivity ()
 		{
@@ -37,17 +29,15 @@ namespace Prattle
 
 		protected void UnbindService ()
 		{
-			if (_isBound) 
-			{
-				base.UnbindService (_connection);
-				_isBound = false;
-			}
+		    if (!_isBound) return;
+		    base.UnbindService (_connection);
+		    _isBound = false;
 		}
 	}
 	
 	class PrattleSmsServiceConnection : Java.Lang.Object, IServiceConnection
 	{
-		SmsServiceActivity _serviceActivity;
+	    readonly SmsServiceActivity _serviceActivity;
 
 		public PrattleSmsServiceConnection (SmsServiceActivity serviceActivity)
 		{
@@ -56,12 +46,12 @@ namespace Prattle
 
 		public void OnServiceConnected (ComponentName className, IBinder service)
 		{
-			_serviceActivity.boundService = ((PrattleSmsService.LocalBinder) service).Service;
+			_serviceActivity.BoundService = ((PrattleSmsService.LocalBinder) service).Service;
 		}
 
 		public void OnServiceDisconnected (ComponentName className)
 		{
-			_serviceActivity.boundService = null;
+			_serviceActivity.BoundService = null;
 		}
 	}
 }

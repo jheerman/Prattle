@@ -1,16 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
-namespace Prattle
+namespace Prattle.Activities
 {
 	[Activity (MainLauncher=true, Theme="@style/Theme.Splash", NoHistory = true)]
 	public class SplashActivity : Activity
@@ -20,10 +12,12 @@ namespace Prattle
 			base.OnCreate (bundle);
 			
 			// start the main activity
-			Intent intent = new Intent();
-			intent.AddFlags (ActivityFlags.SingleTop);
-			intent.SetClass (this, typeof(MainActivity));
-			StartActivity(intent);
+		    using (var intent = new Intent())
+		    {
+		        intent.AddFlags (ActivityFlags.SingleTop);
+		        intent.SetClass (this, typeof(MainActivity));
+		        StartActivity(intent);
+		    }
 		}
 	}
 }

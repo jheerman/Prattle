@@ -1,20 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using R = Android.Resource;
-
 using Prattle.Android.Core;
 
-namespace Prattle
+namespace Prattle.Activities
 {
 	[Activity (Label = "Group Contacts", Theme="@style/Theme.ActionLight", NoHistory = true)]
 	public class NewSmsGroupActivity : SmsGroupListActivity
@@ -28,7 +17,7 @@ namespace Prattle
 		
 			var groupName = Intent.GetStringExtra("name");
 			Title = groupName;
-			base._groupName = groupName;
+			GroupName = groupName;
 			
 			_contactRepo = new ContactRepository(this);
 			

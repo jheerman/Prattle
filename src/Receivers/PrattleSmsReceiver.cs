@@ -1,20 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
-
-using T = Android.Telephony;
-
 using Prattle.Android.Core;
+using SmsMessage = Prattle.Android.Core.SmsMessage;
 
-namespace Prattle
+namespace Prattle.Receivers
 {
 	[BroadcastReceiver]
 	public class PrattleSmsReceiver : BroadcastReceiver
@@ -38,10 +29,10 @@ namespace Prattle
 					_messageRepo.Save (message);
 					Toast.MakeText (context, string.Format ("Message sent to {0}", message.ContactName), ToastLength.Short).Show ();
 					break;
-				case (int)T.SmsResultError.NoService:
-				case (int)T.SmsResultError.RadioOff:
-				case (int)T.SmsResultError.NullPdu:
-				case (int)T.SmsResultError.GenericFailure:
+				case (int)global::Android.Telephony.SmsResultError.NoService:
+				case (int)global::Android.Telephony.SmsResultError.RadioOff:
+				case (int)global::Android.Telephony.SmsResultError.NullPdu:
+				case (int)global::Android.Telephony.SmsResultError.GenericFailure:
 				default:
 					Toast.MakeText (context, string.Format("Doh! Message could not be sent to {0}.", message.ContactName), 
 				                ToastLength.Short).Show ();

@@ -1,21 +1,16 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-
-using Java.IO;
-
 using Prattle.Android.Core;
-using System.Threading;
 using System.Threading.Tasks;
+using Prattle.Views;
 
-namespace Prattle
+namespace Prattle.Fragments
 {
 	public class SmsHistoryFragment: ListFragment
 	{
@@ -25,7 +20,7 @@ namespace Prattle
 		ProgressDialog _progressDialog;
 		
 		private ActionMode _actionMode;
-		bool _systemUIVisible = true;
+		bool _systemUiVisible = true;
 		
 		public override void OnCreate (Bundle savedInstanceState)
 		{
@@ -37,13 +32,8 @@ namespace Prattle
 			_sortedItems = GetGroupedMessages (20);
 			ListAdapter = new MessageListAdapter(Activity, _sortedItems);
 		}
-		
-		public override void OnStart ()
-		{
-			base.OnStart ();
-		}
-		
-		public override void OnActivityCreated (Bundle savedInstanceState)
+
+	    public override void OnActivityCreated (Bundle savedInstanceState)
 		{
 			base.OnActivityCreated(savedInstanceState);
 			
@@ -53,7 +43,7 @@ namespace Prattle
 					return;
 				
 				//toggle system ui visibility
-				if (_systemUIVisible)
+				if (_systemUiVisible)
 				{
 					Activity.Window.ClearFlags (WindowManagerFlags.Fullscreen);
 					ListView.SystemUiVisibility = StatusBarVisibility.Visible;
@@ -65,7 +55,7 @@ namespace Prattle
 					ListView.SystemUiVisibility = StatusBarVisibility.Hidden;
 					Activity.ActionBar.Hide ();
 				}
-				_systemUIVisible = !_systemUIVisible;
+				_systemUiVisible = !_systemUiVisible;
 			};
 			
 			ListView.ItemLongClick += delegate(object sender, AdapterView.ItemLongClickEventArgs e) {
@@ -119,16 +109,12 @@ namespace Prattle
 			Task.Factory
 				.StartNew(() => {
 					var items = _messageRepo.GetAllForEvent (selectedMessage.SmsGroup.Id, selectedMessage.DateSent, selectedMessage.Text);
-					List<string> recipients = new List<string>();
-					items.ForEach (message => {
-						recipients.Add(message.ContactName);
-					});
+					var recipients = new List<string>();
+					items.ForEach (message => recipients.Add(message.ContactName));
 					return recipients;
 				})
 				.ContinueWith(task =>
-					Activity.RunOnUiThread(() => {
-						DisplayDetail(task.Result, selectedMessage);
-					}));
+					Activity.RunOnUiThread(() => DisplayDetail(task.Result, selectedMessage)));
 		}
 		
 		private void DisplayDetail(List<string> recipients, MessageListItem selectedMessage)
@@ -154,8 +140,7 @@ namespace Prattle
 						on message.SmsGroupId equals smsGroup.Id
 						select new 
 						{
-							SmsGroup = smsGroup,
-							Text = message.Text,
+							SmsGroup = smsGroup, message.Text,
 							DateSent = message.SentDate
 						};
 			
@@ -197,8 +182,8 @@ namespace Prattle
 		
 		private class MessageAction: Java.Lang.Object, ActionMode.ICallback, IMessageActionNotification
 		{
-			string _title;
-			string _subTitle;
+		    readonly string _title;
+		    readonly string _subTitle;
 			
 			public event EventHandler<EventArgs> DeleteActionHandler;
 			public event EventHandler<EventArgs> ViewActionHandler;

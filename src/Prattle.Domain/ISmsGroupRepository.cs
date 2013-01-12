@@ -1,8 +1,6 @@
-using System;
-
 namespace Prattle.Domain
 {
-	public interface ISmsGroupRepository <T> where T: ISmsGroup
+	public interface ISmsGroupRepository <out T> where T: ISmsGroup
 	{
 		T GetByName(string name);
 	}

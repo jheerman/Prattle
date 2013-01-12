@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace Prattle.Domain
 {
 	public interface ISmsGroup
