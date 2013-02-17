@@ -116,8 +116,8 @@ namespace Prattle.Activities
 			_smsRepo = new SmsGroupRepository();
 			_contactRepo = new ContactRepository(this);
 
-		    var enumerable = selectedContacts as IList<Contact> ?? selectedContacts.ToList();
-		    if (string.IsNullOrEmpty (GroupName))  //if updating an existing group
+			var enumerable = selectedContacts as IList<Contact> ?? selectedContacts.ToList();
+			if (string.IsNullOrEmpty (GroupName))  //if updating an existing group
 			{
 				smsGroup = _smsRepo.Get (GroupId);
 				smsGroup.MemberCount = enumerable.Count();
@@ -134,13 +134,13 @@ namespace Prattle.Activities
 			else  //if new group
 			{
 				smsGroup = new SmsGroup
-				    {
-				        Name = GroupName,
-				        CreatedDate = DateTime.Now,
-				        UUID = Guid.NewGuid().ToString(),
-				        MemberCount = enumerable.Count()
-				    };
-			    _smsRepo.Save (smsGroup);
+				{
+					Name = GroupName,
+					CreatedDate = DateTime.Now,
+					UUID = Guid.NewGuid().ToString(),
+					MemberCount = enumerable.Count()
+				};
+				_smsRepo.Save (smsGroup);
 			}
 			
 			foreach (var contact in enumerable)

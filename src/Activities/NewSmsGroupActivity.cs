@@ -31,7 +31,8 @@ namespace Prattle.Activities
 				.ContinueWith(task =>
 					RunOnUiThread(() => 
 					{
-						DisplayContacts(task.Result);
+						if (task.Result != null)
+							DisplayContacts(task.Result);
 						_progressDialog.Dismiss ();
 					}));
 		}
