@@ -45,7 +45,7 @@ namespace Prattle.Activities
 			MenuInflater.Inflate (Resource.Menu.group_edit_bar, menu);
 			return true;
 		}
-		
+
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
 			switch (item.ItemId) {

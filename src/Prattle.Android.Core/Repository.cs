@@ -17,7 +17,8 @@ namespace Prattle.Android.Core
 		{
 			//if the database table doesn't exist, create one
 			var path = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
-			Cn = new SQLiteConnection(Path.Combine (path, DbName));
+			var db = Path.Combine (path, DbName);
+			Cn = new SQLiteConnection (db);
 			Cn.CreateTable<T>();
 		}
 		

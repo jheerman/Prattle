@@ -66,5 +66,6 @@ namespace Prattle.Android.Core
 				where contact.Selected
 				select contact).ToList ();
 		}
+	
 	}
 }
