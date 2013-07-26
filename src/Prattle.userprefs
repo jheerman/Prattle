@@ -1,33 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Activities/SmsGroupListActivity.cs">
-    <Files>
-      <File FileName="Activities/EditSmsGroupActivity.cs" Line="11" Column="56" />
-      <File FileName="Activities/MainActivity.cs" Line="19" Column="20" />
-      <File FileName="Activities/SmsGroupListActivity.cs" Line="92" Column="3" />
-    </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Prattle" expanded="True">
-            <Node name="Activities" expanded="True">
-              <Node name="SmsGroupListActivity.cs" selected="True" />
-            </Node>
-            <Node name="Resources" expanded="True">
-              <Node name="values" expanded="True" />
-            </Node>
-          </Node>
-          <Node name="Prattle.Android.Core" expanded="True" />
-        </State>
-      </Pad>
-    </Pads>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
-    <Watch file="Activities/SendMessageActivity.cs" line="150" offsetX="364" offsetY="2831" expression="ex" liveUpdate="False" />
-    <Watch file="Receivers/PrattleSmsReceiver.cs" line="26" offsetX="451" offsetY="475" expression="message" liveUpdate="False" />
-  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.Prattle AndroidDeviceId-Debug="6612120c" />
 </Properties>
